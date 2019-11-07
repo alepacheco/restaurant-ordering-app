@@ -7,5 +7,756 @@ exports[`<RestaurantList /> renders correctly 1`] = `
   <Text>
     List
   </Text>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "id": "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+          "title": "First Item",
+        },
+        Object {
+          "id": "3ac68afc-c5453605-48d3-a4f8-fbd91aa97f63",
+          "title": "Second Item",
+        },
+        Object {
+          "id": "58694a0f54534-3da1-471f-bd96-145571e29d72",
+          "title": "Third Item",
+        },
+        Object {
+          "id": "534555-c1b1-46c2-aed5-3ad53abb28ba",
+          "title": "First Item",
+        },
+        Object {
+          "id": "3ac68afc-c5354605-48d3-a4f8-fbd91aa97f63",
+          "title": "Second Item",
+        },
+        Object {
+          "id": "58694a0f-3da1-5345345471f-bd96-145571e29d72",
+          "title": "Third Item",
+        },
+        Object {
+          "id": "bd7acbea-c345341b1-46c2-aed5-3ad53abb28ba",
+          "title": "First Item",
+        },
+        Object {
+          "id": "3ac68afc-54543c605-48d3-a4f8-fbd91aa97f63",
+          "title": "Second Item",
+        },
+        Object {
+          "id": "5844-471f-bd96-145571e29d72",
+          "title": "Third Item",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 18,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 18,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://picsum.photos/50/50",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "borderRadius": 6,
+                  "height": 84,
+                  "width": 84,
+                },
+              ]
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "display": "flex",
+                  "flexBasis": 0,
+                  "flexGrow": 2,
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 24,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              First Item
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "gray",
+                    "fontSize": 18,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              This is the subtitle
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 18,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 18,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://picsum.photos/50/50",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "borderRadius": 6,
+                  "height": 84,
+                  "width": 84,
+                },
+              ]
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "display": "flex",
+                  "flexBasis": 0,
+                  "flexGrow": 2,
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 24,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              Second Item
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "gray",
+                    "fontSize": 18,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              This is the subtitle
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 18,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 18,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://picsum.photos/50/50",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "borderRadius": 6,
+                  "height": 84,
+                  "width": 84,
+                },
+              ]
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "display": "flex",
+                  "flexBasis": 0,
+                  "flexGrow": 2,
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 24,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              Third Item
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "gray",
+                    "fontSize": 18,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              This is the subtitle
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 18,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 18,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://picsum.photos/50/50",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "borderRadius": 6,
+                  "height": 84,
+                  "width": 84,
+                },
+              ]
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "display": "flex",
+                  "flexBasis": 0,
+                  "flexGrow": 2,
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 24,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              First Item
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "gray",
+                    "fontSize": 18,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              This is the subtitle
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 18,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 18,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://picsum.photos/50/50",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "borderRadius": 6,
+                  "height": 84,
+                  "width": 84,
+                },
+              ]
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "display": "flex",
+                  "flexBasis": 0,
+                  "flexGrow": 2,
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 24,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              Second Item
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "gray",
+                    "fontSize": 18,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              This is the subtitle
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 18,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 18,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://picsum.photos/50/50",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "borderRadius": 6,
+                  "height": 84,
+                  "width": 84,
+                },
+              ]
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "display": "flex",
+                  "flexBasis": 0,
+                  "flexGrow": 2,
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 24,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              Third Item
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "gray",
+                    "fontSize": 18,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              This is the subtitle
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 18,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 18,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://picsum.photos/50/50",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "borderRadius": 6,
+                  "height": 84,
+                  "width": 84,
+                },
+              ]
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "display": "flex",
+                  "flexBasis": 0,
+                  "flexGrow": 2,
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 24,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              First Item
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "gray",
+                    "fontSize": 18,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              This is the subtitle
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 18,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 18,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://picsum.photos/50/50",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "borderRadius": 6,
+                  "height": 84,
+                  "width": 84,
+                },
+              ]
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "display": "flex",
+                  "flexBasis": 0,
+                  "flexGrow": 2,
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 24,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              Second Item
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "gray",
+                    "fontSize": 18,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              This is the subtitle
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 18,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 18,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://picsum.photos/50/50",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "borderRadius": 6,
+                  "height": 84,
+                  "width": 84,
+                },
+              ]
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "display": "flex",
+                  "flexBasis": 0,
+                  "flexGrow": 2,
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 24,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              Third Item
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "gray",
+                    "fontSize": 18,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              This is the subtitle
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
 </RCTSafeAreaView>
 `;
