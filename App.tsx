@@ -1,51 +1,37 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import axios from 'axios';
-import { API_URL } from 'react-native-dotenv';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { Settings } from './screens/Settings';
+import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
+import React from 'react';
+import { RestaurantList } from './screens/RestaurantList';
+import { Profile } from './screens/Profile';
+import { Search } from './screens/Search';
+import { createStackNavigator } from 'react-navigation-stack';
 
-const App = () => {
-  const [message, setMessage] = useState('Loading');
+const TabBarComponent = props => <BottomTabBar {...props} />;
 
-  (async () => {
-    try {
-      const { data } = await axios.get(API_URL + '/');
-      setMessage(data);
-    } catch (error) {
-      setMessage('Api not workign.');
-    }
-  })();
+const BottomTabNavigator = createBottomTabNavigator(
+  {
+    RestaurantList,
+    Search,
+    Profile,
+  },
+  {
+    tabBarComponent: props => (
+      <TabBarComponent {...props} style={{ borderTopColor: '#605F60' }} />
+    ),
+  }
+);
 
-  return (
-    <View style={styles.container}>
-      <Text>Zeit now & expo (React Native) Template!</Text>
-      <Text>Published to Expo and Next</Text>
+const MainNavigator = createStackNavigator({
+  BottomTabNavigator: {
+    screen: BottomTabNavigator,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  Settings: { screen: Settings },
+});
 
-      <Text
-        style={{
-          backgroundColor: 'aliceblue',
-          padding: 14,
-          margin: 24,
-          borderRadius: 6,
-        }}>
-        {message}
-      </Text>
-      <Image
-        style={{ width: 50, height: 50 }}
-        source={{
-          uri: 'https://facebook.github.io/react-native/img/tiny_logo.png',
-        }}
-      />
-    </View>
-  );
-};
+const App = createAppContainer(MainNavigator);
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
