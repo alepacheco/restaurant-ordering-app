@@ -33,7 +33,12 @@ const MainNavigator = createStackNavigator(
       },
     },
     Settings,
-    RestaurantDetails,
+    RestaurantDetails: {
+      screen: RestaurantDetails,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
     LogIn: {
       screen: LogIn,
       navigationOptions: {
