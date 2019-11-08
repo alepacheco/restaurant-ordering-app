@@ -2,9 +2,17 @@ import * as SecureStore from 'expo-secure-store';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, Button } from 'react-native';
 import { SESSION_ID_KEY } from '../../constants/session';
+import { StackActions, NavigationActions } from 'react-navigation';
+import axios from 'axios';
+import { API_URL } from 'react-native-dotenv';
 
 const loginNow = async ({ reload }) => {
-  await SecureStore.setItemAsync(SESSION_ID_KEY, 'mySessionId');
+  const { data } = await axios.post(`${API_URL}/login`, {
+    username: 'admin',
+    password: 'admin',
+  });
+
+  await SecureStore.setItemAsync(SESSION_ID_KEY, data.sessionId);
 
   // Force the LogIn component to rerender
   reload(Math.random());
@@ -16,7 +24,11 @@ export const LogIn: React.FC<{ navigation: any }> = ({ navigation }) => {
   useEffect(() => {
     SecureStore.getItemAsync(SESSION_ID_KEY).then(sessionId => {
       if (sessionId) {
-        navigation.navigate('Home');
+        const resetAction = StackActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: 'Home' })],
+        });
+        navigation.dispatch(resetAction);
       }
     });
   });

@@ -25,6 +25,29 @@ const restaurantData = {
           price: '6£',
           image: 'https://picsum.photos/86/86',
         },
+        {
+          name: 'Big Mac',
+          description: 'The original burger',
+          price: '6£',
+          image: 'https://picsum.photos/86/86',
+        },
+        {
+          name: 'Big Mac',
+          description: 'The original burger',
+          price: '6£',
+          image: 'https://picsum.photos/86/86',
+        },
+      ],
+    },
+    {
+      title: 'Burgers',
+      items: [
+        {
+          name: 'Big Mac',
+          description: 'The original burger',
+          price: '6£',
+          image: 'https://picsum.photos/86/86',
+        },
       ],
     },
   ],

@@ -2,10 +2,16 @@ import React from 'react';
 import { Button } from 'react-native';
 import { SESSION_ID_KEY } from '../../constants/session';
 import * as SecureStore from 'expo-secure-store';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 const logOut = async ({ navigation }) => {
   await SecureStore.deleteItemAsync(SESSION_ID_KEY);
-  navigation.navigate('LogIn');
+
+  const resetAction = StackActions.reset({
+    index: 0,
+    actions: [NavigationActions.navigate({ routeName: 'LogIn' })],
+  });
+  navigation.dispatch(resetAction);
 };
 
 export const LogOutButton: React.FC<{ navigation: any }> = ({ navigation }) => (

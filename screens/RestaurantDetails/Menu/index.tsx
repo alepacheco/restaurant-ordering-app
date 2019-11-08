@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
 import { Section } from './Section';
-import { Item } from './Item';
 
 interface MenuItem {
+  id: string;
   name: string;
   description?: string;
   price: string;
@@ -19,7 +19,11 @@ interface MenuOptions {
 
 export const Menu = ({ menu }: MenuOptions) => {
   const MenuList = menu.map((section, index) => {
-    return <Section key={index} title={section.title} items={section.items} />;
+    return (
+      <View key={index}>
+        <Section title={section.title} items={section.items} />
+      </View>
+    );
   });
 
   return <View>{MenuList}</View>;

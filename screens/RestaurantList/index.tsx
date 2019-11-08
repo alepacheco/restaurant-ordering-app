@@ -15,6 +15,17 @@ const HeaderWrapper = styled.View`
   border-bottom-color: black;
 `;
 
+const Separator = styled.View`
+  height: 1px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+`;
+
+const SeparatorWrapper = styled.View`
+  display: flex;
+  margin: 0 12px;
+`;
+
 const ListHeader = ({}) => {
   return (
     <HeaderWrapper>
@@ -35,20 +46,31 @@ const OnClickWrapper: React.FC<{ navigate: any; id: number }> = ({
   );
 };
 
+const getRestaurants = async ({ setList, setIsLoading }) => {
+  setIsLoading(true);
+  const { data } = await axios.get(`${API_URL}/restaurants`);
+
+  setList(data);
+  setIsLoading(false);
+};
+
 export const RestaurantList: React.FC<{ navigation: any }> = ({
   navigation,
 }) => {
   const [list, setList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { navigate } = navigation;
 
   useEffect(() => {
-    axios.get(`${API_URL}/restaurants`).then(({ data }) => setList(data));
+    getRestaurants({ setList, setIsLoading });
   }, []);
 
   return (
     <SafeAreaView>
       <ListHeader />
       <FlatList
+        onRefresh={() => getRestaurants({ setList, setIsLoading })}
+        refreshing={isLoading}
         data={list}
         renderItem={({ item }) => (
           <OnClickWrapper navigate={navigate} id={item.id}>
@@ -56,8 +78,14 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
               title={item.title}
               description={item.description}
               id={item.id}
+              distance={item.distance}
             />
           </OnClickWrapper>
+        )}
+        ItemSeparatorComponent={() => (
+          <SeparatorWrapper>
+            <Separator />
+          </SeparatorWrapper>
         )}
         keyExtractor={item => item.id}
       />

@@ -31,6 +31,7 @@ exports[`<RestaurantList /> renders correctly while empty 1`] = `
     </Text>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     data={Array []}
     disableVirtualization={false}
     getItem={[Function]}
@@ -44,9 +45,17 @@ exports[`<RestaurantList /> renders correctly while empty 1`] = `
     onEndReachedThreshold={2}
     onLayout={[Function]}
     onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={50}
@@ -55,6 +64,7 @@ exports[`<RestaurantList /> renders correctly while empty 1`] = `
     viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
+    <RCTRefreshControl />
     <View />
   </RCTScrollView>
 </RCTSafeAreaView>
@@ -91,6 +101,7 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
     </Text>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     data={
       Array [
         Object {
@@ -119,9 +130,17 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
     onEndReachedThreshold={2}
     onLayout={[Function]}
     onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={50}
@@ -130,6 +149,7 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
     viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
+    <RCTRefreshControl />
     <View>
       <View
         onLayout={[Function]}
@@ -190,28 +210,52 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
                     "flexBasis": 0,
                     "flexGrow": 2,
                     "flexShrink": 1,
+                    "marginLeft": 12,
                   },
                 ]
               }
             >
-              <Text
+              <View
                 style={
                   Array [
                     Object {
-                      "fontSize": 24,
-                      "justifyContent": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
                     },
                   ]
                 }
               >
-                McDonalds
-              </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontSize": 24,
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  McDonalds
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "textAlign": "right",
+                      },
+                    ]
+                  }
+                />
+              </View>
               <Text
                 style={
                   Array [
                     Object {
                       "color": "gray",
-                      "fontSize": 18,
+                      "fontSize": 12,
                       "justifyContent": "center",
                     },
                   ]
@@ -221,6 +265,31 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
               </Text>
             </View>
           </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "display": "flex",
+                "marginBottom": 0,
+                "marginLeft": 12,
+                "marginRight": 12,
+                "marginTop": 0,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(0, 0, 0, 0.2)",
+                  "height": 1,
+                  "width": "100%",
+                },
+              ]
+            }
+          />
         </View>
       </View>
       <View
@@ -282,28 +351,52 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
                     "flexBasis": 0,
                     "flexGrow": 2,
                     "flexShrink": 1,
+                    "marginLeft": 12,
                   },
                 ]
               }
             >
-              <Text
+              <View
                 style={
                   Array [
                     Object {
-                      "fontSize": 24,
-                      "justifyContent": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
                     },
                   ]
                 }
               >
-                McDonalds 2
-              </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontSize": 24,
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  McDonalds 2
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "textAlign": "right",
+                      },
+                    ]
+                  }
+                />
+              </View>
               <Text
                 style={
                   Array [
                     Object {
                       "color": "gray",
-                      "fontSize": 18,
+                      "fontSize": 12,
                       "justifyContent": "center",
                     },
                   ]
