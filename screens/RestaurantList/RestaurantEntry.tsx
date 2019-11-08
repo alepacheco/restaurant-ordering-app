@@ -31,13 +31,17 @@ const SubTitle = styled.Text`
   color: gray;
 `;
 
-export const RestaurantEntry: React.FC<{ title: string }> = ({ title }) => {
+export const RestaurantEntry: React.FC<{
+  title: string;
+  description: string;
+  id: number;
+}> = ({ title, description, id }) => {
   return (
     <Container>
       <RestaurantImage source={{ uri: 'https://picsum.photos/50/50' }} />
       <TextBox>
         <Title>{title}</Title>
-        <SubTitle>This is the subtitle</SubTitle>
+        <SubTitle>{description}</SubTitle>
       </TextBox>
     </Container>
   );

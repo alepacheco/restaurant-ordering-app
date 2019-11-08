@@ -1,17 +1,18 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import React from 'react';
+import { createAppContainer } from 'react-navigation';
 import { Settings } from './screens/Settings';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
-import React from 'react';
+import { createStackNavigator } from 'react-navigation-stack';
 import { RestaurantList } from './screens/RestaurantList';
 import { Profile } from './screens/Profile';
 import { Search } from './screens/Search';
-import { createStackNavigator } from 'react-navigation-stack';
+import { RestaurantDetails } from './screens/RestaurantDetails';
 
 const TabBarComponent = props => <BottomTabBar {...props} />;
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
-    RestaurantList,
+    Restaurants: RestaurantList,
     Search,
     Profile,
   },
@@ -30,6 +31,7 @@ const MainNavigator = createStackNavigator({
     },
   },
   Settings: { screen: Settings },
+  RestaurantDetails,
 });
 
 const App = createAppContainer(MainNavigator);
