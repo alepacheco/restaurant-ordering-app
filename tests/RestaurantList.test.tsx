@@ -8,6 +8,19 @@ jest.mock('axios', () => ({
   get: jest.fn(),
 }));
 
+jest.mock('expo-permissions', () => ({
+  askAsync: () => ({ status: 'granted' }),
+}));
+
+jest.mock('expo-location', () => ({
+  getCurrentPositionAsync: () => ({
+    coords: {
+      longitude: 3,
+      latitude: 3,
+    },
+  }),
+}));
+
 describe('<RestaurantList />', () => {
   it('renders correctly while empty', async () => {
     let tree: null | renderer.ReactTestRenderer = null;

@@ -4,9 +4,11 @@ import { SafeAreaView, Text, Button } from 'react-native';
 import { SESSION_ID_KEY } from '../../constants/session';
 import { StackActions, NavigationActions } from 'react-navigation';
 import axios from 'axios';
+
+// @ts-ignore
 import { API_URL } from 'react-native-dotenv';
 
-const loginNow = async ({ reload }) => {
+const loginNow = async ({ reload }: { reload: (value: any) => void }) => {
   const { data } = await axios.post(`${API_URL}/login`, {
     username: 'admin',
     password: 'admin',

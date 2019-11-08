@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import { RestaurantEntry } from './RestaurantEntry';
-import { API_URL } from 'react-native-dotenv';
-import axios from 'axios';
 import styled from 'styled-components/native';
+import { getLocation, getRestaurants } from './utils';
 
 const HeaderTitle = styled.Text`
   font-size: 24px;
@@ -46,30 +45,32 @@ const OnClickWrapper: React.FC<{ navigate: any; id: number }> = ({
   );
 };
 
-const getRestaurants = async ({ setList, setIsLoading }) => {
-  setIsLoading(true);
-  const { data } = await axios.get(`${API_URL}/restaurants`);
-
-  setList(data);
-  setIsLoading(false);
-};
-
 export const RestaurantList: React.FC<{ navigation: any }> = ({
   navigation,
 }) => {
   const [list, setList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { navigate } = navigation;
 
   useEffect(() => {
-    getRestaurants({ setList, setIsLoading });
-  }, []);
+    if (isLoading) {
+      (async () => {
+        try {
+          const location = await getLocation();
+
+          await getRestaurants({ setList, setIsLoading, location });
+        } catch (error) {}
+
+        setIsLoading(false);
+      })();
+    }
+  }, [isLoading]);
 
   return (
     <SafeAreaView>
       <ListHeader />
       <FlatList
-        onRefresh={() => getRestaurants({ setList, setIsLoading })}
+        onRefresh={() => setIsLoading(true)}
         refreshing={isLoading}
         data={list}
         renderItem={({ item }) => (

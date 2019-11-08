@@ -8,8 +8,9 @@ import { Profile } from './screens/Profile';
 import { Search } from './screens/Search';
 import { RestaurantDetails } from './screens/RestaurantDetails';
 import { LogIn } from './screens/LogIn';
+import { ProductDetails } from './screens/ProductDetails';
 
-const TabBarComponent = props => <BottomTabBar {...props} />;
+const TabBarComponent = (props: any) => <BottomTabBar {...props} />;
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
@@ -18,7 +19,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     Profile,
   },
   {
-    tabBarComponent: props => (
+    tabBarComponent: (props: any) => (
       <TabBarComponent {...props} style={{ borderTopColor: '#605F60' }} />
     ),
   }
@@ -33,6 +34,12 @@ const MainNavigator = createStackNavigator(
       },
     },
     Settings,
+    ProductDetails: {
+      screen: ProductDetails,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
     RestaurantDetails: {
       screen: RestaurantDetails,
       navigationOptions: {

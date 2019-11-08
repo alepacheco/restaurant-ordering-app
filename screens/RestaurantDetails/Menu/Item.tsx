@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
+import { withNavigation } from 'react-navigation';
 
 const Wrapper = styled.View`
   display: flex;
@@ -28,24 +29,27 @@ const ProductImage = styled.Image`
 `;
 
 interface MenuItem {
-  id: number;
+  id: string;
   name: string;
   description?: string;
   price: string;
   image: string;
 }
 
-const onItemClick = (id: number) => {};
+const onItemClick = ({ id, navigation }: { id: string; navigation: any }) => {
+  navigation.navigate('ProductDetails');
+};
 
-export const Item: React.FC<MenuItem> = ({
+const Item: React.FC<MenuItem & { navigation: any }> = ({
   name,
   description,
   price,
   image,
   id,
+  navigation,
 }) => {
   return (
-    <TouchableOpacity onPress={() => onItemClick(id)}>
+    <TouchableOpacity onPress={() => onItemClick({ id, navigation })}>
       <Wrapper>
         <ProductImage source={{ uri: image }} />
         <TextWrapper>
@@ -57,3 +61,5 @@ export const Item: React.FC<MenuItem> = ({
     </TouchableOpacity>
   );
 };
+
+export default withNavigation(Item);

@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TabBarIOSItem } from 'react-native';
 import styled from 'styled-components/native';
-import { Item } from './Item';
+import Item from './Item';
 
 interface MenuItem {
   id: string;
@@ -34,7 +34,7 @@ export const Section = ({
       <Title>{title}</Title>
       <View>
         {items.map((item, index) => (
-          <View key={index}>
+          <View key={item.id}>
             {index === 0 ? <></> : <Separator />}
             <Item
               id={item.id}

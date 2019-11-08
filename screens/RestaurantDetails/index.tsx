@@ -20,18 +20,21 @@ const restaurantData = {
       title: 'Burgers',
       items: [
         {
+          id: '4i942u4ior',
           name: 'Big Mac',
           description: 'The original burger',
           price: '6£',
           image: 'https://picsum.photos/86/86',
         },
         {
+          id: 're;ptro324j',
           name: 'Big Mac',
           description: 'The original burger',
           price: '6£',
           image: 'https://picsum.photos/86/86',
         },
         {
+          id: '48340293hj',
           name: 'Big Mac',
           description: 'The original burger',
           price: '6£',
@@ -43,6 +46,7 @@ const restaurantData = {
       title: 'Burgers',
       items: [
         {
+          id: 'to43i94',
           name: 'Big Mac',
           description: 'The original burger',
           price: '6£',
