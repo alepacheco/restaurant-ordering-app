@@ -16,3 +16,13 @@ export const getRestaurantDetails = async ({
 
   return data;
 };
+
+export const getMenu = async ({ restaurantId }: getRestaurantsArgs) => {
+  const { data } = await axios.get(`${API_URL}/restaurants/menu`, {
+    params: {
+      restaurantId,
+    },
+  });
+
+  return data;
+};

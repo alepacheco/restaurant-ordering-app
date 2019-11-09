@@ -36,8 +36,14 @@ interface MenuItem {
   image: string;
 }
 
-const onItemClick = ({ id, navigation }: { id: string; navigation: any }) => {
-  navigation.navigate('ProductDetails');
+const onItemClick = ({
+  productId,
+  navigation,
+}: {
+  productId: string;
+  navigation: any;
+}) => {
+  navigation.navigate('ProductDetails', { productId });
 };
 
 const Item: React.FC<MenuItem & { navigation: any }> = ({
@@ -49,7 +55,8 @@ const Item: React.FC<MenuItem & { navigation: any }> = ({
   navigation,
 }) => {
   return (
-    <TouchableOpacity onPress={() => onItemClick({ id, navigation })}>
+    <TouchableOpacity
+      onPress={() => onItemClick({ productId: id, navigation })}>
       <Wrapper>
         <ProductImage source={{ uri: image }} />
         <TextWrapper>
