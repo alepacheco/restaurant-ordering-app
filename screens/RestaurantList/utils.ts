@@ -1,9 +1,7 @@
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import axios from 'axios';
-
-// @ts-ignore
-import { API_URL } from 'react-native-dotenv';
+import { API_URL } from '../../constants/network';
 
 export const getLocation = async () => {
   let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -22,7 +20,7 @@ export const getLocation = async () => {
 interface getRestaurantsArgs {
   setIsLoading: (isLoading: boolean) => void;
   setList: (list: any) => void;
-  location: {
+  location?: {
     latitude?: number;
     longitude?: number;
   };

@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, View, ScrollView, Text } from 'react-native';
 import styled from 'styled-components/native';
 import { Menu } from './Menu';
+import { getRestaurantDetails } from './utils';
 
 const RestaurantTitle = styled.Text`
-  font-size: 24px;
+  font-size: 38px;
 `;
 const BannerImage = styled.Image`
-  height: 128px;
+  height: 188px;
   width: 100%;
+`;
+
+const Details = styled.View`
+  background-color: rgba(3, 3, 3, 0.3);
+
+  padding: 12px 12px 20px;
 `;
 
 const restaurantData = {
@@ -60,13 +67,28 @@ const restaurantData = {
 export const RestaurantDetails: React.FC<{ navigation: any }> = ({
   navigation,
 }) => {
+  const [restaurantDetails, sertRestaurantDetails] = useState({
+    bannerImage: 'https://picsum.photos/84/84',
+    description: 'Loading',
+    name: 'Loading',
+  });
   const { id } = navigation.state.params;
 
+  useEffect(() => {
+    getRestaurantDetails({ restaurantId: id }).then(data =>
+      sertRestaurantDetails(data)
+    );
+  }, []);
+
   return (
-    <ScrollView>
-      <BannerImage source={{ uri: restaurantData.bannerImage }} />
-      <RestaurantTitle>{restaurantData.name}</RestaurantTitle>
-      <Text>{restaurantData.description}</Text>
+    <ScrollView bounces={false}>
+      <BannerImage source={{ uri: restaurantDetails.bannerImage }} />
+
+      <Details>
+        <RestaurantTitle>{restaurantDetails.name}</RestaurantTitle>
+        <Text>{restaurantDetails.description}</Text>
+      </Details>
+
       <Menu menu={restaurantData.menu} />
     </ScrollView>
   );

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
+import { SafeAreaView, TouchableOpacity, FlatList, Text } from 'react-native';
 import { RestaurantEntry } from './RestaurantEntry';
 import styled from 'styled-components/native';
 import { getLocation, getRestaurants } from './utils';
+import { Loading } from './Loading';
 
 const HeaderTitle = styled.Text`
   font-size: 24px;
@@ -49,22 +50,42 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
   navigation,
 }) => {
   const [list, setList] = useState([]);
+  const [initialLoad, setInitialLoad] = useState(true);
+
   const [isLoading, setIsLoading] = useState(true);
   const { navigate } = navigation;
 
   useEffect(() => {
+    if (initialLoad) {
+      (async () => {
+        try {
+          await getRestaurants({ setList, setIsLoading });
+        } catch (error) {
+          console.warn(error);
+        }
+
+        setInitialLoad(false);
+      })();
+    }
+
     if (isLoading) {
       (async () => {
         try {
           const location = await getLocation();
 
           await getRestaurants({ setList, setIsLoading, location });
-        } catch (error) {}
+        } catch (error) {
+          console.warn(error);
+        }
 
         setIsLoading(false);
       })();
     }
   }, [isLoading]);
+
+  if (initialLoad) {
+    return <Loading />;
+  }
 
   return (
     <SafeAreaView>

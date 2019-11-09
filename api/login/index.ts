@@ -1,5 +1,4 @@
 import { NowRequest, NowResponse } from '@now/node';
-import { RSA_NO_PADDING } from 'constants';
 
 const handler = (req: NowRequest, res: NowResponse) => {
   // TODO add validation

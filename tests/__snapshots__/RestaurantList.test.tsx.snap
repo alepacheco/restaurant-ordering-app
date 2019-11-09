@@ -408,13 +408,6 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
           </View>
         </View>
       </View>
-      <View
-        style={
-          Object {
-            "height": 0,
-          }
-        }
-      />
     </View>
   </RCTScrollView>
 </RCTSafeAreaView>
