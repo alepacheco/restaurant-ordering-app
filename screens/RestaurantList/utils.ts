@@ -18,18 +18,13 @@ export const getLocation = async () => {
 };
 
 interface getRestaurantsArgs {
-  setIsLoading: (isLoading: boolean) => void;
-  setList: (list: any) => void;
   location?: {
     latitude?: number;
     longitude?: number;
   };
 }
 
-export const getRestaurants = async ({
-  setList,
-  location,
-}: getRestaurantsArgs) => {
+export const getRestaurants = async ({ location }: getRestaurantsArgs) => {
   let params = {};
 
   if (location) {
@@ -45,5 +40,5 @@ export const getRestaurants = async ({
     params,
   });
 
-  setList(data);
+  return data;
 };

@@ -12,8 +12,6 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
     if (userData === null) {
       getProfile({ userId }).then(setUserData);
     }
-
-    return () => setUserData(null);
   }, []);
   return (
     <SafeAreaView>

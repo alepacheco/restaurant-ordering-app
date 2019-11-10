@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, TouchableOpacity, FlatList, Text } from 'react-native';
+import { SafeAreaView, TouchableOpacity, FlatList, View } from 'react-native';
 import { RestaurantEntry } from './RestaurantEntry';
 import styled from 'styled-components/native';
 import { getLocation, getRestaurants } from './utils';
@@ -14,17 +14,6 @@ const HeaderTitle = styled.Text`
 const HeaderWrapper = styled.View`
   border-bottom-width: 0.5px;
   border-bottom-color: black;
-`;
-
-const Separator = styled.View`
-  height: 1px;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-`;
-
-const SeparatorWrapper = styled.View`
-  display: flex;
-  margin: 0 12px;
 `;
 
 const ListHeader = ({}) => {
@@ -47,60 +36,68 @@ const OnClickWrapper: React.FC<{ navigate: any; id: number }> = ({
   );
 };
 
+const fetchListWithLocation = async () => {
+  try {
+    const location = await getLocation();
+
+    return getRestaurants({ location });
+  } catch (error) {
+    console.warn(error);
+  }
+};
+
 export const RestaurantList: React.FC<{ navigation: any }> = ({
   navigation,
 }) => {
-  const [list, setList] = useState([]);
-  const [initialLoad, setInitialLoad] = useState(true);
-
-  const [isLoading, setIsLoading] = useState(true);
+  const [list, setList] = useState(null);
+  const [shouldFetchList, setShouldFetchList] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
   const { navigate } = navigation;
 
   useEffect(() => {
-    if (initialLoad) {
-      (async () => {
-        try {
-          await getRestaurants({ setList, setIsLoading });
-        } catch (error) {
-          console.warn(error);
-        }
-
-        setInitialLoad(false);
-      })();
-    }
-
-    if (isLoading) {
-      (async () => {
-        try {
-          const location = await getLocation();
-
-          await getRestaurants({ setList, setIsLoading, location });
-        } catch (error) {
-          console.warn(error);
-        }
-
+    if (shouldFetchList) {
+      fetchListWithLocation().then(data => {
+        setList(data);
         setIsLoading(false);
-      })();
+      });
+      setShouldFetchList(false);
     }
-  }, [isLoading]);
+  }, [shouldFetchList]);
 
-  if (initialLoad) {
+  if (list === null) {
     return <Loading />;
   }
-  if (list.length === 0 && !isLoading) {
-    return <NoRestaurants />;
+
+  if (list.length === 0) {
+    return (
+      <SafeAreaView>
+        <ListHeader />
+        <NoRestaurants />
+      </SafeAreaView>
+    );
   }
 
   return (
     <SafeAreaView>
       <ListHeader />
       <FlatList
-        onRefresh={() => setIsLoading(true)}
+        style={{
+          marginBottom: 56,
+        }}
+        onScrollEndDrag={() => setIsScrolling(false)}
+        onScrollBeginDrag={() => setIsScrolling(true)}
+        onRefresh={() => {
+          setIsLoading(true);
+          setShouldFetchList(true);
+        }}
         refreshing={isLoading}
-        data={list}
-        renderItem={({ item }) => (
+        data={list || [{}]}
+        extraData={{ isScrolling }}
+        renderItem={({ item }: any) => (
           <OnClickWrapper navigate={navigate} id={item.id}>
             <RestaurantEntry
+              isScrolling={isScrolling}
               title={item.name}
               description={item.description}
               id={item.id}
@@ -108,12 +105,7 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
             />
           </OnClickWrapper>
         )}
-        ItemSeparatorComponent={() => (
-          <SeparatorWrapper>
-            <Separator />
-          </SeparatorWrapper>
-        )}
-        keyExtractor={item => item.id}
+        keyExtractor={(item: any) => item.id}
       />
     </SafeAreaView>
   );

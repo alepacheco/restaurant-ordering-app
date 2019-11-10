@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
+import { Animated } from 'react-native';
 
 const Container = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 18px 8px;
+  margin: 8px;
+  background-color: rgba(2, 2, 2, 0.05);
+  border-radius: 8px;
+  padding: 12px;
 `;
 
 const TextBox = styled.View`
@@ -47,17 +51,29 @@ export const RestaurantEntry: React.FC<{
   description: string;
   id: number;
   distance: string;
-}> = ({ title, description, id, distance }) => {
+  isScrolling?: boolean;
+}> = ({ title, description, id, distance, isScrolling }) => {
+  const [scrollMargin] = useState(new Animated.Value(0)); // Initial value for opacity: 0
+
+  React.useEffect(() => {
+    Animated.timing(scrollMargin, {
+      toValue: isScrolling ? 24 : 0,
+      duration: 400,
+    }).start();
+  }, [isScrolling]);
+
   return (
-    <Container>
-      <RestaurantImage source={{ uri: 'https://picsum.photos/50/50' }} />
-      <TextBox>
-        <FirstRow>
-          <Title>{title}</Title>
-          <Distance>{distance}</Distance>
-        </FirstRow>
-        <SubTitle>{description}</SubTitle>
-      </TextBox>
-    </Container>
+    <Animated.View style={{ marginTop: scrollMargin }}>
+      <Container>
+        <RestaurantImage source={{ uri: 'https://picsum.photos/50/50' }} />
+        <TextBox>
+          <FirstRow>
+            <Title>{title}</Title>
+            <Distance>{distance}</Distance>
+          </FirstRow>
+          <SubTitle>{description}</SubTitle>
+        </TextBox>
+      </Container>
+    </Animated.View>
   );
 };

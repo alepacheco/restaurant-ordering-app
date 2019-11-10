@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import axios from 'axios';
-
+jest.useFakeTimers();
 import { RestaurantList } from '../screens/RestaurantList';
 
 jest.mock('axios', () => ({

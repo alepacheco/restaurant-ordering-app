@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import { Settings } from '../screens/Settings';
-
+jest.useFakeTimers();
 describe('<Settings />', () => {
   it('renders correctly', async () => {
     let tree: null | renderer.ReactTestRenderer = null;

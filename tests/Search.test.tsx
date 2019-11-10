@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-
+jest.useFakeTimers();
 import { Search } from '../screens/Search';
 
 describe('<Search />', () => {
