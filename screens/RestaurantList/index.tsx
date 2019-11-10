@@ -4,6 +4,7 @@ import { RestaurantEntry } from './RestaurantEntry';
 import styled from 'styled-components/native';
 import { getLocation, getRestaurants } from './utils';
 import { Loading } from './Loading';
+import { NoRestaurants } from './NoRestaurants';
 
 const HeaderTitle = styled.Text`
   font-size: 24px;
@@ -86,6 +87,9 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
   if (initialLoad) {
     return <Loading />;
   }
+  if (list.length === 0 && !isLoading) {
+    return <NoRestaurants />;
+  }
 
   return (
     <SafeAreaView>
@@ -97,7 +101,7 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
         renderItem={({ item }) => (
           <OnClickWrapper navigate={navigate} id={item.id}>
             <RestaurantEntry
-              title={item.title}
+              title={item.name}
               description={item.description}
               id={item.id}
               distance={item.distance}
