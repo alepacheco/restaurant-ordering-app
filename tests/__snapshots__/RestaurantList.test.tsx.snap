@@ -202,7 +202,7 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
               <Image
                 source={
                   Object {
-                    "uri": "https://picsum.photos/50/50",
+                    "uri": "https://picsum.photos/84/84",
                   }
                 }
                 style={
@@ -330,7 +330,7 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
               <Image
                 source={
                   Object {
-                    "uri": "https://picsum.photos/50/50",
+                    "uri": "https://picsum.photos/84/84",
                   }
                 }
                 style={
