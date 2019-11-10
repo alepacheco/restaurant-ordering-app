@@ -1,12 +1,11 @@
-import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, View, Text } from 'react-native';
+import Map from './Map';
 
-export class Search extends React.Component<{}> {
-  render() {
-    return (
-      <SafeAreaView>
-        <Text>Search</Text>
-      </SafeAreaView>
-    );
-  }
-}
+export const Search = () => {
+  return (
+    <View>
+      <Map />
+    </View>
+  );
+};

@@ -1,7 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-jest.useFakeTimers();
 import { Search } from '../screens/Search';
+
+jest.useFakeTimers();
+jest.mock('react-navigation', () => ({
+  withNavigation: (x: any) => x,
+}));
+
+jest.mock('react-native-maps', () => ({ children }: any) => <>{children}</>);
 
 describe('<Search />', () => {
   it('renders correctly', async () => {

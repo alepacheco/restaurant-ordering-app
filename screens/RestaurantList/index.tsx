@@ -11,6 +11,9 @@ const HeaderTitle = styled.Text`
   margin: 12px;
 `;
 
+const StyledFlatList = styled(FlatList)`
+  height: 100%;
+`;
 const HeaderWrapper = styled.View`
   border-bottom-width: 0.5px;
   border-bottom-color: black;
@@ -81,7 +84,7 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
   return (
     <SafeAreaView>
       <ListHeader />
-      <FlatList
+      <StyledFlatList
         style={{
           marginBottom: 56,
         }}

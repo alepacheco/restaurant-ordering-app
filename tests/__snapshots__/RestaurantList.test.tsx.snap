@@ -136,9 +136,14 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     style={
-      Object {
-        "marginBottom": 56,
-      }
+      Array [
+        Object {
+          "height": "100%",
+        },
+        Object {
+          "marginBottom": 56,
+        },
+      ]
     }
     updateCellsBatchingPeriod={50}
     viewabilityConfigCallbackPairs={Array []}

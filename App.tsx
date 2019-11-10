@@ -9,14 +9,39 @@ import { Search } from './screens/Search';
 import { RestaurantDetails } from './screens/RestaurantDetails';
 import { LogIn } from './screens/LogIn';
 import { ProductDetails } from './screens/ProductDetails';
+import { TabBarIcon } from './components/TabBarIcon';
 
 const TabBarComponent = (props: any) => <BottomTabBar {...props} />;
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
-    Restaurants: RestaurantList,
-    Search,
-    Profile,
+    Restaurants: {
+      screen: RestaurantList,
+      navigationOptions: {
+        title: '',
+        tabBarIcon: (props: any) => (
+          <TabBarIcon emoji="🏘" focused={props.focused} />
+        ),
+      },
+    },
+    Search: {
+      screen: Search,
+      navigationOptions: {
+        title: '',
+        tabBarIcon: (props: any) => (
+          <TabBarIcon emoji="🗺" focused={props.focused} />
+        ),
+      },
+    },
+    Profile: {
+      screen: Profile,
+      navigationOptions: {
+        title: '',
+        tabBarIcon: (props: any) => (
+          <TabBarIcon emoji="🐶" focused={props.focused} />
+        ),
+      },
+    },
   },
   {
     tabBarComponent: (props: any) => (

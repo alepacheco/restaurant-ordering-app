@@ -21,13 +21,14 @@ const Details = styled.View`
 export const RestaurantDetails: React.FC<{ navigation: any }> = ({
   navigation,
 }) => {
+  const { id } = navigation.state.params;
   const [menu, setMenu] = useState([]);
   const [restaurantDetails, sertRestaurantDetails] = useState({
-    bannerImage: 'https://picsum.photos/24/24',
+    banner_img_url:
+      'https://file-examples.com/wp-content/uploads/2017/10/file_example_PNG_500kB.png',
     description: 'Loading',
     name: 'Loading',
   });
-  const { id } = navigation.state.params;
 
   useEffect(() => {
     getRestaurantDetails({ restaurantId: id }).then(data =>
@@ -39,7 +40,7 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
 
   return (
     <ScrollView bounces={false}>
-      <BannerImage source={{ uri: restaurantDetails.bannerImage }} />
+      <BannerImage source={{ uri: restaurantDetails.banner_img_url }} />
 
       <Details>
         <RestaurantTitle>{restaurantDetails.name}</RestaurantTitle>

@@ -8,7 +8,7 @@ interface MenuItem {
   name: string;
   description?: string;
   price: string;
-  image: string;
+  image_url: string;
 }
 
 const Title = styled.Text`
@@ -60,7 +60,7 @@ export const Section = ({
               name={item.name}
               description={item.description}
               price={item.price}
-              image={item.image}
+              image_url={item.image_url}
             />
           </View>
         ))}
