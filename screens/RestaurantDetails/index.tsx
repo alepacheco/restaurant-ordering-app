@@ -39,7 +39,7 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
   }, []);
 
   return (
-    <ScrollView bounces={false}>
+    <ScrollView>
       <BannerImage source={{ uri: restaurantDetails.banner_img_url }} />
 
       <Details>

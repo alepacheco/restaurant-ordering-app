@@ -11,12 +11,14 @@ const Wrapper = styled.View`
 
 const TextWrapper = styled.View`
   margin: 12px;
+  flex: 1;
 `;
 
 const Title = styled.Text`
   font-size: 24px;
 `;
 const SubTitle = styled.Text`
+  text-align: justify;
   color: gray;
 `;
 const Price = styled.Text`
@@ -24,7 +26,6 @@ const Price = styled.Text`
 `;
 const ProductImage = styled.Image`
   width: 84px;
-  height: 84px;
   border-radius: 6px;
 `;
 
@@ -58,7 +59,7 @@ const Item: React.FC<MenuItem & { navigation: any }> = ({
     <TouchableOpacity
       onPress={() => onItemClick({ productId: id, navigation })}>
       <Wrapper>
-        <ProductImage source={{ uri: image_url }} />
+        <ProductImage resizeMode="contain" source={{ uri: image_url }} />
         <TextWrapper>
           <Title>{name}</Title>
           <SubTitle>{description}</SubTitle>

@@ -11,7 +11,6 @@ export const ProductDetails: React.FC<{ navigation: any }> = ({
 
   useEffect(() => {
     getProductDetails({
-      restaurantId: null,
       productId,
     }).then(data => setProductDetails(data));
   }, []);
