@@ -12,8 +12,17 @@ import { SignUp } from './screens/SignUp';
 import { Splash } from './screens/Splash';
 import { ProductDetails } from './screens/ProductDetails';
 import { TabBarIcon } from './components/TabBarIcon';
+import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
+import styled, { ThemeProvider } from 'styled-components/native';
 
 const TabBarComponent = (props: any) => <BottomTabBar {...props} />;
+
+const StyledTabBarComponent = styled(TabBarComponent)`
+  ${props =>
+    props.theme.colorScheme === 'dark'
+      ? 'background-color: rgb(30,30,30);'
+      : ''}
+`;
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
@@ -47,7 +56,7 @@ const BottomTabNavigator = createBottomTabNavigator(
   },
   {
     tabBarComponent: (props: any) => (
-      <TabBarComponent {...props} style={{ borderTopColor: '#605F60' }} />
+      <StyledTabBarComponent {...props} style={{ borderTopColor: '#605F60' }} />
     ),
   }
 );
@@ -109,4 +118,13 @@ const MainNavigator = createStackNavigator(
 
 const App = createAppContainer(MainNavigator);
 
-export default App;
+export default () => (
+  <AppearanceProvider>
+    <ThemeProvider
+      theme={{
+        colorScheme: useColorScheme(),
+      }}>
+      <App />
+    </ThemeProvider>
+  </AppearanceProvider>
+);

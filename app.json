@@ -19,7 +19,8 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "dev.alepacheco.expozeit"
+      "bundleIdentifier": "dev.alepacheco.expozeit",
+      "userInterfaceStyle": "automatic"
     },
     "android": {
       "package": "dev.alepacheco.expozeit"

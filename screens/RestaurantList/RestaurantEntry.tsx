@@ -8,7 +8,13 @@ const Container = styled.View`
   justify-content: center;
   align-items: center;
   margin: 8px;
-  background-color: rgba(2, 2, 2, 0.05);
+  background-color: rgb(40, 40, 40);
+
+  ${props =>
+    props.theme.colorScheme === 'dark'
+      ? 'background-color: rgb(40, 40, 40);'
+      : 'background-color: rgba(2, 2, 2, 0.05);'}
+
   border-radius: 8px;
   padding: 12px;
 `;
@@ -36,6 +42,8 @@ const RestaurantImage = styled.Image`
 `;
 
 const Title = styled.Text`
+  ${props => (props.theme.colorScheme === 'dark' ? 'color: white;' : '')}
+
   justify-content: center;
   font-size: 24px;
 `;

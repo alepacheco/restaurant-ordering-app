@@ -5,18 +5,32 @@ import styled from 'styled-components/native';
 import { getLocation, getRestaurants } from './utils';
 import { Loading } from './Loading';
 import { NoRestaurants } from './NoRestaurants';
+import { useColorScheme } from 'react-native-appearance';
 
 const HeaderTitle = styled.Text`
   font-size: 24px;
   margin: 12px;
+  ${props => (props.theme.colorScheme === 'dark' ? 'color: white;' : '')}
 `;
 
 const StyledFlatList = styled(FlatList)`
   height: 100%;
+  ${props =>
+    props.theme.colorScheme === 'dark' ? 'background-color: black;' : ''}
 `;
 const HeaderWrapper = styled.View`
   border-bottom-width: 0.5px;
-  border-bottom-color: black;
+  border-bottom-color: gray;
+  ${props =>
+    props.theme.colorScheme === 'dark'
+      ? 'background-color: rgb(30,30,30);'
+      : ''}
+`;
+
+const Wrapper = styled.View`
+  height: 100%;
+  ${props =>
+    props.theme.colorScheme === 'dark' ? 'background-color: black;' : ''}
 `;
 
 const ListHeader = ({}) => {
@@ -74,10 +88,12 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
 
   if (list.length === 0) {
     return (
-      <SafeAreaView>
-        <ListHeader />
-        <NoRestaurants />
-      </SafeAreaView>
+      <Wrapper>
+        <SafeAreaView>
+          <ListHeader />
+          <NoRestaurants />
+        </SafeAreaView>
+      </Wrapper>
     );
   }
 
