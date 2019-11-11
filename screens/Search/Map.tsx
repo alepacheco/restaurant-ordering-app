@@ -61,6 +61,17 @@ const Map: React.FC<{ navigation: any }> = ({ navigation }) => {
     });
   }, []);
 
+  const markersList = markers.map(marker => (
+    <CustomMarker
+      id={marker.id}
+      key={marker.id}
+      latitude={marker.latitude}
+      longitude={marker.longitude}
+      emoji={marker.emoji}
+      navigation={navigation}
+    />
+  ));
+
   return (
     <View>
       <StyledMap
@@ -70,16 +81,7 @@ const Map: React.FC<{ navigation: any }> = ({ navigation }) => {
         rotateEnabled={false}
         showsUserLocation
         region={initialRegion}>
-        {markers.map(marker => (
-          <CustomMarker
-            id={marker.id}
-            key={marker.id}
-            latitude={marker.latitude}
-            longitude={marker.longitude}
-            emoji={marker.emoji}
-            navigation={navigation}
-          />
-        ))}
+        {markersList.length > 0 ? markersList : <View />}
       </StyledMap>
     </View>
   );

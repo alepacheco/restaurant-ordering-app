@@ -8,19 +8,9 @@ interface getRestaurantsArgs {
 export const getRestaurantDetails = async ({
   restaurantId,
 }: getRestaurantsArgs) => {
-  const { data } = await axios.get(`${API_URL}/restaurants/details`, {
+  const { data } = await axios.get(`${API_URL}/restaurant`, {
     params: {
-      restaurantId,
-    },
-  });
-
-  return data;
-};
-
-export const getMenu = async ({ restaurantId }: getRestaurantsArgs) => {
-  const { data } = await axios.get(`${API_URL}/restaurants/menu`, {
-    params: {
-      restaurantId,
+      id: restaurantId,
     },
   });
 

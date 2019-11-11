@@ -22,20 +22,18 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
   navigation,
 }) => {
   const { id } = navigation.state.params;
-  const [menu, setMenu] = useState([]);
   const [restaurantDetails, sertRestaurantDetails] = useState({
     banner_img_url:
       'https://file-examples.com/wp-content/uploads/2017/10/file_example_PNG_500kB.png',
     description: 'Loading',
     name: 'Loading',
+    menu: [],
   });
 
   useEffect(() => {
     getRestaurantDetails({ restaurantId: id }).then(data =>
       sertRestaurantDetails(data)
     );
-
-    getMenu({ restaurantId: id }).then(data => setMenu(data));
   }, []);
 
   return (
@@ -47,7 +45,7 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
         <Text>{restaurantDetails.description}</Text>
       </Details>
 
-      <Menu menu={menu} />
+      <Menu menu={restaurantDetails.menu} />
     </ScrollView>
   );
 };
