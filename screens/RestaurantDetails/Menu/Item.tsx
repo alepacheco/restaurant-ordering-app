@@ -34,7 +34,7 @@ interface MenuItem {
   name: string;
   description?: string;
   price: string;
-  image_url: string;
+  image_url?: string;
 }
 
 const onItemClick = ({

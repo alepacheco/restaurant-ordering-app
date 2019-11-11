@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, View, ScrollView, Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import styled from 'styled-components/native';
 import { Menu } from './Menu';
-import { getRestaurantDetails, getMenu } from './utils';
+import { getRestaurantDetails } from './utils';
 
 const RestaurantTitle = styled.Text`
   font-size: 38px;
