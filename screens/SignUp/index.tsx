@@ -28,21 +28,23 @@ const LoginText = styled.Text`
 
 import { API_URL } from '../../constants/network';
 
-const loginNow = async ({
+const signUp = async ({
   username,
   password,
   navigation,
+  name,
 }: {
   username: string;
   password: string;
+  name: string;
   navigation: any;
 }) => {
   try {
-    const { data } = await axios.post(`${API_URL}/login`, {
-      username,
+    const { data } = await axios.post(`${API_URL}/signup`, {
+      name,
       password,
+      email: username,
     });
-
     await SecureStore.setItemAsync(SESSION_ID_KEY, data.sessionId);
 
     const resetAction = StackActions.reset({
@@ -51,7 +53,8 @@ const loginNow = async ({
     });
     navigation.dispatch(resetAction);
   } catch (err) {
-    console.warn('Username or password incorrect');
+    console.warn('Username or password invalid', err);
+
     const resetAction = StackActions.reset({
       index: 0,
       actions: [NavigationActions.navigate({ routeName: 'SplashNavigator' })],
@@ -60,29 +63,35 @@ const loginNow = async ({
   }
 };
 
-export const LogIn: React.FC<{ navigation: any }> = ({ navigation }) => {
+export const SignUp: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 
   return (
     <SafeAreaView>
-      <LoginText>Log In to continue</LoginText>
+      <LoginText>Sign up</LoginText>
       <InputForm>
         <Input
-          placeholder="Username"
+          placeholder="name"
+          onChangeText={text => setName(text)}
+          value={name}
+        />
+        <Input
+          placeholder="email"
           onChangeText={text => setUsername(text)}
           value={username}
         />
         <Input
-          placeholder="Password"
+          placeholder="password"
           onChangeText={text => setPassword(text)}
           value={password}
         />
       </InputForm>
 
       <Button
-        title="Log in now"
-        onPress={() => loginNow({ navigation, username, password })}
+        title="sign up"
+        onPress={() => signUp({ username, name, password, navigation })}
       />
     </SafeAreaView>
   );

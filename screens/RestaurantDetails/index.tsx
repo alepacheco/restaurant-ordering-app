@@ -25,7 +25,7 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
   const [restaurantDetails, sertRestaurantDetails] = useState({
     banner_img_url:
       'https://file-examples.com/wp-content/uploads/2017/10/file_example_PNG_500kB.png',
-    description: 'Loading',
+    description: '',
     name: 'Loading',
     menu: [],
   });

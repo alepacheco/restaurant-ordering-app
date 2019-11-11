@@ -8,6 +8,8 @@ import { Profile } from './screens/Profile';
 import { Search } from './screens/Search';
 import { RestaurantDetails } from './screens/RestaurantDetails';
 import { LogIn } from './screens/LogIn';
+import { SignUp } from './screens/SignUp';
+import { Splash } from './screens/Splash';
 import { ProductDetails } from './screens/ProductDetails';
 import { TabBarIcon } from './components/TabBarIcon';
 
@@ -50,6 +52,30 @@ const BottomTabNavigator = createBottomTabNavigator(
   }
 );
 
+const SplashNavigator = createStackNavigator(
+  {
+    Splash: {
+      screen: Splash,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
+    LogIn: {
+      screen: LogIn,
+      navigationOptions: {
+        headerShown: true,
+      },
+    },
+    SignUp: {
+      screen: SignUp,
+      navigationOptions: {
+        headerShown: true,
+      },
+    },
+  },
+  { initialRouteName: 'Splash', mode: 'modal' }
+);
+
 const MainNavigator = createStackNavigator(
   {
     Home: {
@@ -71,14 +97,14 @@ const MainNavigator = createStackNavigator(
         headerShown: false,
       },
     },
-    LogIn: {
-      screen: LogIn,
+    SplashNavigator: {
+      screen: SplashNavigator,
       navigationOptions: {
         headerShown: false,
       },
     },
   },
-  { initialRouteName: 'LogIn' }
+  { initialRouteName: 'SplashNavigator' }
 );
 
 const App = createAppContainer(MainNavigator);

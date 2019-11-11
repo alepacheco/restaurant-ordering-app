@@ -9,7 +9,7 @@ const logOut = async ({ navigation }: any) => {
 
   const resetAction = StackActions.reset({
     index: 0,
-    actions: [NavigationActions.navigate({ routeName: 'LogIn' })],
+    actions: [NavigationActions.navigate({ routeName: 'SplashNavigator' })],
   });
   navigation.dispatch(resetAction);
 };
