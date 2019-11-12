@@ -1,5 +1,5 @@
 import * as SecureStore from 'expo-secure-store';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { SafeAreaView, Text, Button, TextInput } from 'react-native';
 import { SESSION_ID_KEY } from '../../constants/session';
 import { StackActions, NavigationActions } from 'react-navigation';

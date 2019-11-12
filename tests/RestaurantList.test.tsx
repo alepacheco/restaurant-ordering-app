@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
+
 import React from 'react';
 import renderer from 'react-test-renderer';
 import axios from 'axios';
