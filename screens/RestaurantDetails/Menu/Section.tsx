@@ -61,6 +61,7 @@ export const Section = ({
               description={item.description}
               price={item.price}
               image_url={item.image_url}
+              item={item}
             />
           </View>
         ))}

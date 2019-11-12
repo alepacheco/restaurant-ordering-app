@@ -1,24 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
-import { getProductDetails } from './utils';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native';
+import styled from 'styled-components/native';
+import { QuantityForm } from './QuantityForm';
+import { AddToCart } from './AddToCart';
+
+const ProductImage = styled.Image`
+  height: 84px;
+`;
+
+const Name = styled.Text`
+  font-size: 28px;
+  text-align: center;
+`;
+
+const Description = styled.Text`
+  font-size: 18px;
+  color: gray;
+`;
+
+const Wrapper = styled.View`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+interface MenuItem {
+  name: string;
+  description: string;
+  price: string;
+  image_url: string;
+  options: Array<{
+    type: 'single' | 'multi';
+    choices: Array<string>;
+  }>;
+}
 
 export const ProductDetails: React.FC<{ navigation: any }> = ({
   navigation,
 }) => {
-  const { productId } = navigation.state.params;
+  const { item }: { item: MenuItem } = navigation.state.params;
 
-  const [productDetails, setProductDetails] = useState({});
-
-  useEffect(() => {
-    getProductDetails({
-      productId,
-    }).then(data => setProductDetails(data));
-  }, []);
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <SafeAreaView>
-      <Text>Datails for product</Text>
-      <Text>{JSON.stringify(productDetails)}</Text>
+      <Wrapper>
+        <ScrollView>
+          <ProductImage resizeMode="contain" source={{ uri: item.image_url }} />
+          <Name>{item.name}</Name>
+          <Description>{item.description}</Description>
+
+          <QuantityForm
+            value={quantity}
+            onPlus={() => setQuantity(Math.min(quantity + 1, 10))}
+            onMinus={() => setQuantity(Math.max(quantity - 1, 1))}
+          />
+        </ScrollView>
+        <AddToCart price={item.price} />
+      </Wrapper>
     </SafeAreaView>
   );
 };

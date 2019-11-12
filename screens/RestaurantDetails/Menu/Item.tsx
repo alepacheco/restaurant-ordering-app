@@ -35,16 +35,11 @@ interface MenuItem {
   description?: string;
   price: string;
   image_url?: string;
+  item: {};
 }
 
-const onItemClick = ({
-  productId,
-  navigation,
-}: {
-  productId: string;
-  navigation: any;
-}) => {
-  navigation.navigate('ProductDetails', { productId });
+const onItemClick = ({ item, navigation }: { item: {}; navigation: any }) => {
+  navigation.navigate('ProductDetails', { item });
 };
 
 const Item: React.FC<MenuItem & { navigation: any }> = ({
@@ -54,10 +49,10 @@ const Item: React.FC<MenuItem & { navigation: any }> = ({
   image_url,
   id,
   navigation,
+  item,
 }) => {
   return (
-    <TouchableOpacity
-      onPress={() => onItemClick({ productId: id, navigation })}>
+    <TouchableOpacity onPress={() => onItemClick({ item, navigation })}>
       <Wrapper>
         <ProductImage resizeMode="contain" source={{ uri: image_url }} />
         <TextWrapper>

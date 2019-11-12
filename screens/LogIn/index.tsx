@@ -1,7 +1,11 @@
 import * as SecureStore from 'expo-secure-store';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, Button, TextInput } from 'react-native';
-import { SESSION_ID_KEY } from '../../constants/session';
+import {
+  SESSION_ID_KEY,
+  USER_EMAIL,
+  USER_PASSWORD,
+} from '../../constants/session';
 import { StackActions, NavigationActions } from 'react-navigation';
 import axios from 'axios';
 
@@ -44,6 +48,8 @@ const loginNow = async ({
     });
 
     await SecureStore.setItemAsync(SESSION_ID_KEY, data.sessionId);
+    await SecureStore.setItemAsync(USER_EMAIL, username);
+    await SecureStore.setItemAsync(USER_PASSWORD, password);
 
     const resetAction = StackActions.reset({
       index: 0,
