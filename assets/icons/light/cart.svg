@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="53" height="46" viewBox="0 0 53 46">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3b3e4a;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="cart" class="cls-1" d="M1064,234a6,6,0,1,0,6,6A6.015,6.015,0,0,0,1064,234Zm0,10a4,4,0,1,1,4-4A4.015,4.015,0,0,1,1064,244Zm17-10a6,6,0,1,0,6,6A6.015,6.015,0,0,0,1081,234Zm0,10a4,4,0,1,1,4-4A4.015,4.015,0,0,1,1081,244Zm3-15,8-21h-40l-4-8h-9v2h8l11,27h26Zm5-19-6,17h-24l-7-17h37Z" transform="translate(-1039 -200)"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="46" viewBox="0 0 50 46">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3b3e4a;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="store" class="cls-1" d="M1843,976l-11.36-24h-27.28L1793,976h7.01v22h36V976H1843Zm-24-22h4.05l5.13,20H1819V954Zm15.01,22v11h-32V976h32ZM1817,954v20h-9.18l5.13-20H1817Zm-20.84,20,9.47-20h5.25l-5.13,20h-9.59Zm5.85,22v-7h32v7h-32Zm28.24-22-5.13-20h5.25l9.47,20h-9.59Z" transform="translate(-1793 -952)"/>
+</svg>
