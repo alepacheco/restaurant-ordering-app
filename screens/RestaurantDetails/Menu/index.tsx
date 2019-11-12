@@ -6,7 +6,7 @@ import { Section } from './Section';
 interface MenuItem {
   id: string;
   name: string;
-  image_url?: string;
+  imageUrl?: string;
   description?: string;
   price: string;
   image: string;

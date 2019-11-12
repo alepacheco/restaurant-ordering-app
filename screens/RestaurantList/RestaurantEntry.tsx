@@ -60,8 +60,8 @@ export const RestaurantEntry: React.FC<{
   id: number;
   distance: string;
   isScrolling?: boolean;
-  image_url: string;
-}> = ({ title, description, id, distance, isScrolling, image_url }) => {
+  imageUrl: string;
+}> = ({ title, description, id, distance, isScrolling, imageUrl }) => {
   const [scrollMargin] = useState(new Animated.Value(0)); // Initial value for opacity: 0
 
   React.useEffect(() => {
@@ -74,7 +74,7 @@ export const RestaurantEntry: React.FC<{
   return (
     <Animated.View style={{ marginTop: scrollMargin }}>
       <Container>
-        <RestaurantImage source={{ uri: image_url }} />
+        <RestaurantImage source={{ uri: imageUrl }} />
         <TextBox>
           <FirstRow>
             <Title>{title}</Title>

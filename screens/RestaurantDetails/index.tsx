@@ -23,7 +23,7 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
 }) => {
   const { id } = navigation.state.params;
   const [restaurantDetails, sertRestaurantDetails] = useState({
-    banner_img_url:
+    bannerImgUrl:
       'https://file-examples.com/wp-content/uploads/2017/10/file_example_PNG_500kB.png',
     description: '',
     name: 'Loading',
@@ -38,7 +38,7 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
 
   return (
     <ScrollView>
-      <BannerImage source={{ uri: restaurantDetails.banner_img_url }} />
+      <BannerImage source={{ uri: restaurantDetails.bannerImgUrl }} />
 
       <Details>
         <RestaurantTitle>{restaurantDetails.name}</RestaurantTitle>

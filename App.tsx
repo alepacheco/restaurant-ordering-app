@@ -15,6 +15,12 @@ import { TabBarIcon } from './components/TabBarIcon';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import styled, { ThemeProvider } from 'styled-components/native';
 
+declare module 'styled-components' {
+  export interface DefaultTheme {
+      colorScheme: string;
+  }
+}
+
 const TabBarComponent = (props: any) => <BottomTabBar {...props} />;
 
 const StyledTabBarComponent = styled(TabBarComponent)`

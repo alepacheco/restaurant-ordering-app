@@ -1,59 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<RestaurantList /> renders correctly while empty 1`] = `
-<RCTSafeAreaView
-  emulateUnlessSupported={true}
+<View
+  style={
+    Array [
+      Object {
+        "height": "100%",
+      },
+    ]
+  }
 >
-  <View
-    style={
-      Array [
-        Object {
-          "borderBottomColor": "black",
-          "borderBottomWidth": 0.5,
-        },
-      ]
-    }
-  >
-    <Text
-      style={
-        Array [
-          Object {
-            "fontSize": 24,
-            "marginBottom": 12,
-            "marginLeft": 12,
-            "marginRight": 12,
-            "marginTop": 12,
-          },
-        ]
-      }
-    >
-      Restaurants
-    </Text>
-  </View>
   <RCTSafeAreaView
     emulateUnlessSupported={true}
-    style={
-      Array [
-        Object {
-          "display": "flex",
-        },
-      ]
-    }
   >
-    <Text
+    <View
       style={
         Array [
           Object {
-            "fontSize": 24,
-            "textAlign": "center",
+            "borderBottomColor": "gray",
+            "borderBottomWidth": 0.5,
           },
         ]
       }
     >
-      No Restaurants nearby
-    </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontSize": 24,
+              "marginBottom": 12,
+              "marginLeft": 12,
+              "marginRight": 12,
+              "marginTop": 12,
+            },
+          ]
+        }
+      >
+        Restaurants
+      </Text>
+    </View>
+    <RCTSafeAreaView
+      emulateUnlessSupported={true}
+      style={
+        Array [
+          Object {
+            "display": "flex",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontSize": 24,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        No Restaurants nearby
+      </Text>
+    </RCTSafeAreaView>
   </RCTSafeAreaView>
-</RCTSafeAreaView>
+</View>
 `;
 
 exports[`<RestaurantList /> renders correctly whith data 1`] = `
@@ -64,7 +74,7 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
     style={
       Array [
         Object {
-          "borderBottomColor": "black",
+          "borderBottomColor": "gray",
           "borderBottomWidth": 0.5,
         },
       ]
@@ -92,13 +102,13 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
         Object {
           "description": "This is the restaurant description",
           "id": "1",
-          "image_url": "https://picsum.photos/84/84",
+          "imageUrl": "https://picsum.photos/84/84",
           "title": "McDonalds",
         },
         Object {
           "description": "This is the restaurant description 2",
           "id": "2",
-          "image_url": "https://picsum.photos/84/84",
+          "imageUrl": "https://picsum.photos/84/84",
           "title": "McDonalds 2",
         },
       ]

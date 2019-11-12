@@ -120,7 +120,7 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
               title={item.name}
               description={item.description}
               id={item.id}
-              image_url={item.image_url}
+              imageUrl={item.imageUrl}
               distance={item.distance}
             />
           </OnClickWrapper>

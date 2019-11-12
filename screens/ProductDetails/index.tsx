@@ -27,7 +27,7 @@ interface MenuItem {
   name: string;
   description: string;
   price: string;
-  image_url: string;
+  imageUrl: string;
   options: Array<{
     type: 'single' | 'multi';
     choices: Array<string>;
@@ -45,7 +45,7 @@ export const ProductDetails: React.FC<{ navigation: any }> = ({
     <SafeAreaView>
       <Wrapper>
         <ScrollView>
-          <ProductImage resizeMode="contain" source={{ uri: item.image_url }} />
+          <ProductImage resizeMode="contain" source={{ uri: item.imageUrl }} />
           <Name>{item.name}</Name>
           <Description>{item.description}</Description>
 

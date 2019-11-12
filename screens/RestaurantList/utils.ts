@@ -4,7 +4,7 @@ import axios from 'axios';
 import { API_URL } from '../../constants/network';
 
 export const getLocation = async () => {
-  let { status } = await Permissions.askAsync(Permissions.LOCATION);
+  const { status } = await Permissions.askAsync(Permissions.LOCATION);
   if (status !== 'granted') {
     throw new Error('Permission to access location was denied');
   }
@@ -17,14 +17,14 @@ export const getLocation = async () => {
   };
 };
 
-interface getRestaurantsArgs {
+interface GetRestaurantsArgs {
   location?: {
     latitude?: number;
     longitude?: number;
   };
 }
 
-export const getRestaurants = async ({ location }: getRestaurantsArgs) => {
+export const getRestaurants = async ({ location }: GetRestaurantsArgs) => {
   let params = {};
 
   if (location) {

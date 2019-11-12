@@ -50,13 +50,13 @@ describe('<RestaurantList />', () => {
           {
             id: '1',
             title: `McDonalds`,
-            image_url: 'https://picsum.photos/84/84',
+            imageUrl: 'https://picsum.photos/84/84',
             description: 'This is the restaurant description',
           },
           {
             id: '2',
             title: `McDonalds 2`,
-            image_url: 'https://picsum.photos/84/84',
+            imageUrl: 'https://picsum.photos/84/84',
             description: 'This is the restaurant description 2',
           },
         ],

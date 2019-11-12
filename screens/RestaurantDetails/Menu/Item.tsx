@@ -34,7 +34,7 @@ interface MenuItem {
   name: string;
   description?: string;
   price: string;
-  image_url?: string;
+  imageUrl?: string;
   item: {};
 }
 
@@ -46,7 +46,7 @@ const Item: React.FC<MenuItem & { navigation: any }> = ({
   name,
   description,
   price,
-  image_url,
+  imageUrl,
   id,
   navigation,
   item,
@@ -54,7 +54,7 @@ const Item: React.FC<MenuItem & { navigation: any }> = ({
   return (
     <TouchableOpacity onPress={() => onItemClick({ item, navigation })}>
       <Wrapper>
-        <ProductImage resizeMode="contain" source={{ uri: image_url }} />
+        <ProductImage resizeMode="contain" source={{ uri: imageUrl }} />
         <TextWrapper>
           <Title>{name}</Title>
           <SubTitle>{description}</SubTitle>
