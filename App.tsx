@@ -1,26 +1,11 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
-import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
-import { ThemeProvider } from 'styled-components/native';
-import { Navigator } from './components/Navigator';
-
-declare module 'styled-components' {
-  export interface DefaultTheme {
-    colorScheme: string;
-  }
-}
-
-const Router = createAppContainer(Navigator);
+import { Router } from './components/Navigator';
+import { Theme } from './components/Theme';
 
 const App = () => (
-  <AppearanceProvider>
-    <ThemeProvider
-      theme={{
-        colorScheme: useColorScheme(),
-      }}>
-      <Router />
-    </ThemeProvider>
-  </AppearanceProvider>
+  <Theme>
+    <Router />
+  </Theme>
 );
 
 export default App;

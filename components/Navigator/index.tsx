@@ -12,6 +12,7 @@ import { Splash } from '../../screens/Splash';
 import { ProductDetails } from '../../screens/ProductDetails';
 import { TabBarIcon } from '../TabBar/TabBarIcon';
 import { TabBar } from '../TabBar';
+import { createAppContainer } from 'react-navigation';
 
 const HomeTabIcon = (props: any) => (
   <TabBarIcon icon="home" focused={props.focused} />
@@ -108,3 +109,5 @@ export const Navigator = createStackNavigator(
   },
   { initialRouteName: 'SplashNavigator' }
 );
+
+export const Router = createAppContainer(Navigator);

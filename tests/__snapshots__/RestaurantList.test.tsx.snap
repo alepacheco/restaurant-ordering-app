@@ -5,6 +5,7 @@ exports[`<RestaurantList /> renders correctly while empty 1`] = `
   style={
     Array [
       Object {
+        "backgroundColor": "white",
         "height": "100%",
       },
     ]
@@ -27,6 +28,7 @@ exports[`<RestaurantList /> renders correctly while empty 1`] = `
         style={
           Array [
             Object {
+              "color": "black",
               "fontSize": 24,
               "marginBottom": 12,
               "marginLeft": 12,
@@ -67,357 +69,367 @@ exports[`<RestaurantList /> renders correctly while empty 1`] = `
 `;
 
 exports[`<RestaurantList /> renders correctly whith data 1`] = `
-<RCTSafeAreaView
-  emulateUnlessSupported={true}
+<View
+  style={
+    Array [
+      Object {},
+    ]
+  }
 >
-  <View
-    style={
-      Array [
-        Object {
-          "borderBottomColor": "gray",
-          "borderBottomWidth": 0.5,
-        },
-      ]
-    }
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
   >
-    <Text
+    <View
       style={
         Array [
           Object {
-            "fontSize": 24,
-            "marginBottom": 12,
-            "marginLeft": 12,
-            "marginRight": 12,
-            "marginTop": 12,
+            "borderBottomColor": "gray",
+            "borderBottomWidth": 0.5,
           },
         ]
       }
     >
-      Restaurants
-    </Text>
-  </View>
-  <RCTScrollView
-    data={
-      Array [
-        Object {
-          "description": "This is the restaurant description",
-          "id": "1",
-          "imageUrl": "https://picsum.photos/84/84",
-          "title": "McDonalds",
-        },
-        Object {
-          "description": "This is the restaurant description 2",
-          "id": "2",
-          "imageUrl": "https://picsum.photos/84/84",
-          "title": "McDonalds 2",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    extraData={
-      Object {
-        "isScrolling": false,
-      }
-    }
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    style={
-      Array [
-        Object {
-          "height": "100%",
-        },
-        Object {
-          "marginBottom": 56,
-        },
-      ]
-    }
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
+      <Text
+        style={
+          Array [
             Object {
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "marginTop": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "rgba(2, 2, 2, 0.05)",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginBottom": 8,
-                    "marginLeft": 8,
-                    "marginRight": 8,
-                    "marginTop": 8,
-                    "paddingBottom": 12,
-                    "paddingLeft": 12,
-                    "paddingRight": 12,
-                    "paddingTop": 12,
-                  },
-                ]
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://picsum.photos/84/84",
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "borderRadius": 6,
-                      "height": 84,
-                      "width": 84,
-                    },
-                  ]
-                }
-              />
-              <View
-                style={
-                  Array [
-                    Object {
-                      "display": "flex",
-                      "flexBasis": 0,
-                      "flexGrow": 2,
-                      "flexShrink": 1,
-                      "marginLeft": 12,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "display": "flex",
-                        "flexDirection": "row",
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontSize": 24,
-                          "justifyContent": "center",
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "flexShrink": 1,
-                          "textAlign": "right",
-                        },
-                      ]
-                    }
-                  />
-                </View>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "gray",
-                        "fontSize": 12,
-                        "justifyContent": "center",
-                      },
-                    ]
-                  }
-                >
-                  This is the restaurant description
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
+              "color": "black",
+              "fontSize": 24,
+              "marginBottom": 12,
+              "marginLeft": 12,
+              "marginRight": 12,
+              "marginTop": 12,
+            },
+          ]
+        }
       >
-        <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "marginTop": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "rgba(2, 2, 2, 0.05)",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginBottom": 8,
-                    "marginLeft": 8,
-                    "marginRight": 8,
-                    "marginTop": 8,
-                    "paddingBottom": 12,
-                    "paddingLeft": 12,
-                    "paddingRight": 12,
-                    "paddingTop": 12,
-                  },
-                ]
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://picsum.photos/84/84",
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "borderRadius": 6,
-                      "height": 84,
-                      "width": 84,
-                    },
-                  ]
-                }
-              />
-              <View
-                style={
-                  Array [
-                    Object {
-                      "display": "flex",
-                      "flexBasis": 0,
-                      "flexGrow": 2,
-                      "flexShrink": 1,
-                      "marginLeft": 12,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "display": "flex",
-                        "flexDirection": "row",
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontSize": 24,
-                          "justifyContent": "center",
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "flexShrink": 1,
-                          "textAlign": "right",
-                        },
-                      ]
-                    }
-                  />
-                </View>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "gray",
-                        "fontSize": 12,
-                        "justifyContent": "center",
-                      },
-                    ]
-                  }
-                >
-                  This is the restaurant description 2
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
+        Restaurants
+      </Text>
     </View>
-  </RCTScrollView>
-</RCTSafeAreaView>
+    <RCTScrollView
+      data={
+        Array [
+          Object {
+            "description": "This is the restaurant description",
+            "id": "1",
+            "imageUrl": "https://picsum.photos/84/84",
+            "title": "McDonalds",
+          },
+          Object {
+            "description": "This is the restaurant description 2",
+            "id": "2",
+            "imageUrl": "https://picsum.photos/84/84",
+            "title": "McDonalds 2",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      extraData={
+        Object {
+          "isScrolling": false,
+        }
+      }
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "white",
+            "height": "100%",
+          },
+          Object {
+            "marginBottom": 56,
+          },
+        ]
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "marginTop": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "rgba(2, 2, 2, 0.05)",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 8,
+                      "marginLeft": 8,
+                      "marginRight": 8,
+                      "marginTop": 8,
+                      "paddingBottom": 12,
+                      "paddingLeft": 12,
+                      "paddingRight": 12,
+                      "paddingTop": 12,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://picsum.photos/84/84",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "borderRadius": 6,
+                        "height": 84,
+                        "width": 84,
+                      },
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "display": "flex",
+                        "flexBasis": 0,
+                        "flexGrow": 2,
+                        "flexShrink": 1,
+                        "marginLeft": 12,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 24,
+                            "justifyContent": "center",
+                          },
+                        ]
+                      }
+                    />
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "flexShrink": 1,
+                            "textAlign": "right",
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "gray",
+                          "fontSize": 12,
+                          "justifyContent": "center",
+                        },
+                      ]
+                    }
+                  >
+                    This is the restaurant description
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "marginTop": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "rgba(2, 2, 2, 0.05)",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 8,
+                      "marginLeft": 8,
+                      "marginRight": 8,
+                      "marginTop": 8,
+                      "paddingBottom": 12,
+                      "paddingLeft": 12,
+                      "paddingRight": 12,
+                      "paddingTop": 12,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://picsum.photos/84/84",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "borderRadius": 6,
+                        "height": 84,
+                        "width": 84,
+                      },
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "display": "flex",
+                        "flexBasis": 0,
+                        "flexGrow": 2,
+                        "flexShrink": 1,
+                        "marginLeft": 12,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 24,
+                            "justifyContent": "center",
+                          },
+                        ]
+                      }
+                    />
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "flexShrink": 1,
+                            "textAlign": "right",
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "gray",
+                          "fontSize": 12,
+                          "justifyContent": "center",
+                        },
+                      ]
+                    }
+                  >
+                    This is the restaurant description 2
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </RCTSafeAreaView>
+</View>
 `;

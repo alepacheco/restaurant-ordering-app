@@ -12,6 +12,8 @@ interface MenuItem {
 }
 
 const Title = styled.Text`
+  ${props => `color: ${props.theme.textColor};`}
+
   margin: 12px;
   font-size: 32px;
 `;
@@ -47,7 +49,7 @@ export const Section = ({
 
       <View>
         {items.map((item, index) => (
-          <View key={item.id}>
+          <View key={index}>
             {index === 0 ? (
               <></>
             ) : (

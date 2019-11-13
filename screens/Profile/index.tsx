@@ -1,11 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { SafeAreaView, Text, Button } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { SafeAreaView, Text, Button, View, StatusBar } from 'react-native';
 import { LogOutButton } from './LogOutButton';
 import { getProfile } from './utils';
+import styled, { ThemeContext } from 'styled-components/native';
+
+const StyledView = styled.View`
+  ${props => `background-color: ${props.theme.color};`}
+  ${props => `color: ${props.theme.textColor};`}
+height: 100%;
+`;
+
+const StyledText = styled.Text`
+  ${props => `color: ${props.theme.textColor};`}
+`;
 
 export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
-
+  const themeContext = useContext(ThemeContext);
+  const barStyle =
+    themeContext.colorScheme === 'dark' ? 'light-content' : 'dark-content';
   const userId = 1;
 
   useEffect(() => {
@@ -14,15 +27,19 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
     }
   }, []);
   return (
-    <SafeAreaView>
-      <Text>This is your profile</Text>
-      <Text>{JSON.stringify(userData)}</Text>
-      <Button
-        title="Settings"
-        onPress={() => navigation.navigate('Settings')}
-      />
+    <StyledView>
+      <SafeAreaView>
+        <StatusBar barStyle={barStyle} />
 
-      <LogOutButton navigation={navigation} />
-    </SafeAreaView>
+        <StyledText>This is your profile</StyledText>
+        <StyledText>{JSON.stringify(userData)}</StyledText>
+        <Button
+          title="Settings"
+          onPress={() => navigation.navigate('Settings')}
+        />
+
+        <LogOutButton navigation={navigation} />
+      </SafeAreaView>
+    </StyledView>
   );
 };

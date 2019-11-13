@@ -1,22 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { SafeAreaView, TouchableOpacity, FlatList, View } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import {
+  SafeAreaView,
+  TouchableOpacity,
+  FlatList,
+  StatusBar,
+} from 'react-native';
 import { RestaurantEntry } from './RestaurantEntry';
-import styled from 'styled-components/native';
+import styled, { ThemeContext } from 'styled-components/native';
 import { getLocation, getRestaurants } from './utils';
 import { Loading } from './Loading';
 import { NoRestaurants } from './NoRestaurants';
-import { useColorScheme } from 'react-native-appearance';
 
+const StyledView = styled.View`
+  ${props =>
+    props.theme.colorScheme === 'dark'
+      ? 'background-color: rgb(30,30,30);'
+      : ''}
+`;
 const HeaderTitle = styled.Text`
   font-size: 24px;
   margin: 12px;
-  ${props => (props.theme.colorScheme === 'dark' ? 'color: white;' : '')}
+  ${props => `color: ${props.theme.textColor};`}
 `;
 
 const StyledFlatList = styled(FlatList)`
   height: 100%;
-  ${props =>
-    props.theme.colorScheme === 'dark' ? 'background-color: black;' : ''}
+  ${props => `background-color: ${props.theme.color};`}
 `;
 const HeaderWrapper = styled.View`
   border-bottom-width: 0.5px;
@@ -29,8 +38,7 @@ const HeaderWrapper = styled.View`
 
 const Wrapper = styled.View`
   height: 100%;
-  ${props =>
-    props.theme.colorScheme === 'dark' ? 'background-color: black;' : ''}
+  ${props => `background-color: ${props.theme.color};`}
 `;
 
 const ListHeader = ({}) => {
@@ -71,6 +79,10 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const { navigate } = navigation;
+  const themeContext = useContext(ThemeContext);
+  const barStyle =
+    themeContext.colorScheme === 'dark' ? 'light-content' : 'dark-content';
+  const userId = 1;
 
   useEffect(() => {
     if (shouldFetchList) {
@@ -98,35 +110,39 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
   }
 
   return (
-    <SafeAreaView>
-      <ListHeader />
-      <StyledFlatList
-        style={{
-          marginBottom: 56,
-        }}
-        onScrollEndDrag={() => setIsScrolling(false)}
-        onScrollBeginDrag={() => setIsScrolling(true)}
-        onRefresh={() => {
-          setIsLoading(true);
-          setShouldFetchList(true);
-        }}
-        refreshing={isLoading}
-        data={list || [{}]}
-        extraData={{ isScrolling }}
-        renderItem={({ item }: any) => (
-          <OnClickWrapper navigate={navigate} id={item.id}>
-            <RestaurantEntry
-              isScrolling={isScrolling}
-              title={item.name}
-              description={item.description}
-              id={item.id}
-              imageUrl={item.imageUrl}
-              distance={item.distance}
-            />
-          </OnClickWrapper>
-        )}
-        keyExtractor={(item: any) => item.id}
-      />
-    </SafeAreaView>
+    <StyledView>
+      <StatusBar barStyle={barStyle} />
+
+      <SafeAreaView>
+        <ListHeader />
+        <StyledFlatList
+          style={{
+            marginBottom: 56,
+          }}
+          onScrollEndDrag={() => setIsScrolling(false)}
+          onScrollBeginDrag={() => setIsScrolling(true)}
+          onRefresh={() => {
+            setIsLoading(true);
+            setShouldFetchList(true);
+          }}
+          refreshing={isLoading}
+          data={list || [{}]}
+          extraData={{ isScrolling }}
+          renderItem={({ item }: any) => (
+            <OnClickWrapper navigate={navigate} id={item.id}>
+              <RestaurantEntry
+                isScrolling={isScrolling}
+                title={item.name}
+                description={item.description}
+                id={item.id}
+                imageUrl={item.imageUrl}
+                distance={item.distance}
+              />
+            </OnClickWrapper>
+          )}
+          keyExtractor={(item: any) => item.id}
+        />
+      </SafeAreaView>
+    </StyledView>
   );
 };
