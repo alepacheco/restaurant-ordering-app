@@ -13,10 +13,15 @@ module.exports = {
       jsx: true, // Allows for the parsing of JSX
     },
   },
+  plugins: [
+    'react-hooks',
+  ],
   rules: {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     'react/prop-types': 'warn',
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
   },
   settings: {
     react: {

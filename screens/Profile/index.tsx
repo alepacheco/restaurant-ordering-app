@@ -25,7 +25,7 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
     if (userData === null) {
       getProfile({ userId }).then(setUserData);
     }
-  }, []);
+  }, [userData]);
   return (
     <StyledView>
       <SafeAreaView>

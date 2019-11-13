@@ -69,7 +69,7 @@ export const RestaurantEntry: React.FC<{
       toValue: isScrolling ? 24 : 0,
       duration: 400,
     }).start();
-  }, [isScrolling]);
+  }, [isScrolling, scrollMargin]);
 
   return (
     <Animated.View style={{ marginTop: scrollMargin }}>

@@ -38,7 +38,7 @@ export const ChangeImage: React.FC<{}> = ({}) => {
     if (image === null) {
       getPermission();
     }
-  }, []);
+  }, [image]);
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

@@ -39,7 +39,7 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
     getRestaurantDetails({ restaurantId: id }).then(data =>
       sertRestaurantDetails(data)
     );
-  }, []);
+  }, [id]);
 
   return (
     <StyledView>
