@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView, Text, Button, View, StatusBar } from 'react-native';
 import { LogOutButton } from './LogOutButton';
-import { getProfile } from './utils';
+import { getProfile, uploadFile } from './utils';
 import styled, { ThemeContext } from 'styled-components/native';
 import { SESSION_ID_KEY } from '../../constants/session';
 import * as SecureStore from 'expo-secure-store';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
-import axios from 'axios';
+import { logOut } from './LogOutButton';
 
 interface User {
   name: string;
@@ -73,7 +73,7 @@ const getPermission = async () => {
   return true;
 };
 
-const pickImage = async () => {
+const pickImage = async (callback: () => void) => {
   await getPermission();
   const result = await ImagePicker.launchImageLibraryAsync({
     mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -83,31 +83,10 @@ const pickImage = async () => {
   });
 
   if (result.cancelled === false && result.uri) {
-    uploadImageAsync(result.uri);
+    await uploadFile(result.uri);
+    callback();
   }
 };
-
-async function uploadImageAsync(uri: string) {
-  const apiUrl = 'https://app-api.alepacheco.now.sh/api/user/image';
-
-  const uriParts = uri.split('.');
-  const fileType = uriParts[uriParts.length - 1];
-
-  const formData = new FormData();
-  formData.append('photo', {
-    // @ts-ignore
-    uri,
-    name: `photo.${fileType}`,
-    type: `image/${fileType}`,
-  });
-
-  return axios.post(apiUrl, formData, {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'multipart/form-data',
-    },
-  });
-}
 
 export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [userData, setUserData] = useState(null as User | null);
@@ -119,11 +98,15 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
     if (userData === null) {
       (async () => {
         const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
-        const profileData = await getProfile({ sessionId });
-        setUserData(profileData);
+        try {
+          const profileData = await getProfile({ sessionId });
+          setUserData(profileData);
+        } catch (error) {
+          logOut({ navigation });
+        }
       })();
     }
-  }, [userData]);
+  }, [navigation, userData]);
 
   if (userData === null) {
     return <Text>Loading</Text>;
@@ -135,11 +118,12 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
         <StatusBar barStyle={barStyle} />
 
         <ProfileWrapper>
-          <CenterPicture onPress={pickImage}>
+          <CenterPicture onPress={() => pickImage(() => setUserData(null))}>
             <ProfilePicture
               source={{
                 uri:
-                  'https://storage.googleapis.com/barapp-data-images/4e6y8k2yrkn2t',
+                  userData.imageUrl ||
+                  'https://storage.googleapis.com/barapp-data-images/images.png',
               }}
             />
           </CenterPicture>

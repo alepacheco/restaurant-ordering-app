@@ -6,8 +6,8 @@ import { RestaurantList } from '../../screens/RestaurantList';
 import { Profile } from '../../screens/Profile';
 import { Search } from '../../screens/Search';
 import { RestaurantDetails } from '../../screens/RestaurantDetails';
-import { LogIn } from '../../screens/LogIn';
-import { SignUp } from '../../screens/SignUp';
+import { LogIn } from '../../screens/Splash/LogIn';
+import { SignUp } from '../../screens/Splash/SignUp';
 import { Splash } from '../../screens/Splash';
 import { ProductDetails } from '../../screens/ProductDetails';
 import { TabBarIcon } from '../TabBar/TabBarIcon';
@@ -66,17 +66,17 @@ const SplashNavigator = createStackNavigator(
     LogIn: {
       screen: LogIn,
       navigationOptions: {
-        headerShown: true,
+        headerShown: false,
       },
     },
     SignUp: {
       screen: SignUp,
       navigationOptions: {
-        headerShown: true,
+        headerShown: false,
       },
     },
   },
-  { initialRouteName: 'Splash', mode: 'modal' }
+  { initialRouteName: 'Splash' }
 );
 
 export const Navigator = createStackNavigator(

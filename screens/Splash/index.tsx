@@ -6,6 +6,8 @@ import { StackActions, NavigationActions } from 'react-navigation';
 import styled from 'styled-components/native';
 
 const ButtonText = styled.Text`
+  ${props => `color: ${props.theme.textColor};`}
+
   font-size: 18px;
   text-align: center;
 `;
@@ -18,9 +20,16 @@ const CustomButton = styled.TouchableOpacity`
 `;
 
 const LoginText = styled.Text`
+  ${props => `color: ${props.theme.textColor};`}
+
   margin-top: 38px;
   font-size: 34px;
   text-align: center;
+`;
+
+const StyledView = styled.SafeAreaView`
+  height: 100%;
+  ${props => `background-color: ${props.theme.color};`}
 `;
 
 export const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
@@ -35,7 +44,7 @@ export const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
   });
 
   return (
-    <SafeAreaView>
+    <StyledView>
       <LoginText>Welcome to bar app</LoginText>
 
       <CustomButton onPress={() => navigation.navigate('LogIn')}>
@@ -44,6 +53,6 @@ export const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
       <CustomButton onPress={() => navigation.navigate('SignUp')}>
         <ButtonText>Sign up</ButtonText>
       </CustomButton>
-    </SafeAreaView>
+    </StyledView>
   );
 };

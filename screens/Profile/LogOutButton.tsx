@@ -4,7 +4,7 @@ import { SESSION_ID_KEY } from '../../constants/session';
 import * as SecureStore from 'expo-secure-store';
 import { StackActions, NavigationActions } from 'react-navigation';
 
-const logOut = async ({ navigation }: any) => {
+export const logOut = async ({ navigation }: any) => {
   await SecureStore.deleteItemAsync(SESSION_ID_KEY);
 
   const resetAction = StackActions.reset({
