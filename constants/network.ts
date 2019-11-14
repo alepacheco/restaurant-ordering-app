@@ -1,1 +1,1 @@
-export const API_URL = 'https://app-api.barapp.now.sh/api';
+export const API_URL = 'https://app-api.alepacheco.now.sh';
