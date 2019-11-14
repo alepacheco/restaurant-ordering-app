@@ -24,7 +24,7 @@ const HeaderTitle = styled.Text`
 `;
 
 const StyledFlatList = styled(FlatList)`
-  height: 100%;
+  margin-bottom: 106px;
   ${props => `background-color: ${props.theme.color};`}
 `;
 const HeaderWrapper = styled.View`
@@ -82,7 +82,6 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
   const themeContext = useContext(ThemeContext);
   const barStyle =
     themeContext.colorScheme === 'dark' ? 'light-content' : 'dark-content';
-  const userId = 1;
 
   useEffect(() => {
     if (shouldFetchList) {
@@ -113,12 +112,9 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
     <StyledView>
       <StatusBar barStyle={barStyle} />
 
-      <SafeAreaView>
+      <SafeAreaView style={{ display: 'flex' }}>
         <ListHeader />
         <StyledFlatList
-          style={{
-            marginBottom: 56,
-          }}
           onScrollEndDrag={() => setIsScrolling(false)}
           onScrollBeginDrag={() => setIsScrolling(true)}
           onRefresh={() => {

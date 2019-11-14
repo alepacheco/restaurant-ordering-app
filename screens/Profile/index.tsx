@@ -3,6 +3,8 @@ import { SafeAreaView, Text, Button, View, StatusBar } from 'react-native';
 import { LogOutButton } from './LogOutButton';
 import { getProfile } from './utils';
 import styled, { ThemeContext } from 'styled-components/native';
+import { SESSION_ID_KEY } from '../../constants/session';
+import * as SecureStore from 'expo-secure-store';
 
 const StyledView = styled.View`
   ${props => `background-color: ${props.theme.color};`}
@@ -19,11 +21,14 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
   const themeContext = useContext(ThemeContext);
   const barStyle =
     themeContext.colorScheme === 'dark' ? 'light-content' : 'dark-content';
-  const userId = 1;
 
   useEffect(() => {
     if (userData === null) {
-      getProfile({ userId }).then(setUserData);
+      (async () => {
+        const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
+        const profileData = await getProfile({ sessionId });
+        setUserData(profileData);
+      })();
     }
   }, [userData]);
   return (

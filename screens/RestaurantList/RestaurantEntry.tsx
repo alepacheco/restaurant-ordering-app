@@ -62,27 +62,16 @@ export const RestaurantEntry: React.FC<{
   isScrolling?: boolean;
   imageUrl: string;
 }> = ({ title, description, id, distance, isScrolling, imageUrl }) => {
-  const [scrollMargin] = useState(new Animated.Value(0)); // Initial value for opacity: 0
-
-  React.useEffect(() => {
-    Animated.timing(scrollMargin, {
-      toValue: isScrolling ? 24 : 0,
-      duration: 400,
-    }).start();
-  }, [isScrolling, scrollMargin]);
-
   return (
-    <Animated.View style={{ marginTop: scrollMargin }}>
-      <Container>
-        <RestaurantImage source={{ uri: imageUrl }} />
-        <TextBox>
-          <FirstRow>
-            <Title>{title}</Title>
-            <Distance>{distance}</Distance>
-          </FirstRow>
-          <SubTitle>{description}</SubTitle>
-        </TextBox>
-      </Container>
-    </Animated.View>
+    <Container>
+      <RestaurantImage source={{ uri: imageUrl }} />
+      <TextBox>
+        <FirstRow>
+          <Title>{title}</Title>
+          <Distance>{distance}</Distance>
+        </FirstRow>
+        <SubTitle>{description}</SubTitle>
+      </TextBox>
+    </Container>
   );
 };
