@@ -1,17 +1,21 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
+
+import React, { useContext } from 'react';
 import renderer from 'react-test-renderer';
 import axios from 'axios';
-jest.useFakeTimers();
 import { RestaurantList } from '../screens/RestaurantList';
+import { Theme } from '../components/Theme';
+import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
+
+jest.useFakeTimers();
 
 jest.mock('axios', () => ({
   get: jest.fn(),
 }));
-
+jest.mock('react-native-appearance');
 jest.mock('expo-permissions', () => ({
   askAsync: () => ({ status: 'granted' }),
 }));
-
 jest.mock('expo-location', () => ({
   getCurrentPositionAsync: () => ({
     coords: {
@@ -20,6 +24,11 @@ jest.mock('expo-location', () => ({
     },
   }),
 }));
+
+useColorScheme.mockImplementation(() => 'light');
+
+// @ts-ignore
+AppearanceProvider.mockImplementation(({ children }) => children);
 
 describe('<RestaurantList />', () => {
   it('renders correctly while empty', async () => {
@@ -34,7 +43,9 @@ describe('<RestaurantList />', () => {
 
     await renderer.act(async () => {
       tree = renderer.create(
-        <RestaurantList navigation={{ navigate: () => {} }} />
+        <Theme>
+          <RestaurantList navigation={{ navigate: () => {} }} />
+        </Theme>
       );
     });
     expect(tree.toJSON()).toMatchSnapshot();
@@ -65,7 +76,9 @@ describe('<RestaurantList />', () => {
 
     await renderer.act(async () => {
       tree = renderer.create(
-        <RestaurantList navigation={{ navigate: () => {} }} />
+        <Theme>
+          <RestaurantList navigation={{ navigate: () => {} }} />
+        </Theme>
       );
     });
     expect(tree.toJSON()).toMatchSnapshot();

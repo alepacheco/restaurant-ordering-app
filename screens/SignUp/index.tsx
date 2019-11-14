@@ -5,7 +5,6 @@ import { SESSION_ID_KEY } from '../../constants/session';
 import { StackActions, NavigationActions } from 'react-navigation';
 import axios from 'axios';
 
-// @ts-ignore
 import styled from 'styled-components/native';
 
 const InputForm = styled.View`

@@ -15,13 +15,19 @@ const TextWrapper = styled.View`
 `;
 
 const Title = styled.Text`
+  ${props => `color: ${props.theme.textColor};`}
+
   font-size: 24px;
 `;
 const SubTitle = styled.Text`
+  ${props => `color: ${props.theme.textColor};`}
+
   text-align: justify;
   color: gray;
 `;
 const Price = styled.Text`
+  ${props => `color: ${props.theme.textColor};`}
+
   font-weight: bold;
 `;
 const ProductImage = styled.Image`

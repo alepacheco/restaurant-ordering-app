@@ -4,6 +4,11 @@ import styled from 'styled-components/native';
 import { Menu } from './Menu';
 import { getRestaurantDetails } from './utils';
 
+const StyledView = styled.View`
+  ${props => `background-color: ${props.theme.color};`}
+  height: 100%;
+`;
+
 const RestaurantTitle = styled.Text`
   font-size: 38px;
 `;
@@ -13,7 +18,7 @@ const BannerImage = styled.Image`
 `;
 
 const Details = styled.View`
-  background-color: rgba(3, 3, 3, 0.3);
+  background-color: rgb(100, 100, 100);
 
   padding: 12px 12px 20px;
 `;
@@ -34,18 +39,20 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
     getRestaurantDetails({ restaurantId: id }).then(data =>
       sertRestaurantDetails(data)
     );
-  }, []);
+  }, [id]);
 
   return (
-    <ScrollView>
-      <BannerImage source={{ uri: restaurantDetails.bannerImgUrl }} />
+    <StyledView>
+      <ScrollView>
+        <BannerImage source={{ uri: restaurantDetails.bannerImgUrl }} />
 
-      <Details>
-        <RestaurantTitle>{restaurantDetails.name}</RestaurantTitle>
-        <Text>{restaurantDetails.description}</Text>
-      </Details>
+        <Details>
+          <RestaurantTitle>{restaurantDetails.name}</RestaurantTitle>
+          <Text>{restaurantDetails.description}</Text>
+        </Details>
 
-      <Menu menu={restaurantDetails.menu} />
-    </ScrollView>
+        <Menu menu={restaurantDetails.menu} />
+      </ScrollView>
+    </StyledView>
   );
 };

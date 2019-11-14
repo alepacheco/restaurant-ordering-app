@@ -4,7 +4,6 @@ import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 
-
 const getPermission = async () => {
   if (Constants.platform.ios) {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -15,14 +14,14 @@ const getPermission = async () => {
   }
 
   return true;
-}
+};
 
 const pickImage = async () => {
-  let result = await ImagePicker.launchImageLibraryAsync({
+  const result = await ImagePicker.launchImageLibraryAsync({
     mediaTypes: ImagePicker.MediaTypeOptions.All,
     allowsEditing: true,
     aspect: [4, 3],
-    quality: 1
+    quality: 1,
   });
 
   console.warn(result);
@@ -37,18 +36,16 @@ export const ChangeImage: React.FC<{}> = ({}) => {
 
   useEffect(() => {
     if (image === null) {
-      getPermission()
+      getPermission();
     }
-  }, []);
+  }, [image]);
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button
-        title="Pick an image from camera roll"
-        onPress={pickImage}
-      />
-      {image &&
-        <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+      <Button title="Pick an image from camera roll" onPress={pickImage} />
+      {image && (
+        <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+      )}
     </View>
   );
-}
+};

@@ -4,11 +4,17 @@ import styled from 'styled-components/native';
 import { QuantityForm } from './QuantityForm';
 import { AddToCart } from './AddToCart';
 
+const StyledView = styled.View`
+  ${props => `background-color: ${props.theme.color};`}
+`;
+
 const ProductImage = styled.Image`
   height: 84px;
 `;
 
 const Name = styled.Text`
+  ${props => `color: ${props.theme.textColor};`}
+
   font-size: 28px;
   text-align: center;
 `;
@@ -42,21 +48,26 @@ export const ProductDetails: React.FC<{ navigation: any }> = ({
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <SafeAreaView>
-      <Wrapper>
-        <ScrollView>
-          <ProductImage resizeMode="contain" source={{ uri: item.imageUrl }} />
-          <Name>{item.name}</Name>
-          <Description>{item.description}</Description>
+    <StyledView>
+      <SafeAreaView>
+        <Wrapper>
+          <ScrollView>
+            <ProductImage
+              resizeMode="contain"
+              source={{ uri: item.imageUrl }}
+            />
+            <Name>{item.name}</Name>
+            <Description>{item.description}</Description>
 
-          <QuantityForm
-            value={quantity}
-            onPlus={() => setQuantity(Math.min(quantity + 1, 10))}
-            onMinus={() => setQuantity(Math.max(quantity - 1, 1))}
-          />
-        </ScrollView>
-        <AddToCart price={item.price} />
-      </Wrapper>
-    </SafeAreaView>
+            <QuantityForm
+              value={quantity}
+              onPlus={() => setQuantity(Math.min(quantity + 1, 10))}
+              onMinus={() => setQuantity(Math.max(quantity - 1, 1))}
+            />
+          </ScrollView>
+          <AddToCart price={item.price} />
+        </Wrapper>
+      </SafeAreaView>
+    </StyledView>
   );
 };
