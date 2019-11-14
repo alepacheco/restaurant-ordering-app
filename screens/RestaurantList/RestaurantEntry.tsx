@@ -31,6 +31,8 @@ const FirstRow = styled.View`
 `;
 
 const Distance = styled.Text`
+  ${props => (props.theme.colorScheme === 'dark' ? 'color: white;' : '')}
+
   flex: 1;
   text-align: right;
 `;
