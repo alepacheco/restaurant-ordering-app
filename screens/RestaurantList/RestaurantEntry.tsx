@@ -37,6 +37,13 @@ const Distance = styled.Text`
   text-align: right;
 `;
 
+const StyledRating = styled.Text`
+  ${props => (props.theme.colorScheme === 'dark' ? 'color: white;' : '')}
+
+  flex: 1;
+  text-align: right;
+`;
+
 const RestaurantImage = styled.Image`
   height: 84px;
   width: 84px;
@@ -56,6 +63,13 @@ const SubTitle = styled.Text`
   color: gray;
 `;
 
+const Review: React.FC<{ rating: number }> = ({ rating }) => {
+  if (!rating) {
+    return <StyledRating>No ratings yet</StyledRating>;
+  }
+  return <StyledRating>{rating} ★</StyledRating>;
+};
+
 export const RestaurantEntry: React.FC<{
   title: string;
   description: string;
@@ -63,7 +77,8 @@ export const RestaurantEntry: React.FC<{
   distance: string;
   isScrolling?: boolean;
   imageUrl: string;
-}> = ({ title, description, id, distance, isScrolling, imageUrl }) => {
+  rating: number;
+}> = ({ title, description, id, distance, imageUrl, rating }) => {
   return (
     <Container>
       <RestaurantImage source={{ uri: imageUrl }} />
@@ -73,6 +88,7 @@ export const RestaurantEntry: React.FC<{
           <Distance>{distance}</Distance>
         </FirstRow>
         <SubTitle>{description}</SubTitle>
+        <Review rating={rating} />
       </TextBox>
     </Container>
   );

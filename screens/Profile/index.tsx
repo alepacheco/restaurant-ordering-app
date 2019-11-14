@@ -9,6 +9,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 import { logOut } from './LogOutButton';
+import { UserStats } from './UserStats';
 
 interface User {
   name: string;
@@ -131,6 +132,7 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
           <Email>{userData.email}</Email>
           <Bio>{userData.bio}</Bio>
         </ProfileWrapper>
+        <UserStats />
 
         <Button
           title="Settings"

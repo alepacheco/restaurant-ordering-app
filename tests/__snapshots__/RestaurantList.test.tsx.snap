@@ -290,6 +290,20 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
                 >
                   This is the restaurant description
                 </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "textAlign": "right",
+                      },
+                    ]
+                  }
+                >
+                  No ratings yet
+                </Text>
               </View>
             </View>
           </View>
@@ -409,6 +423,20 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
                   }
                 >
                   This is the restaurant description 2
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "textAlign": "right",
+                      },
+                    ]
+                  }
+                >
+                  No ratings yet
                 </Text>
               </View>
             </View>
