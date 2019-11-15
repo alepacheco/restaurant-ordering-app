@@ -3,6 +3,7 @@ import { ScrollView, Text } from 'react-native';
 import styled from 'styled-components/native';
 import { Menu } from './Menu';
 import { getRestaurantDetails } from './utils';
+import { Loading } from '../../components/Loading';
 
 const StyledView = styled.View`
   ${props => `background-color: ${props.theme.color};`}
@@ -27,7 +28,9 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
   navigation,
 }) => {
   const { id } = navigation.state.params;
-  const [restaurantDetails, sertRestaurantDetails] = useState({
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [restaurantDetails, restRestaurantDetails] = useState({
     bannerImgUrl:
       'https://file-examples.com/wp-content/uploads/2017/10/file_example_PNG_500kB.png',
     description: '',
@@ -36,10 +39,15 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
   });
 
   useEffect(() => {
-    getRestaurantDetails({ restaurantId: id }).then(data =>
-      sertRestaurantDetails(data)
-    );
+    getRestaurantDetails({ restaurantId: id }).then(data => {
+      restRestaurantDetails(data);
+      setIsLoading(false);
+    });
   }, [id]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <StyledView>

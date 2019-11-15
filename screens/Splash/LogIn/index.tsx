@@ -1,7 +1,5 @@
-import * as SecureStore from 'expo-secure-store';
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text, Button } from 'react-native';
-
+import React, { useState } from 'react';
+import { Button } from 'react-native';
 import styled from 'styled-components/native';
 import { TextInput } from '../../../components/Forms/TextInput';
 import { loginNow, resetNavigation, goToHome } from '../utils';

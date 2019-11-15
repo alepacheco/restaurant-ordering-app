@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text, Button } from 'react-native';
+import React, { useState } from 'react';
+import { Button } from 'react-native';
 import { TextInput } from '../../../components/Forms/TextInput';
 import styled from 'styled-components/native';
 import { signUp, goToHome, resetNavigation } from '../utils';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TabBarIOSItem } from 'react-native';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
 import Item from './Item';
 

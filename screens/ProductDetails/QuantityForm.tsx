@@ -6,7 +6,7 @@ const ButtonWrapper = styled.TouchableOpacity`
   width: 64px;
   border-radius: 64px;
   background-color: rgb(140, 140, 140);
-
+  border: 1px solid red;
   margin: auto;
 `;
 

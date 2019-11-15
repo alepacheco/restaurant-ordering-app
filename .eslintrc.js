@@ -20,6 +20,8 @@ module.exports = {
     'react/prop-types': 'warn',
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    'react/prop-types': 'off',
   },
   settings: {
     react: {

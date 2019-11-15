@@ -1,9 +1,9 @@
 import * as SecureStore from 'expo-secure-store';
-import React from 'react';
-import { SafeAreaView, Text, Button, TextInput } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { SESSION_ID_KEY } from '../../constants/session';
-import { StackActions, NavigationActions } from 'react-navigation';
 import styled from 'styled-components/native';
+import { goToHome } from './utils';
+import { Loading } from '../../components/Loading';
 
 const ButtonText = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
@@ -33,15 +33,21 @@ const StyledView = styled.SafeAreaView`
 `;
 
 export const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
-  SecureStore.getItemAsync(SESSION_ID_KEY).then(sessionId => {
-    if (sessionId) {
-      const resetAction = StackActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Home' })],
-      });
-      navigation.dispatch(resetAction);
-    }
-  });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    SecureStore.getItemAsync(SESSION_ID_KEY).then(sessionId => {
+      setIsLoading(false);
+
+      if (sessionId) {
+        goToHome(navigation);
+      }
+    });
+  }, [navigation]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <StyledView>

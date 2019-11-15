@@ -8,8 +8,9 @@ import {
 import { RestaurantEntry } from './RestaurantEntry';
 import styled, { ThemeContext } from 'styled-components/native';
 import { getLocation, getRestaurants } from './utils';
-import { Loading } from './Loading';
+import { Loading } from '../../components/Loading';
 import { NoRestaurants } from './NoRestaurants';
+import { NoConnection } from '../../components/NoConnection';
 
 const StyledView = styled.View`
   ${props =>
@@ -62,13 +63,15 @@ const OnClickWrapper: React.FC<{ navigate: any; id: number }> = ({
 };
 
 const fetchListWithLocation = async () => {
-  try {
-    const location = await getLocation();
+  return new Promise(async (resolve, reject) => {
+    try {
+      const location = await getLocation();
 
-    return getRestaurants({ location });
-  } catch (error) {
-    console.warn(error);
-  }
+      resolve(getRestaurants({ location }));
+    } catch (error) {
+      reject(error);
+    }
+  });
 };
 
 export const RestaurantList: React.FC<{ navigation: any }> = ({
@@ -77,6 +80,7 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
   const [list, setList] = useState(null);
   const [shouldFetchList, setShouldFetchList] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [isNetworkError, setIsNetworkError] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const { navigate } = navigation;
   const themeContext = useContext(ThemeContext);
@@ -85,14 +89,19 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
 
   useEffect(() => {
     if (shouldFetchList) {
-      fetchListWithLocation().then(data => {
-        setList(data);
-        setIsLoading(false);
-      });
+      fetchListWithLocation()
+        .then(data => {
+          setList(data);
+          setIsLoading(false);
+        })
+        .catch(() => setIsNetworkError(true));
       setShouldFetchList(false);
     }
   }, [shouldFetchList]);
 
+  if (isNetworkError) {
+    return <NoConnection />;
+  }
   if (list === null) {
     return <Loading />;
   }

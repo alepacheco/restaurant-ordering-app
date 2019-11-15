@@ -10,6 +10,7 @@ import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 import { logOut } from './LogOutButton';
 import { UserStats } from './UserStats';
+import { Loading } from '../../components/Loading';
 
 interface User {
   name: string;
@@ -110,7 +111,7 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
   }, [navigation, userData]);
 
   if (userData === null) {
-    return <Text>Loading</Text>;
+    return <Loading />;
   }
 
   return (
