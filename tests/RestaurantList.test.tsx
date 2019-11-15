@@ -5,6 +5,8 @@ import axios from 'axios';
 import { RestaurantList } from '../screens/RestaurantList';
 import { Theme } from '../components/Theme';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
+import { StoreProvider } from 'easy-peasy';
+import { store } from 'store';
 
 jest.useFakeTimers();
 
@@ -43,7 +45,9 @@ describe('<RestaurantList />', () => {
     await renderer.act(async () => {
       tree = renderer.create(
         <Theme>
-          <RestaurantList navigation={{ navigate: () => {} }} />
+          <StoreProvider store={store}>
+            <RestaurantList navigation={{ navigate: () => {} }} />
+          </StoreProvider>
         </Theme>
       );
     });
@@ -58,13 +62,13 @@ describe('<RestaurantList />', () => {
       Promise.resolve({
         data: [
           {
-            id: '1',
+            _id: '1',
             title: `McDonalds`,
             imageUrl: 'https://picsum.photos/84/84',
             description: 'This is the restaurant description',
           },
           {
-            id: '2',
+            _id: '2',
             title: `McDonalds 2`,
             imageUrl: 'https://picsum.photos/84/84',
             description: 'This is the restaurant description 2',
@@ -76,7 +80,9 @@ describe('<RestaurantList />', () => {
     await renderer.act(async () => {
       tree = renderer.create(
         <Theme>
-          <RestaurantList navigation={{ navigate: () => {} }} />
+          <StoreProvider store={store}>
+            <RestaurantList navigation={{ navigate: () => {} }} />
+          </StoreProvider>
         </Theme>
       );
     });

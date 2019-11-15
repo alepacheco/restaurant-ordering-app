@@ -115,25 +115,20 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
       data={
         Array [
           Object {
+            "_id": "1",
             "description": "This is the restaurant description",
-            "id": "1",
             "imageUrl": "https://picsum.photos/84/84",
             "title": "McDonalds",
           },
           Object {
+            "_id": "2",
             "description": "This is the restaurant description 2",
-            "id": "2",
             "imageUrl": "https://picsum.photos/84/84",
             "title": "McDonalds 2",
           },
         ]
       }
       disableVirtualization={false}
-      extraData={
-        Object {
-          "isScrolling": false,
-        }
-      }
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -164,6 +159,7 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
         Array [
           Object {
             "backgroundColor": "white",
+            "height": "100%",
             "marginBottom": 106,
           },
         ]
@@ -189,107 +185,73 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(2, 2, 2, 0.05)",
+                "borderRadius": 8,
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 8,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 8,
                 "opacity": 1,
+                "paddingBottom": 12,
+                "paddingLeft": 12,
+                "paddingRight": 12,
+                "paddingTop": 12,
               }
             }
           >
+            <Image
+              source={
+                Object {
+                  "uri": "https://picsum.photos/84/84",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 6,
+                    "height": 84,
+                    "width": 84,
+                  },
+                ]
+              }
+            />
             <View
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "rgba(2, 2, 2, 0.05)",
-                    "borderRadius": 8,
                     "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginBottom": 8,
-                    "marginLeft": 8,
-                    "marginRight": 8,
-                    "marginTop": 8,
-                    "paddingBottom": 12,
-                    "paddingLeft": 12,
-                    "paddingRight": 12,
-                    "paddingTop": 12,
+                    "flexBasis": 0,
+                    "flexGrow": 2,
+                    "flexShrink": 1,
+                    "marginLeft": 12,
                   },
                 ]
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://picsum.photos/84/84",
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "borderRadius": 6,
-                      "height": 84,
-                      "width": 84,
-                    },
-                  ]
-                }
-              />
               <View
                 style={
                   Array [
                     Object {
                       "display": "flex",
-                      "flexBasis": 0,
-                      "flexGrow": 2,
-                      "flexShrink": 1,
-                      "marginLeft": 12,
+                      "flexDirection": "row",
                     },
                   ]
                 }
               >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "display": "flex",
-                        "flexDirection": "row",
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontSize": 24,
-                          "justifyContent": "center",
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "flexShrink": 1,
-                          "textAlign": "right",
-                        },
-                      ]
-                    }
-                  />
-                </View>
                 <Text
                   style={
                     Array [
                       Object {
-                        "color": "gray",
-                        "fontSize": 12,
+                        "fontSize": 24,
                         "justifyContent": "center",
                       },
                     ]
                   }
-                >
-                  This is the restaurant description
-                </Text>
+                />
                 <Text
                   style={
                     Array [
@@ -301,10 +263,35 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
                       },
                     ]
                   }
-                >
-                  No ratings yet
-                </Text>
+                />
               </View>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "gray",
+                      "fontSize": 12,
+                      "justifyContent": "center",
+                    },
+                  ]
+                }
+              >
+                This is the restaurant description
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "textAlign": "right",
+                    },
+                  ]
+                }
+              >
+                No ratings yet
+              </Text>
             </View>
           </View>
         </View>
@@ -323,107 +310,73 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(2, 2, 2, 0.05)",
+                "borderRadius": 8,
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 8,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 8,
                 "opacity": 1,
+                "paddingBottom": 12,
+                "paddingLeft": 12,
+                "paddingRight": 12,
+                "paddingTop": 12,
               }
             }
           >
+            <Image
+              source={
+                Object {
+                  "uri": "https://picsum.photos/84/84",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 6,
+                    "height": 84,
+                    "width": 84,
+                  },
+                ]
+              }
+            />
             <View
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "rgba(2, 2, 2, 0.05)",
-                    "borderRadius": 8,
                     "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginBottom": 8,
-                    "marginLeft": 8,
-                    "marginRight": 8,
-                    "marginTop": 8,
-                    "paddingBottom": 12,
-                    "paddingLeft": 12,
-                    "paddingRight": 12,
-                    "paddingTop": 12,
+                    "flexBasis": 0,
+                    "flexGrow": 2,
+                    "flexShrink": 1,
+                    "marginLeft": 12,
                   },
                 ]
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://picsum.photos/84/84",
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "borderRadius": 6,
-                      "height": 84,
-                      "width": 84,
-                    },
-                  ]
-                }
-              />
               <View
                 style={
                   Array [
                     Object {
                       "display": "flex",
-                      "flexBasis": 0,
-                      "flexGrow": 2,
-                      "flexShrink": 1,
-                      "marginLeft": 12,
+                      "flexDirection": "row",
                     },
                   ]
                 }
               >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "display": "flex",
-                        "flexDirection": "row",
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontSize": 24,
-                          "justifyContent": "center",
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "flexShrink": 1,
-                          "textAlign": "right",
-                        },
-                      ]
-                    }
-                  />
-                </View>
                 <Text
                   style={
                     Array [
                       Object {
-                        "color": "gray",
-                        "fontSize": 12,
+                        "fontSize": 24,
                         "justifyContent": "center",
                       },
                     ]
                   }
-                >
-                  This is the restaurant description 2
-                </Text>
+                />
                 <Text
                   style={
                     Array [
@@ -435,10 +388,35 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
                       },
                     ]
                   }
-                >
-                  No ratings yet
-                </Text>
+                />
               </View>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "gray",
+                      "fontSize": 12,
+                      "justifyContent": "center",
+                    },
+                  ]
+                }
+              >
+                This is the restaurant description 2
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "textAlign": "right",
+                    },
+                  ]
+                }
+              >
+                No ratings yet
+              </Text>
             </View>
           </View>
         </View>
