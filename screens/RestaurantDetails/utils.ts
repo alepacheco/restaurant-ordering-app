@@ -1,18 +1,18 @@
 import axios from 'axios';
-import { API_URL } from '../../constants/network';
+import { Restaurant } from 'types/restaurant';
 
 interface GetRestaurantsArgs {
-  restaurantId: number;
+  restaurantId: string;
 }
 
 export const getRestaurantDetails = async ({
   restaurantId,
 }: GetRestaurantsArgs) => {
-  const { data } = await axios.get(`${API_URL}/restaurant`, {
+  const { data } = await axios.get(`/restaurant`, {
     params: {
       id: restaurantId,
     },
   });
 
-  return data;
+  return data as Restaurant;
 };

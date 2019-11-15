@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { Animated } from 'react-native';
+import { NearbyRestaurant } from 'types/restaurant';
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -70,21 +71,16 @@ const Review: React.FC<{ rating: number }> = ({ rating }) => {
   return <StyledRating>{rating} ★</StyledRating>;
 };
 
-export const RestaurantEntry: React.FC<{
-  title: string;
-  description: string;
-  id: number;
-  distance: string;
-  isScrolling?: boolean;
-  imageUrl: string;
-  rating: number;
-}> = ({ title, description, id, distance, imageUrl, rating }) => {
+export const RestaurantEntry: React.FC<NearbyRestaurant & {
+  navigate: any;
+}> = ({ name, description, distance, imageUrl, rating, _id, navigate }) => {
   return (
-    <Container>
+    <Container
+      onPress={() => navigate('RestaurantDetails', { restaurantId: _id })}>
       <RestaurantImage source={{ uri: imageUrl }} />
       <TextBox>
         <FirstRow>
-          <Title>{title}</Title>
+          <Title>{name}</Title>
           <Distance>{distance}</Distance>
         </FirstRow>
         <SubTitle>{description}</SubTitle>

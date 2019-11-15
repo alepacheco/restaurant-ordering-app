@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-const AddToCartWrapper = styled.View`
+const AddToCartWrapper = styled.TouchableOpacity`
   background-color: orange;
   border-radius: 2px;
 
@@ -20,11 +20,14 @@ const AddToCartPrice = styled.Text`
   text-align: right;
 `;
 
-export const AddToCart: React.FC<{ price: string }> = ({ price }) => {
+export const AddToCart: React.FC<{ price: number; onPress: () => void }> = ({
+  price,
+  onPress,
+}) => {
   return (
-    <AddToCartWrapper>
+    <AddToCartWrapper onPress={onPress}>
       <AddToCartText>Add to Cart</AddToCartText>
-      <AddToCartPrice>{price}</AddToCartPrice>
+      <AddToCartPrice>{JSON.stringify(price)}</AddToCartPrice>
     </AddToCartWrapper>
   );
 };

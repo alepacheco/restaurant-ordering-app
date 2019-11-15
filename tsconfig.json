@@ -7,6 +7,14 @@
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "components": ["./components"],
+      "store": ["./utils/store.ts"],
+      "screens": ["./screens"],
+      "types": ["./types"],
+      "constants": ["./constants"]
+  }
   }
 }

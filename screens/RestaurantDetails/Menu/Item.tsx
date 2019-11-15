@@ -64,7 +64,7 @@ const Item: React.FC<MenuItem & { navigation: any }> = ({
         <TextWrapper>
           <Title>{name}</Title>
           <SubTitle>{description}</SubTitle>
-          <Price>{price}</Price>
+          <Price>{JSON.stringify(price)}</Price>
         </TextWrapper>
       </Wrapper>
     </TouchableOpacity>

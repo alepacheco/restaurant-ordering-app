@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView, Text, Button, View, StatusBar } from 'react-native';
 import { LogOutButton } from './LogOutButton';
-import { getProfile, uploadFile } from './utils';
+import { getProfile, pickImage } from './utils';
 import styled, { ThemeContext } from 'styled-components/native';
-import { SESSION_ID_KEY } from '../../constants/session';
-import * as SecureStore from 'expo-secure-store';
-import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
-import Constants from 'expo-constants';
-import { logOut } from './LogOutButton';
 import { UserStats } from './UserStats';
 import { Loading } from '../../components/Loading';
+import { useStoreState, useStoreActions } from 'store';
 
 interface User {
   name: string;
@@ -63,52 +58,21 @@ const ProfileWrapper = styled.View`
   flex-direction: column;
 `;
 
-const getPermission = async () => {
-  if (Constants.platform.ios) {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    if (status !== 'granted') {
-      alert('Sorry, we need camera roll permissions to make this work!');
-      return false;
-    }
-  }
-
-  return true;
-};
-
-const pickImage = async (callback: () => void) => {
-  await getPermission();
-  const result = await ImagePicker.launchImageLibraryAsync({
-    mediaTypes: ImagePicker.MediaTypeOptions.All,
-    allowsEditing: true,
-    aspect: [4, 3],
-    quality: 1,
-  });
-
-  if (result.cancelled === false && result.uri) {
-    await uploadFile(result.uri);
-    callback();
-  }
-};
-
 export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const [userData, setUserData] = useState(null as User | null);
+  const userData = useStoreState(state => state.user.user);
+  const store = useStoreState(state => state);
+  console.log(store);
+  const setUser = useStoreActions(actions => actions.user.setUser);
+
   const themeContext = useContext(ThemeContext);
   const barStyle =
     themeContext.colorScheme === 'dark' ? 'light-content' : 'dark-content';
 
   useEffect(() => {
     if (userData === null) {
-      (async () => {
-        const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
-        try {
-          const profileData = await getProfile({ sessionId });
-          setUserData(profileData);
-        } catch (error) {
-          logOut({ navigation });
-        }
-      })();
+      getProfile().then(setUser);
     }
-  }, [navigation, userData]);
+  }, [setUser, userData]);
 
   if (userData === null) {
     return <Loading />;
@@ -118,9 +82,8 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
     <StyledView>
       <SafeAreaView>
         <StatusBar barStyle={barStyle} />
-
         <ProfileWrapper>
-          <CenterPicture onPress={() => pickImage(() => setUserData(null))}>
+          <CenterPicture onPress={() => pickImage(() => setUser(null))}>
             <ProfilePicture
               source={{
                 uri:

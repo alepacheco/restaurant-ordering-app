@@ -1,21 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
-import styled from 'styled-components/native';
 import { Section } from './Section';
+import { MenuSection } from 'types/restaurant';
 
-interface MenuItem {
-  id: string;
-  name: string;
-  imageUrl?: string;
-  description?: string;
-  price: string;
-  image: string;
-}
 interface MenuOptions {
-  menu: Array<{
-    title: string;
-    items: Array<MenuItem>;
-  }>;
+  menu: Array<MenuSection>;
 }
 
 export const Menu = ({ menu }: MenuOptions) => {

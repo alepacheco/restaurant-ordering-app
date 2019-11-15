@@ -1,7 +1,7 @@
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import axios from 'axios';
-import { API_URL } from '../../constants/network';
+import { NearbyRestaurant } from 'types/restaurant';
 
 export const getLocation = async () => {
   const { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -17,28 +17,12 @@ export const getLocation = async () => {
   };
 };
 
-interface GetRestaurantsArgs {
-  location?: {
-    latitude?: number;
-    longitude?: number;
-  };
-}
+export const getNearbyRestaurants = async () => {
+  const params = await getLocation();
 
-export const getRestaurants = async ({ location }: GetRestaurantsArgs) => {
-  let params = {};
-
-  if (location) {
-    const { longitude, latitude } = location;
-
-    params = {
-      longitude,
-      latitude,
-    };
-  }
-
-  const { data } = await axios.get(`${API_URL}/restaurants`, {
+  const { data } = await axios.get(`/restaurants`, {
     params,
   });
 
-  return data;
+  return data as Array<NearbyRestaurant>;
 };

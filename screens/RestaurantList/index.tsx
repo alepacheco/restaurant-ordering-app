@@ -4,13 +4,16 @@ import {
   TouchableOpacity,
   FlatList,
   StatusBar,
+  View,
 } from 'react-native';
 import { RestaurantEntry } from './RestaurantEntry';
 import styled, { ThemeContext } from 'styled-components/native';
-import { getLocation, getRestaurants } from './utils';
+import { getNearbyRestaurants } from './utils';
 import { Loading } from '../../components/Loading';
 import { NoRestaurants } from './NoRestaurants';
 import { NoConnection } from '../../components/NoConnection';
+import { useStoreActions, useStoreState } from 'store';
+import { NearbyRestaurant } from 'types/restaurant';
 
 const StyledView = styled.View`
   ${props =>
@@ -26,6 +29,7 @@ const HeaderTitle = styled.Text`
 
 const StyledFlatList = styled(FlatList)`
   margin-bottom: 106px;
+  height: 100%;
   ${props => `background-color: ${props.theme.color};`}
 `;
 const HeaderWrapper = styled.View`
@@ -50,63 +54,40 @@ const ListHeader = ({}) => {
   );
 };
 
-const OnClickWrapper: React.FC<{ navigate: any; id: number }> = ({
-  navigate,
-  id,
-  children,
-}) => {
-  return (
-    <TouchableOpacity onPress={() => navigate('RestaurantDetails', { id })}>
-      {children}
-    </TouchableOpacity>
-  );
-};
-
-const fetchListWithLocation = async () => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const location = await getLocation();
-
-      resolve(getRestaurants({ location }));
-    } catch (error) {
-      reject(error);
-    }
-  });
-};
+// const onClick = (navigate: any, restaurantId: string) => {
+//   navigate('RestaurantDetails', { restaurantId });
+// };
 
 export const RestaurantList: React.FC<{ navigation: any }> = ({
   navigation,
 }) => {
-  const [list, setList] = useState(null);
-  const [shouldFetchList, setShouldFetchList] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isNetworkError, setIsNetworkError] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
+  const nearbyRestaurants = useStoreState(
+    state => state.nearbyRestaurants.list
+  );
+  const setRestaurants = useStoreActions(
+    actions => actions.nearbyRestaurants.setRestaurants
+  );
+
+  const [isLoading, setIsLoading] = useState(true);
   const { navigate } = navigation;
   const themeContext = useContext(ThemeContext);
   const barStyle =
     themeContext.colorScheme === 'dark' ? 'light-content' : 'dark-content';
 
   useEffect(() => {
-    if (shouldFetchList) {
-      fetchListWithLocation()
-        .then(data => {
-          setList(data);
-          setIsLoading(false);
-        })
-        .catch(() => setIsNetworkError(true));
-      setShouldFetchList(false);
+    if (isLoading) {
+      getNearbyRestaurants().then(restaurants => {
+        setRestaurants(restaurants);
+        setIsLoading(false);
+      });
     }
-  }, [shouldFetchList]);
+  }, [isLoading, setRestaurants]);
 
-  if (isNetworkError) {
-    return <NoConnection />;
-  }
-  if (list === null) {
+  if (nearbyRestaurants === null) {
     return <Loading />;
   }
 
-  if (list.length === 0) {
+  if (nearbyRestaurants.length === 0) {
     return (
       <Wrapper>
         <SafeAreaView>
@@ -124,29 +105,15 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
       <SafeAreaView style={{ display: 'flex' }}>
         <ListHeader />
         <StyledFlatList
-          onScrollEndDrag={() => setIsScrolling(false)}
-          onScrollBeginDrag={() => setIsScrolling(true)}
           onRefresh={() => {
             setIsLoading(true);
-            setShouldFetchList(true);
           }}
           refreshing={isLoading}
-          data={list || [{}]}
-          extraData={{ isScrolling }}
-          renderItem={({ item }: any) => (
-            <OnClickWrapper navigate={navigate} id={item.id}>
-              <RestaurantEntry
-                isScrolling={isScrolling}
-                title={item.name}
-                description={item.description}
-                id={item.id}
-                imageUrl={item.imageUrl}
-                distance={item.distance}
-                rating={item.rating}
-              />
-            </OnClickWrapper>
+          data={nearbyRestaurants}
+          renderItem={({ item }: { item: NearbyRestaurant }) => (
+            <RestaurantEntry {...item} navigate={navigate} />
           )}
-          keyExtractor={(item: any) => item.id}
+          keyExtractor={(item: any) => item._id}
         />
       </SafeAreaView>
     </StyledView>

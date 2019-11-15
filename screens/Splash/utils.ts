@@ -1,7 +1,6 @@
 import { StackActions, NavigationActions } from 'react-navigation';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
-import { API_URL } from '../../constants/network';
 import {
   SESSION_ID_KEY,
   USER_EMAIL,
@@ -33,7 +32,7 @@ export const signUp = async ({
   password: string;
   name: string;
 }) => {
-  const { data } = await axios.post(`${API_URL}/signup`, {
+  const { data } = await axios.post(`/signup`, {
     name,
     password,
     email: username,
@@ -50,7 +49,7 @@ export const loginNow = async ({
 }) => {
   const {
     data: { sessionId },
-  } = await axios.post(`${API_URL}/login`, {
+  } = await axios.post(`/login`, {
     username,
     password,
   });

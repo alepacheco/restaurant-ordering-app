@@ -2,14 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 import Item from './Item';
-
-interface MenuItem {
-  id: string;
-  name: string;
-  description?: string;
-  price: string;
-  imageUrl?: string;
-}
+import { MenuItem } from 'types/restaurant';
 
 const Title = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
@@ -58,7 +51,7 @@ export const Section = ({
               </SeparatorWrapper>
             )}
             <Item
-              id={item.id}
+              id={item._id}
               name={item.name}
               description={item.description}
               price={item.price}

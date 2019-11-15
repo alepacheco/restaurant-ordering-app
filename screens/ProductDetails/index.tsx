@@ -32,13 +32,15 @@ const Wrapper = styled.View`
 interface MenuItem {
   name: string;
   description: string;
-  price: string;
+  price: number;
   imageUrl: string;
   options: Array<{
     type: 'single' | 'multi';
     choices: Array<string>;
   }>;
 }
+
+const onAddToCart = ({ quantity }: { quantity: number }) => {};
 
 export const ProductDetails: React.FC<{ navigation: any }> = ({
   navigation,
@@ -65,7 +67,10 @@ export const ProductDetails: React.FC<{ navigation: any }> = ({
               onMinus={() => setQuantity(Math.max(quantity - 1, 1))}
             />
           </ScrollView>
-          <AddToCart price={item.price} />
+          <AddToCart
+            price={item.price * quantity}
+            onPress={() => onAddToCart({ quantity })}
+          />
         </Wrapper>
       </SafeAreaView>
     </StyledView>

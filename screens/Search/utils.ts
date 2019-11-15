@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { API_URL } from '../../constants/network';
 
 interface RestaurantMarker {
   emoji: string;
@@ -13,7 +12,7 @@ export const getRestaurantMarkers = async ({
 }: {
   location: { longitude: number; latitude: number };
 }): Promise<Array<RestaurantMarker>> => {
-  const { data } = await axios.get(`${API_URL}/restaurants/markers`, {
+  const { data } = await axios.get(`/restaurants/markers`, {
     params: location,
   });
 

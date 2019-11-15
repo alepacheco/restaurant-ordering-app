@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { Menu } from './Menu';
 import { getRestaurantDetails } from './utils';
 import { Loading } from '../../components/Loading';
+import { useStoreState, useStoreActions } from 'store';
 
 const StyledView = styled.View`
   ${props => `background-color: ${props.theme.color};`}
@@ -27,23 +28,25 @@ const Details = styled.View`
 export const RestaurantDetails: React.FC<{ navigation: any }> = ({
   navigation,
 }) => {
-  const { id } = navigation.state.params;
+  const { restaurantId }: { restaurantId: string } = navigation.state.params;
+  const restaurantDetails = useStoreState(
+    state => state.restaurantDetails.list[restaurantId]
+  );
+  const addRestaurant = useStoreActions(
+    actions => actions.restaurantDetails.addRestaurant
+  );
   const [isLoading, setIsLoading] = useState(true);
 
-  const [restaurantDetails, restRestaurantDetails] = useState({
-    bannerImgUrl:
-      'https://file-examples.com/wp-content/uploads/2017/10/file_example_PNG_500kB.png',
-    description: '',
-    name: 'Loading',
-    menu: [],
-  });
-
   useEffect(() => {
-    getRestaurantDetails({ restaurantId: id }).then(data => {
-      restRestaurantDetails(data);
+    if (!restaurantDetails) {
+      getRestaurantDetails({ restaurantId }).then(data => {
+        addRestaurant(data);
+        setIsLoading(false);
+      });
+    } else {
       setIsLoading(false);
-    });
-  }, [id]);
+    }
+  }, [addRestaurant, restaurantDetails, restaurantId]);
 
   if (isLoading) {
     return <Loading />;
@@ -51,7 +54,7 @@ export const RestaurantDetails: React.FC<{ navigation: any }> = ({
 
   return (
     <StyledView>
-      <ScrollView>
+      <ScrollView scrollIndicatorInsets={{ right: 1 }}>
         <BannerImage source={{ uri: restaurantDetails.bannerImgUrl }} />
 
         <Details>

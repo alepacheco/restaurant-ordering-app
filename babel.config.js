@@ -9,8 +9,9 @@ module.exports = function(api) {
         {
           alias: {
             components: './components',
-            store: './components/StoreProvider/store.ts',
+            store: './utils/store.ts',
             screens: './screens',
+            types: './types',
             constants: './constants',
           },
         },
