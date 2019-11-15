@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, NavigationScreenProp } from 'react-navigation';
 
 const Wrapper = styled.View`
   display: flex;
@@ -44,7 +44,13 @@ interface MenuItem {
   item: {};
 }
 
-const onItemClick = ({ item, navigation }: { item: {}; navigation: any }) => {
+const onItemClick = ({
+  item,
+  navigation,
+}: {
+  item: {};
+  navigation: NavigationScreenProp<{}>;
+}) => {
   navigation.navigate('ProductDetails', { item });
 };
 

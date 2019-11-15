@@ -3,6 +3,7 @@ import { cart } from './cart';
 import { restaurantDetails } from './restaurantDetails';
 import { user } from './user';
 import { nearbyRestaurants } from './nearbyRestaurants';
+import { restaurantMapMarkers } from './restaurantMapMarkers';
 
 const model = {
   todos,
@@ -10,6 +11,7 @@ const model = {
   restaurantDetails,
   user,
   nearbyRestaurants,
+  restaurantMapMarkers,
 };
 
 export default model;

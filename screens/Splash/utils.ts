@@ -6,8 +6,9 @@ import {
   USER_EMAIL,
   USER_PASSWORD,
 } from '../../constants/session';
+import { NavigationScreenProp } from 'react-navigation';
 
-export const goToHome = (navigation: any) => {
+export const goToHome = (navigation: NavigationScreenProp<{}>) => {
   const resetAction = StackActions.reset({
     index: 0,
     actions: [NavigationActions.navigate({ routeName: 'Home' })],
@@ -15,7 +16,7 @@ export const goToHome = (navigation: any) => {
   navigation.dispatch(resetAction);
 };
 
-export const resetNavigation = (navigation: any) => {
+export const resetNavigation = (navigation: NavigationScreenProp<{}>) => {
   const resetAction = StackActions.reset({
     index: 0,
     actions: [NavigationActions.navigate({ routeName: 'SplashNavigator' })],

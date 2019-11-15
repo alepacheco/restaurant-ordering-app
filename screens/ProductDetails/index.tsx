@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import { QuantityForm } from './QuantityForm';
 import { AddToCart } from './AddToCart';
+import { NavigationInjectedProps } from 'react-navigation';
 
 const StyledView = styled.View`
   ${props => `background-color: ${props.theme.color};`}
@@ -42,9 +43,9 @@ interface MenuItem {
 
 const onAddToCart = ({ quantity }: { quantity: number }) => {};
 
-export const ProductDetails: React.FC<{ navigation: any }> = ({
-  navigation,
-}) => {
+export const ProductDetails: React.FC<{
+  navigation: any;
+}> = ({ navigation }) => {
   const { item }: { item: MenuItem } = navigation.state.params;
 
   const [quantity, setQuantity] = useState(1);

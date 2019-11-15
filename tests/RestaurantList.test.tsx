@@ -10,6 +10,12 @@ import { store } from 'store';
 
 jest.useFakeTimers();
 
+jest.mock('react-navigation', () => ({
+  withNavigation: (Component: any) => (...args: any) => (
+    <Component {...args} navigation={{ navigate: () => {} }} />
+  ),
+}));
+
 jest.mock('axios', () => ({
   get: jest.fn(),
 }));
@@ -46,7 +52,7 @@ describe('<RestaurantList />', () => {
       tree = renderer.create(
         <Theme>
           <StoreProvider store={store}>
-            <RestaurantList navigation={{ navigate: () => {} }} />
+            <RestaurantList />
           </StoreProvider>
         </Theme>
       );
@@ -63,13 +69,13 @@ describe('<RestaurantList />', () => {
         data: [
           {
             _id: '1',
-            title: `McDonalds`,
+            name: `McDonalds`,
             imageUrl: 'https://picsum.photos/84/84',
             description: 'This is the restaurant description',
           },
           {
             _id: '2',
-            title: `McDonalds 2`,
+            name: `McDonalds 2`,
             imageUrl: 'https://picsum.photos/84/84',
             description: 'This is the restaurant description 2',
           },
@@ -81,7 +87,7 @@ describe('<RestaurantList />', () => {
       tree = renderer.create(
         <Theme>
           <StoreProvider store={store}>
-            <RestaurantList navigation={{ navigate: () => {} }} />
+            <RestaurantList />
           </StoreProvider>
         </Theme>
       );

@@ -11,7 +11,6 @@ import styled, { ThemeContext } from 'styled-components/native';
 import { getNearbyRestaurants } from './utils';
 import { Loading } from '../../components/Loading';
 import { NoRestaurants } from './NoRestaurants';
-import { NoConnection } from '../../components/NoConnection';
 import { useStoreActions, useStoreState } from 'store';
 import { NearbyRestaurant } from 'types/restaurant';
 
@@ -54,13 +53,7 @@ const ListHeader = ({}) => {
   );
 };
 
-// const onClick = (navigate: any, restaurantId: string) => {
-//   navigate('RestaurantDetails', { restaurantId });
-// };
-
-export const RestaurantList: React.FC<{ navigation: any }> = ({
-  navigation,
-}) => {
+export const RestaurantList = ({}) => {
   const nearbyRestaurants = useStoreState(
     state => state.nearbyRestaurants.list
   );
@@ -69,7 +62,6 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
   );
 
   const [isLoading, setIsLoading] = useState(true);
-  const { navigate } = navigation;
   const themeContext = useContext(ThemeContext);
   const barStyle =
     themeContext.colorScheme === 'dark' ? 'light-content' : 'dark-content';
@@ -111,7 +103,7 @@ export const RestaurantList: React.FC<{ navigation: any }> = ({
           refreshing={isLoading}
           data={nearbyRestaurants}
           renderItem={({ item }: { item: NearbyRestaurant }) => (
-            <RestaurantEntry {...item} navigate={navigate} />
+            <RestaurantEntry {...item} />
           )}
           keyExtractor={(item: any) => item._id}
         />

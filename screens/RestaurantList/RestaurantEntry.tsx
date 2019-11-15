@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { Animated } from 'react-native';
 import { NearbyRestaurant } from 'types/restaurant';
+import { withNavigation } from 'react-navigation';
 
 const Container = styled.TouchableOpacity`
   display: flex;
@@ -71,9 +72,17 @@ const Review: React.FC<{ rating: number }> = ({ rating }) => {
   return <StyledRating>{rating} ★</StyledRating>;
 };
 
-export const RestaurantEntry: React.FC<NearbyRestaurant & {
-  navigate: any;
-}> = ({ name, description, distance, imageUrl, rating, _id, navigate }) => {
+export const _RestaurantEntry: React.FC<NearbyRestaurant & {
+  navigation: any;
+}> = ({
+  name,
+  description,
+  distance,
+  imageUrl,
+  rating,
+  _id,
+  navigation: { navigate },
+}) => {
   return (
     <Container
       onPress={() => navigate('RestaurantDetails', { restaurantId: _id })}>
@@ -89,3 +98,5 @@ export const RestaurantEntry: React.FC<NearbyRestaurant & {
     </Container>
   );
 };
+
+export const RestaurantEntry = withNavigation(_RestaurantEntry);

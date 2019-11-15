@@ -4,6 +4,7 @@ import { SESSION_ID_KEY } from '../../constants/session';
 import styled from 'styled-components/native';
 import { goToHome } from './utils';
 import { Loading } from '../../components/Loading';
+import { NavigationScreenProp } from 'react-navigation';
 
 const ButtonText = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
@@ -32,7 +33,9 @@ const StyledView = styled.SafeAreaView`
   ${props => `background-color: ${props.theme.color};`}
 `;
 
-export const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
+export const Splash: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
+  navigation,
+}) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

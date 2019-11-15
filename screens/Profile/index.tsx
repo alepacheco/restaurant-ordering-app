@@ -60,8 +60,6 @@ const ProfileWrapper = styled.View`
 
 export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
   const userData = useStoreState(state => state.user.user);
-  const store = useStoreState(state => state);
-  console.log(store);
   const setUser = useStoreActions(actions => actions.user.setUser);
 
   const themeContext = useContext(ThemeContext);

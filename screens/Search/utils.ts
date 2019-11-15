@@ -1,17 +1,11 @@
 import axios from 'axios';
+import { RestaurantMapMarker } from 'types/restaurant';
+import { getLocation } from 'utils/location';
 
-interface RestaurantMarker {
-  emoji: string;
-  longitude: number;
-  latitude: number;
-  id: string;
-}
-
-export const getRestaurantMarkers = async ({
-  location,
-}: {
-  location: { longitude: number; latitude: number };
-}): Promise<Array<RestaurantMarker>> => {
+export const getRestaurantMarkers = async (): Promise<Array<
+  RestaurantMapMarker
+>> => {
+  const location = await getLocation();
   const { data } = await axios.get(`/restaurants/markers`, {
     params: location,
   });

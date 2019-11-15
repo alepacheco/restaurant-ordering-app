@@ -3,6 +3,7 @@ import { Button } from 'react-native';
 import styled from 'styled-components/native';
 import { TextInput } from '../../../components/Forms/TextInput';
 import { loginNow, resetNavigation, goToHome } from '../utils';
+import { NavigationScreenProp } from 'react-navigation';
 
 const InputForm = styled.View`
   margin: 24px 8px;
@@ -21,7 +22,9 @@ const StyledView = styled.SafeAreaView`
   ${props => `background-color: ${props.theme.color};`}
 `;
 
-export const LogIn: React.FC<{ navigation: any }> = ({ navigation }) => {
+export const LogIn: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
+  navigation,
+}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 

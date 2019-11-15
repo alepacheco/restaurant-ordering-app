@@ -1,6 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { Search } from '../screens/Search';
+import { StoreProvider } from 'easy-peasy';
+import { store } from 'store';
 
 jest.useFakeTimers();
 jest.mock('react-navigation', () => ({
@@ -14,7 +16,11 @@ describe('<Search />', () => {
     let tree: null | renderer.ReactTestRenderer = null;
 
     await renderer.act(async () => {
-      tree = renderer.create(<Search />);
+      tree = renderer.create(
+        <StoreProvider store={store}>
+          <Search />
+        </StoreProvider>
+      );
     });
     expect(tree.toJSON()).toMatchSnapshot();
   });

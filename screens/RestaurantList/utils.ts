@@ -1,21 +1,6 @@
-import * as Location from 'expo-location';
-import * as Permissions from 'expo-permissions';
 import axios from 'axios';
 import { NearbyRestaurant } from 'types/restaurant';
-
-export const getLocation = async () => {
-  const { status } = await Permissions.askAsync(Permissions.LOCATION);
-  if (status !== 'granted') {
-    throw new Error('Permission to access location was denied');
-  }
-
-  const location = await Location.getCurrentPositionAsync({});
-
-  return {
-    longitude: location.coords.longitude,
-    latitude: location.coords.latitude,
-  };
-};
+import { getLocation } from 'utils/location';
 
 export const getNearbyRestaurants = async () => {
   const params = await getLocation();

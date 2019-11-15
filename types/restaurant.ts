@@ -39,3 +39,10 @@ export interface NearbyRestaurant {
   rating?: number;
   distance?: string;
 }
+
+export interface RestaurantMapMarker {
+  _id: string;
+  latitude: number;
+  longitude: number;
+  emoji: string;
+}

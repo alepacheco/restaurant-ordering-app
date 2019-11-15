@@ -118,13 +118,13 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
             "_id": "1",
             "description": "This is the restaurant description",
             "imageUrl": "https://picsum.photos/84/84",
-            "title": "McDonalds",
+            "name": "McDonalds",
           },
           Object {
             "_id": "2",
             "description": "This is the restaurant description 2",
             "imageUrl": "https://picsum.photos/84/84",
-            "title": "McDonalds 2",
+            "name": "McDonalds 2",
           },
         ]
       }
@@ -206,7 +206,7 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
             <Image
               source={
                 Object {
-                  "uri": "https://picsum.photos/84/84",
+                  "uri": undefined,
                 }
               }
               style={
@@ -275,9 +275,7 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
                     },
                   ]
                 }
-              >
-                This is the restaurant description
-              </Text>
+              />
               <Text
                 style={
                   Array [
@@ -331,7 +329,7 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
             <Image
               source={
                 Object {
-                  "uri": "https://picsum.photos/84/84",
+                  "uri": undefined,
                 }
               }
               style={
@@ -400,9 +398,7 @@ exports[`<RestaurantList /> renders correctly whith data 1`] = `
                     },
                   ]
                 }
-              >
-                This is the restaurant description 2
-              </Text>
+              />
               <Text
                 style={
                   Array [

@@ -25,9 +25,9 @@ const Details = styled.View`
   padding: 12px 12px 20px;
 `;
 
-export const RestaurantDetails: React.FC<{ navigation: any }> = ({
-  navigation,
-}) => {
+export const RestaurantDetails: React.FC<{
+  navigation: any;
+}> = ({ navigation }) => {
   const { restaurantId }: { restaurantId: string } = navigation.state.params;
   const restaurantDetails = useStoreState(
     state => state.restaurantDetails.list[restaurantId]

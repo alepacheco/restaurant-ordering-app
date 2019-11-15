@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import MapView, { Marker } from 'react-native-maps';
+import MapView from 'react-native-maps';
 import { View, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
-import { getLocation } from '../RestaurantList/utils';
 import { withNavigation } from 'react-navigation';
 import { getRestaurantMarkers } from './utils';
-
-const MarkerStyle = styled.View``;
-
-const Emoji = styled.Text`
-  font-size: 34px;
-`;
+import { useStoreState, useStoreActions } from 'store';
+import { Marker } from './Marker';
+import { RestaurantMapMarker } from 'types/restaurant';
 
 const StyledMap = styled(MapView)`
   position: absolute;
@@ -20,57 +16,20 @@ const StyledMap = styled(MapView)`
   height: ${Dimensions.get('window').height};
 `;
 
-interface RestaurantMarker {
-  emoji: string;
-  longitude: number;
-  latitude: number;
-  id: string;
-}
+const markersList = (restaurantMapMarkers: Array<RestaurantMapMarker>) =>
+  restaurantMapMarkers.map(marker => <Marker key={marker._id} {...marker} />);
 
-const CustomMarker = ({
-  id,
-  navigation,
-  latitude,
-  longitude,
-  emoji,
-}: RestaurantMarker & { navigation: any }) => {
-  return (
-    <Marker
-      onPress={() => navigation.navigate('RestaurantDetails', { id })}
-      coordinate={{ latitude, longitude }}>
-      <MarkerStyle>
-        <Emoji>{emoji}</Emoji>
-      </MarkerStyle>
-    </Marker>
+const Map: React.FC<{}> = () => {
+  const restaurantMapMarkers = useStoreState(
+    state => state.restaurantMapMarkers.list
   );
-};
-
-const Map: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const [initialRegion, setInitialLRegion] = useState(undefined);
-  const [markers, setMarkers] = useState([] as Array<RestaurantMarker>);
+  const setRestaurantMapMarkers = useStoreActions(
+    actions => actions.restaurantMapMarkers.setRestaurantMapMarkers
+  );
 
   useEffect(() => {
-    getLocation().then(location => {
-      setInitialLRegion({
-        ...location,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-      });
-
-      getRestaurantMarkers({ location }).then(markers => setMarkers(markers));
-    });
-  }, []);
-
-  const markersList = markers.map(marker => (
-    <CustomMarker
-      id={marker.id}
-      key={marker.id}
-      latitude={marker.latitude}
-      longitude={marker.longitude}
-      emoji={marker.emoji}
-      navigation={navigation}
-    />
-  ));
+    getRestaurantMarkers().then(markers => setRestaurantMapMarkers(markers));
+  }, [setRestaurantMapMarkers]);
 
   return (
     <View>
@@ -79,9 +38,12 @@ const Map: React.FC<{ navigation: any }> = ({ navigation }) => {
         showsScale
         maxZoomLevel={17}
         rotateEnabled={false}
-        showsUserLocation
-        region={initialRegion}>
-        {markersList.length > 0 ? markersList : <View />}
+        showsUserLocation>
+        {restaurantMapMarkers && restaurantMapMarkers.length > 0 ? (
+          markersList(restaurantMapMarkers)
+        ) : (
+          <View />
+        )}
       </StyledMap>
     </View>
   );

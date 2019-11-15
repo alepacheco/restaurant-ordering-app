@@ -12,6 +12,7 @@ module.exports = function(api) {
             store: './utils/store.ts',
             screens: './screens',
             types: './types',
+            utils: './utils',
             constants: './constants',
           },
         },
