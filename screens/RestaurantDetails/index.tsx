@@ -6,7 +6,7 @@ import { getRestaurantDetails } from 'utils/network';
 import { Loading } from 'components/Loading';
 import { useStoreState, useStoreActions } from 'store';
 import { Header } from './Header';
-import Layout from './Layout';
+import { Layout } from './Layout';
 
 const StyledView = styled.View`
   ${props => `background-color: ${props.theme.color};`}

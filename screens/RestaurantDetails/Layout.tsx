@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Animated,
   Platform,
@@ -48,123 +48,115 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Layout extends Component<
-  { headerComponent: any; backgroundImageSource: any },
-  { scrollY: any; refreshing: boolean }
-> {
-  constructor(props: any) {
-    super(props);
+export const Layout: React.FC<{
+  backgroundImageSource: any;
+  headerComponent: any;
+}> = ({ children, backgroundImageSource, headerComponent }) => {
+  const [stateScrollY, setScrollY] = useState(
+    new Animated.Value(
+      // iOS has negative initial scroll value because content inset...
+      Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0
+    )
+  );
 
-    this.state = {
-      scrollY: new Animated.Value(
-        // iOS has negative initial scroll value because content inset...
-        Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0
-      ),
-      refreshing: false,
-    };
-  }
+  const [refreshing, setRefreshing] = useState(false);
 
-  render() {
-    // Because of content inset the scroll value will be negative on iOS so bring
-    // it back to 0.
-    const scrollY = Animated.add(
-      this.state.scrollY,
-      Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0
-    );
-    const headerTranslate = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, -HEADER_SCROLL_DISTANCE],
-      extrapolate: 'clamp',
-    });
+  // Because of content inset the scroll value will be negative on iOS so bring
+  // it back to 0.
+  const scrollY = Animated.add(
+    stateScrollY,
+    Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0
+  );
+  const headerTranslate = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, -HEADER_SCROLL_DISTANCE],
+    extrapolate: 'clamp',
+  });
 
-    const imageOpacity = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [1, 1, 0],
-      extrapolate: 'clamp',
-    });
-    const imageTranslate = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, 100],
-      extrapolate: 'clamp',
-    });
+  const imageOpacity = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+    outputRange: [1, 1, 0],
+    extrapolate: 'clamp',
+  });
+  const imageTranslate = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, 100],
+    extrapolate: 'clamp',
+  });
 
-    const titleScale = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [1, 1, 0.8],
-      extrapolate: 'clamp',
-    });
-    const titleTranslate = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, 0, -8],
-      extrapolate: 'clamp',
-    });
+  const titleScale = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+    outputRange: [1, 1, 0.8],
+    extrapolate: 'clamp',
+  });
+  const titleTranslate = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, 0, -8],
+    extrapolate: 'clamp',
+  });
 
-    return (
-      <View style={styles.fill}>
-        <StatusBar
-          translucent
-          barStyle="light-content"
-          backgroundColor="rgba(0, 0, 0, 0.251)"
-        />
-        <Animated.ScrollView
-          contentInset={{
-            top: HEADER_MAX_HEIGHT,
-          }}
-          contentOffset={{
-            y: -HEADER_MAX_HEIGHT,
-          }}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
-            {
-              useNativeDriver: true,
-            }
-          )}
-          refreshControl={
-            <RefreshControl
-              onRefresh={() => {
-                this.setState({ refreshing: true });
-                setTimeout(() => this.setState({ refreshing: false }), 300);
-              }}
-              progressViewOffset={HEADER_MAX_HEIGHT}
-              // Android offset for RefreshControl
-              refreshing={this.state.refreshing}
-            />
+  return (
+    <View style={styles.fill}>
+      <StatusBar
+        translucent
+        barStyle="light-content"
+        backgroundColor="rgba(0, 0, 0, 0.251)"
+      />
+      <Animated.ScrollView
+        contentInset={{
+          top: HEADER_MAX_HEIGHT,
+        }}
+        contentOffset={{
+          y: -HEADER_MAX_HEIGHT,
+        }}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: stateScrollY } } }],
+          {
+            useNativeDriver: true,
           }
-          // iOS offset for RefreshControl
-          scrollEventThrottle={1}
-          style={styles.fill}>
-          {this.props.children}
-        </Animated.ScrollView>
-        <Animated.View
-          pointerEvents="none"
-          style={[
-            styles.header,
-            { transform: [{ translateY: headerTranslate }] },
-          ]}>
-          <Animated.Image
-            source={this.props.backgroundImageSource}
-            style={[
-              styles.backgroundImage,
-              {
-                opacity: imageOpacity,
-                transform: [{ translateY: imageTranslate }],
-              },
-            ]}
+        )}
+        refreshControl={
+          <RefreshControl
+            onRefresh={() => {
+              setRefreshing(true);
+              setTimeout(() => setRefreshing(false), 300);
+            }}
+            progressViewOffset={HEADER_MAX_HEIGHT}
+            // Android offset for RefreshControl
+            refreshing={refreshing}
           />
-        </Animated.View>
-        <Animated.View
+        }
+        // iOS offset for RefreshControl
+        scrollEventThrottle={1}
+        style={styles.fill}>
+        {children}
+      </Animated.ScrollView>
+      <Animated.View
+        pointerEvents="none"
+        style={[
+          styles.header,
+          { transform: [{ translateY: headerTranslate }] },
+        ]}>
+        <Animated.Image
+          source={backgroundImageSource}
           style={[
-            styles.bar,
+            styles.backgroundImage,
             {
-              transform: [
-                { scale: titleScale },
-                { translateY: titleTranslate },
-              ],
+              opacity: imageOpacity,
+              transform: [{ translateY: imageTranslate }],
             },
-          ]}>
-          {this.props.headerComponent}
-        </Animated.View>
-      </View>
-    );
-  }
-}
+          ]}
+        />
+      </Animated.View>
+      <Animated.View
+        style={[
+          styles.bar,
+          {
+            transform: [{ scale: titleScale }, { translateY: titleTranslate }],
+          },
+        ]}>
+        {headerComponent}
+      </Animated.View>
+    </View>
+  );
+};
