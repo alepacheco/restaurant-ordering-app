@@ -4,7 +4,8 @@ import styled from 'styled-components/native';
 import { QuantityForm } from './QuantityForm';
 import { AddToCart } from './AddToCart';
 import { NavigationInjectedProps } from 'react-navigation';
-
+import { MenuItem } from 'types/restaurant';
+import { useStoreState, useStoreActions } from 'store';
 const StyledView = styled.View`
   ${props => `background-color: ${props.theme.color};`}
 `;
@@ -30,24 +31,25 @@ const Wrapper = styled.View`
   display: flex;
   flex-direction: column;
 `;
-interface MenuItem {
-  name: string;
-  description: string;
-  price: number;
-  imageUrl: string;
-  options: Array<{
-    type: 'single' | 'multi';
-    choices: Array<string>;
-  }>;
-}
-
-const onAddToCart = ({ quantity }: { quantity: number }) => {};
 
 export const ProductDetails: React.FC<{
   navigation: any;
 }> = ({ navigation }) => {
-  const { item }: { item: MenuItem } = navigation.state.params;
+  const {
+    itemId,
+    restaurantId,
+  }: { itemId: string; restaurantId: string } = navigation.state.params;
 
+  const itemDetails: MenuItem = useStoreState(state =>
+    state.restaurantDetails.list[restaurantId].menu
+      .reduce((acc, item) => acc.concat(item.items), [] as Array<MenuItem>)
+      .find(menuItem => menuItem._id === itemId)
+  );
+
+  const cartSelection = useStoreState(state => state.cart.items[restaurantId]);
+  const addToCart = useStoreActions(actions => actions.cart.add);
+
+  console.log(cartSelection);
   const [quantity, setQuantity] = useState(1);
 
   return (
@@ -57,20 +59,25 @@ export const ProductDetails: React.FC<{
           <ScrollView>
             <ProductImage
               resizeMode="contain"
-              source={{ uri: item.imageUrl }}
+              source={{ uri: itemDetails.imageUrl }}
             />
-            <Name>{item.name}</Name>
-            <Description>{item.description}</Description>
+            <Name>{itemDetails.name}</Name>
+            <Description>{itemDetails.description}</Description>
 
-            <QuantityForm
-              value={quantity}
-              onPlus={() => setQuantity(Math.min(quantity + 1, 10))}
-              onMinus={() => setQuantity(Math.max(quantity - 1, 1))}
-            />
+            <QuantityForm onChange={setQuantity} initialValue={quantity} />
           </ScrollView>
           <AddToCart
-            price={item.price * quantity}
-            onPress={() => onAddToCart({ quantity })}
+            price={(Number(itemDetails.price) * quantity).toFixed(2)}
+            onPress={() =>
+              addToCart({
+                restaurantId,
+                items: {
+                  amount: quantity,
+                  itemId,
+                  options: [],
+                },
+              })
+            }
           />
         </Wrapper>
       </SafeAreaView>

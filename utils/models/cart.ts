@@ -11,18 +11,13 @@ export interface Cart {
   items: {
     [restaurantId: string]: Array<Selection>;
   };
-  selectedRestaurantId: string;
   add: Action<Cart, { restaurantId: string; items: Selection }>;
-  setRestaurant: Action<Cart, string>;
 }
 
 export const cart: Cart = {
   items: {},
-  selectedRestaurantId: null,
   add: action((state, { restaurantId, items }) => {
-    state.items[restaurantId].push(items);
-  }),
-  setRestaurant: action((state, payload) => {
-    state.selectedRestaurantId = payload;
+    // TODO squash by product id
+    state.items[restaurantId] = [...(state.items[restaurantId] || []), items];
   }),
 };

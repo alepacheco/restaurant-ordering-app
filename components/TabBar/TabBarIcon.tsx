@@ -42,11 +42,9 @@ const Splash: React.FC<{ selected: boolean; icon: string }> = ({
 }) => {
   const [animation, setAnimation] = useState(null);
 
-  useEffect(() => {
-    if (animation !== null && selected) {
-      animation.play();
-    }
-  });
+  if (animation !== null && selected) {
+    animation.play();
+  }
 
   return (
     <SplashWrapper>
@@ -55,7 +53,7 @@ const Splash: React.FC<{ selected: boolean; icon: string }> = ({
         source={require('../../assets/animations/splash.json')}
         speed={3}
         loop={false}
-        progress={0.9}
+        progress={1}
       />
     </SplashWrapper>
   );

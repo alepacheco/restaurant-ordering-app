@@ -2,6 +2,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { withNavigation, NavigationScreenProp } from 'react-navigation';
+import { MenuItem } from 'types/restaurant';
 
 const Wrapper = styled.View`
   display: flex;
@@ -35,36 +36,39 @@ const ProductImage = styled.Image`
   border-radius: 6px;
 `;
 
-interface MenuItem {
-  id: string;
-  name: string;
-  description?: string;
-  price: string;
-  imageUrl?: string;
-  item: {};
-}
-
 const onItemClick = ({
-  item,
   navigation,
+  restaurantId,
+  itemId,
 }: {
-  item: {};
+  itemId: string;
   navigation: NavigationScreenProp<{}>;
+  restaurantId: string;
 }) => {
-  navigation.navigate('ProductDetails', { item });
+  navigation.navigate('ProductDetails', { itemId, restaurantId });
 };
 
-const Item: React.FC<MenuItem & { navigation: any }> = ({
-  name,
+interface ItemOptions {
+  _id: string;
+  name: string;
+  description: string;
+  price: string;
+  imageUrl: string;
+  restaurantId: string;
+}
+
+const Item: React.FC<ItemOptions & { navigation: any }> = ({
+  _id,
+  restaurantId,
+  navigation,
+  imageUrl,
   description,
   price,
-  imageUrl,
-  id,
-  navigation,
-  item,
+  name,
 }) => {
   return (
-    <TouchableOpacity onPress={() => onItemClick({ item, navigation })}>
+    <TouchableOpacity
+      onPress={() => onItemClick({ navigation, restaurantId, itemId: _id })}>
       <Wrapper>
         <ProductImage resizeMode="contain" source={{ uri: imageUrl }} />
         <TextWrapper>

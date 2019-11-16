@@ -31,9 +31,11 @@ const SectionSeparator = styled.View`
 export const Section = ({
   title,
   items,
+  restaurantId,
 }: {
   title: string;
   items: Array<MenuItem>;
+  restaurantId: string;
 }) => {
   return (
     <View>
@@ -51,12 +53,12 @@ export const Section = ({
               </SeparatorWrapper>
             )}
             <Item
-              id={item._id}
+              _id={item._id}
               name={item.name}
               description={item.description}
               price={item.price}
               imageUrl={item.imageUrl}
-              item={item}
+              restaurantId={restaurantId}
             />
           </View>
         ))}

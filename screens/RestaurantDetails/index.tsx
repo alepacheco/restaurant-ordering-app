@@ -62,7 +62,10 @@ export const RestaurantDetails: React.FC<{
           <Text>{restaurantDetails.description}</Text>
         </Details>
 
-        <Menu menu={restaurantDetails.menu} />
+        <Menu
+          menu={restaurantDetails.menu}
+          restaurantId={restaurantDetails._id}
+        />
       </ScrollView>
     </StyledView>
   );

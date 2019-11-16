@@ -34,17 +34,24 @@ const Quantity = styled.Text`
 `;
 
 export const QuantityForm: React.FC<{
-  onPlus: () => void;
-  onMinus: () => void;
-  value: number;
-}> = ({ value, onPlus, onMinus }) => (
-  <QuantityWrapper>
-    <ButtonWrapper onPress={onMinus}>
-      <ButtonText>-</ButtonText>
-    </ButtonWrapper>
-    <Quantity>{value}</Quantity>
-    <ButtonWrapper onPress={onPlus}>
-      <ButtonText>+</ButtonText>
-    </ButtonWrapper>
-  </QuantityWrapper>
-);
+  onChange: (value: number) => void;
+  initialValue: number;
+}> = ({ onChange, initialValue }) => {
+  const [quantity, setQuantity] = useState(initialValue);
+
+  useEffect(() => {
+    onChange(quantity);
+  }, [onChange, quantity]);
+
+  return (
+    <QuantityWrapper>
+      <ButtonWrapper onPress={() => setQuantity(Math.max(quantity - 1, 0))}>
+        <ButtonText>-</ButtonText>
+      </ButtonWrapper>
+      <Quantity>{quantity}</Quantity>
+      <ButtonWrapper onPress={() => setQuantity(quantity + 1)}>
+        <ButtonText>+</ButtonText>
+      </ButtonWrapper>
+    </QuantityWrapper>
+  );
+};

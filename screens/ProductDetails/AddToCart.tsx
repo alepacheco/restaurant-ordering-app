@@ -20,14 +20,14 @@ const AddToCartPrice = styled.Text`
   text-align: right;
 `;
 
-export const AddToCart: React.FC<{ price: number; onPress: () => void }> = ({
+export const AddToCart: React.FC<{ price: string; onPress: () => void }> = ({
   price,
   onPress,
 }) => {
   return (
     <AddToCartWrapper onPress={onPress}>
       <AddToCartText>Add to Cart</AddToCartText>
-      <AddToCartPrice>{JSON.stringify(price)}</AddToCartPrice>
+      <AddToCartPrice>{price}</AddToCartPrice>
     </AddToCartWrapper>
   );
 };
