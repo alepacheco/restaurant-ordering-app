@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/native';
 import { Animated } from 'react-native';
 import { NearbyRestaurant } from 'types/restaurant';
 import { withNavigation } from 'react-navigation';
+import { useStoreState, useStoreActions } from 'store';
+import { getRestaurantDetails } from 'utils/network';
 
 const Container = styled.TouchableOpacity`
   display: flex;
@@ -83,6 +85,21 @@ export const _RestaurantEntry: React.FC<NearbyRestaurant & {
   _id,
   navigation: { navigate },
 }) => {
+  const restaurantDetails = useStoreState(
+    state => state.restaurantDetails.list[_id]
+  );
+  const addRestaurant = useStoreActions(
+    actions => actions.restaurantDetails.addRestaurant
+  );
+
+  useEffect(() => {
+    if (!restaurantDetails) {
+      getRestaurantDetails({ restaurantId: _id }).then(data => {
+        addRestaurant(data);
+      });
+    }
+  }, [addRestaurant, restaurantDetails, _id]);
+
   return (
     <Container
       onPress={() => navigate('RestaurantDetails', { restaurantId: _id })}>

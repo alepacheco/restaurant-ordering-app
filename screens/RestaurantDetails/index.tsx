@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView, Text, Animated } from 'react-native';
 import styled from 'styled-components/native';
 import { Menu } from './Menu';
-import { getRestaurantDetails } from './utils';
-import { Loading } from '../../components/Loading';
+import { getRestaurantDetails } from 'utils/network';
+import { Loading } from 'components/Loading';
 import { useStoreState, useStoreActions } from 'store';
 import { Header } from './Header';
 import Layout from './Layout';
@@ -11,19 +11,6 @@ import Layout from './Layout';
 const StyledView = styled.View`
   ${props => `background-color: ${props.theme.color};`}
   height: 100%;
-`;
-
-const MenuScrollView = styled.ScrollView`
-  margin-top: 282px;
-`;
-
-const AnimatedView = styled(Animated.View)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 20;
-  opacity: 1;
-  width: 100%;
 `;
 
 export const RestaurantDetails: React.FC<{
