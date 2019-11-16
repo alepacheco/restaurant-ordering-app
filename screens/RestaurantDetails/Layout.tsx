@@ -107,30 +107,32 @@ export default class Layout extends Component<
           backgroundColor="rgba(0, 0, 0, 0.251)"
         />
         <Animated.ScrollView
-          style={styles.fill}
-          scrollEventThrottle={1}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
-            { useNativeDriver: true }
-          )}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={() => {
-                this.setState({ refreshing: true });
-                setTimeout(() => this.setState({ refreshing: false }), 300);
-              }}
-              // Android offset for RefreshControl
-              progressViewOffset={HEADER_MAX_HEIGHT}
-            />
-          }
-          // iOS offset for RefreshControl
           contentInset={{
             top: HEADER_MAX_HEIGHT,
           }}
           contentOffset={{
             y: -HEADER_MAX_HEIGHT,
-          }}>
+          }}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
+            {
+              useNativeDriver: true,
+            }
+          )}
+          refreshControl={
+            <RefreshControl
+              onRefresh={() => {
+                this.setState({ refreshing: true });
+                setTimeout(() => this.setState({ refreshing: false }), 300);
+              }}
+              progressViewOffset={HEADER_MAX_HEIGHT}
+              // Android offset for RefreshControl
+              refreshing={this.state.refreshing}
+            />
+          }
+          // iOS offset for RefreshControl
+          scrollEventThrottle={1}
+          style={styles.fill}>
           {this.props.children}
         </Animated.ScrollView>
         <Animated.View
@@ -140,6 +142,7 @@ export default class Layout extends Component<
             { transform: [{ translateY: headerTranslate }] },
           ]}>
           <Animated.Image
+            source={this.props.backgroundImageSource}
             style={[
               styles.backgroundImage,
               {
@@ -147,7 +150,6 @@ export default class Layout extends Component<
                 transform: [{ translateY: imageTranslate }],
               },
             ]}
-            source={this.props.backgroundImageSource}
           />
         </Animated.View>
         <Animated.View

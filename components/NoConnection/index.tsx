@@ -33,7 +33,7 @@ export const NoConnection: React.FC<{ type?: 'drinks' }> = ({ type }) => {
         <StyledLottieView
           source={require('../../assets/animations/no-connection.json')}
           speed={1}
-          loop={true}
+          loop
           autoPlay
         />
         <LoadingText>You are not connected to the internet!</LoadingText>

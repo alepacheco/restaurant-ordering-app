@@ -49,11 +49,11 @@ const Splash: React.FC<{ selected: boolean; icon: string }> = ({
   return (
     <SplashWrapper>
       <StyledLottieView
+        loop={false}
+        progress={1}
         ref={animation => setAnimation(animation)}
         source={require('../../assets/animations/splash.json')}
         speed={3}
-        loop={false}
-        progress={1}
       />
     </SplashWrapper>
   );

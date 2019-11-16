@@ -36,30 +36,30 @@ export const SignUp: React.FC<{ navigation: any }> = ({ navigation }) => {
       <LoginText>Sign up</LoginText>
       <InputForm>
         <TextInput
-          placeholder="name"
-          onChangeText={text => setName(text)}
-          value={name}
           autoCapitalize="words"
           autoCorrect={false}
           blurOnSubmit
+          onChangeText={text => setName(text)}
+          placeholder="name"
+          value={name}
         />
         <TextInput
-          placeholder="email"
+          autoCapitalize="none"
+          autoCorrect={false}
+          blurOnSubmit
           onChangeText={text => setUsername(text)}
+          placeholder="email"
           value={username}
-          autoCapitalize="none"
-          autoCorrect={false}
-          blurOnSubmit
         />
         <TextInput
-          placeholder="password"
-          onChangeText={text => setPassword(text)}
-          value={password}
           autoCapitalize="none"
           autoCorrect={false}
           blurOnSubmit
-          secureTextEntry
+          onChangeText={text => setPassword(text)}
+          placeholder="password"
           returnKeyType="send"
+          secureTextEntry
+          value={password}
         />
       </InputForm>
 

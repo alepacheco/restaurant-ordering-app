@@ -54,10 +54,10 @@ export const Section = ({
             )}
             <Item
               _id={item._id}
-              name={item.name}
               description={item.description}
-              price={item.price}
               imageUrl={item.imageUrl}
+              name={item.name}
+              price={item.price}
               restaurantId={restaurantId}
             />
           </View>

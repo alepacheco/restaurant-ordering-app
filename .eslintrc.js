@@ -22,6 +22,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
     '@typescript-eslint/explicit-function-return-type': 'off',
     'react/prop-types': 'off',
+    'react/jsx-first-prop-new-line': 'error',
   },
   settings: {
     react: {

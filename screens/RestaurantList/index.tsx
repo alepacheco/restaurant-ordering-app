@@ -97,15 +97,15 @@ export const RestaurantList = ({}) => {
       <SafeAreaView style={{ display: 'flex' }}>
         <ListHeader />
         <StyledFlatList
+          data={nearbyRestaurants}
+          keyExtractor={(item: any) => item._id}
           onRefresh={() => {
             setIsLoading(true);
           }}
           refreshing={isLoading}
-          data={nearbyRestaurants}
           renderItem={({ item }: { item: NearbyRestaurant }) => (
             <RestaurantEntry {...item} />
           )}
-          keyExtractor={(item: any) => item._id}
         />
       </SafeAreaView>
     </StyledView>

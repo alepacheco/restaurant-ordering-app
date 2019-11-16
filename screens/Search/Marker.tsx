@@ -19,10 +19,10 @@ export const Marker = withNavigation(
   }: RestaurantMapMarker & NavigationInjectedProps) => {
     return (
       <ReactMarker
+        coordinate={{ latitude, longitude }}
         onPress={() =>
           navigation.navigate('RestaurantDetails', { restaurantId: _id })
-        }
-        coordinate={{ latitude, longitude }}>
+        }>
         <View>
           <Emoji>{emoji}</Emoji>
         </View>

@@ -38,12 +38,7 @@ export const Loading: React.FC<{ type?: 'drinks' }> = ({ type }) => {
     <Wrapper background={type === 'drinks' ? '#463268' : null}>
       <CenterMiddle>
         <LoadingText>Loading</LoadingText>
-        <StyledLottieView
-          source={selectedType}
-          speed={1}
-          loop={true}
-          autoPlay
-        />
+        <StyledLottieView source={selectedType} speed={1} loop autoPlay />
       </CenterMiddle>
     </Wrapper>
   );
