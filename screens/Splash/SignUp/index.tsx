@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Button } from 'react-native';
 import { TextInput } from '../../../components/Forms/TextInput';
 import styled from 'styled-components/native';
-import { signUp, goToHome, resetNavigation } from '../utils';
+import { goToHome, resetNavigation } from '../utils';
+import { signUp } from 'utils/network';
 
 const InputForm = styled.View`
   margin: 24px 8px;

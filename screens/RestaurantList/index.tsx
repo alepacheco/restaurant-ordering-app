@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { RestaurantEntry } from './RestaurantEntry';
 import styled, { ThemeContext } from 'styled-components/native';
-import { getNearbyRestaurants } from './utils';
+import { getNearbyRestaurants } from 'utils/network';
 import { Loading } from '../../components/Loading';
 import { NoRestaurants } from './NoRestaurants';
 import { useStoreActions, useStoreState } from 'store';

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView, Text, Button, View, StatusBar } from 'react-native';
 import { LogOutButton } from './LogOutButton';
-import { getProfile, pickImage } from './utils';
+import { pickImage } from './utils';
+import { getProfile } from 'utils/network';
 import styled, { ThemeContext } from 'styled-components/native';
 import { UserStats } from './UserStats';
 import { Loading } from '../../components/Loading';

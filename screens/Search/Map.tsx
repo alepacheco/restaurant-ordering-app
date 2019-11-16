@@ -3,7 +3,7 @@ import MapView from 'react-native-maps';
 import { View, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { withNavigation } from 'react-navigation';
-import { getRestaurantMarkers } from './utils';
+import { getRestaurantMarkers } from 'utils/network';
 import { useStoreState, useStoreActions } from 'store';
 import { Marker } from './Marker';
 import { RestaurantMapMarker } from 'types/restaurant';

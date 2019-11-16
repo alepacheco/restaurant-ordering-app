@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Button } from 'react-native';
 import styled from 'styled-components/native';
 import { TextInput } from '../../../components/Forms/TextInput';
-import { loginNow, resetNavigation, goToHome } from '../utils';
+import { resetNavigation, goToHome } from '../utils';
+import { loginNow } from 'utils/network';
 import { NavigationScreenProp } from 'react-navigation';
 
 const InputForm = styled.View`

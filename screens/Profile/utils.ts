@@ -1,34 +1,7 @@
-import axios from 'axios';
-import * as FileSystem from 'expo-file-system';
-import { SESSION_ID_KEY } from '../../constants/session';
-import * as SecureStore from 'expo-secure-store';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
-
-export const getProfile = async () => {
-  const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
-
-  const { data } = await axios.get(`/user`, {
-    params: {
-      sessionId,
-    },
-  });
-
-  return data;
-};
-
-export const uploadFile = async (uri: string) => {
-  const base64Image = await FileSystem.readAsStringAsync(uri, {
-    encoding: FileSystem.EncodingType.Base64,
-  });
-  const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
-
-  return axios.post(`/user/image`, {
-    file: base64Image,
-    sessionId,
-  });
-};
+import { uploadFile } from 'utils/network';
 
 export const getPermission = async () => {
   if (Constants.platform.ios) {
