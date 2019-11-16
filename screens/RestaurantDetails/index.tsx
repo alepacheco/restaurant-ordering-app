@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Text, Animated } from 'react-native';
 import styled from 'styled-components/native';
 import { Menu } from './Menu';
 import { getRestaurantDetails } from './utils';
 import { Loading } from '../../components/Loading';
 import { useStoreState, useStoreActions } from 'store';
+import { Header } from './Header';
+import Layout from './Layout';
 
 const StyledView = styled.View`
   ${props => `background-color: ${props.theme.color};`}
   height: 100%;
 `;
 
-const RestaurantTitle = styled.Text`
-  font-size: 38px;
+const MenuScrollView = styled.ScrollView`
+  margin-top: 282px;
 `;
-const BannerImage = styled.Image`
-  height: 188px;
+
+const AnimatedView = styled(Animated.View)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  opacity: 1;
   width: 100%;
-`;
-
-const Details = styled.View`
-  background-color: rgb(100, 100, 100);
-
-  padding: 12px 12px 20px;
 `;
 
 export const RestaurantDetails: React.FC<{
@@ -53,20 +54,15 @@ export const RestaurantDetails: React.FC<{
   }
 
   return (
-    <StyledView>
-      <ScrollView scrollIndicatorInsets={{ right: 1 }}>
-        <BannerImage source={{ uri: restaurantDetails.bannerImgUrl }} />
-
-        <Details>
-          <RestaurantTitle>{restaurantDetails.name}</RestaurantTitle>
-          <Text>{restaurantDetails.description}</Text>
-        </Details>
-
+    <Layout
+      backgroundImageSource={{ uri: restaurantDetails.bannerImgUrl }}
+      headerComponent={<Header name={restaurantDetails.name} />}>
+      <StyledView>
         <Menu
           menu={restaurantDetails.menu}
           restaurantId={restaurantDetails._id}
         />
-      </ScrollView>
-    </StyledView>
+      </StyledView>
+    </Layout>
   );
 };
