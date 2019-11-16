@@ -1,5 +1,11 @@
 import React, { useContext } from 'react';
-import { Text, TouchableOpacity, SafeAreaView } from 'react-native';
+import {
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  ScrollView,
+  View,
+} from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import ArrowLeft from 'assets/icons/arrow-left-solid.svg';
 import { useStoreState, useStoreActions } from 'store';
@@ -7,8 +13,20 @@ import { Selection } from './Selection';
 import { Restaurant, MenuItem } from 'types/restaurant';
 
 const StyledView = styled.SafeAreaView`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
   ${props => `background-color: ${props.theme.color};`}
 `;
+
+const Footer = styled.SafeAreaView`
+  display: flex;
+  flex-direction: column;
+  ${props => `background-color: ${props.theme.color};`}
+`;
+
+const ItemsScrollView = styled.ScrollView``;
 
 const StyledBackButton = styled(ArrowLeft)`
   width: 32px;
@@ -64,8 +82,14 @@ export const Cart: React.FC<{ navigation: any }> = ({ navigation }) => {
     <StyledView>
       <GoBack navigation={navigation} />
       <StyledText>Cart</StyledText>
-      <StyledText>{JSON.stringify(cartSelection)}</StyledText>
-      {selectionEntries}
+      <ItemsScrollView>
+        <View>{selectionEntries}</View>
+        <StyledText>Total: XXX</StyledText>
+      </ItemsScrollView>
+
+      <Footer>
+        <StyledText>This is the checkout button</StyledText>
+      </Footer>
     </StyledView>
   );
 };

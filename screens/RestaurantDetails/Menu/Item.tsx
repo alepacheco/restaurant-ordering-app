@@ -3,6 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { withNavigation, NavigationScreenProp } from 'react-navigation';
 import { MenuItem } from 'types/restaurant';
+import * as haptics from 'utils/haptics';
 
 const Wrapper = styled.View`
   display: flex;
@@ -68,13 +69,17 @@ const Item: React.FC<ItemOptions & { navigation: any }> = ({
 }) => {
   return (
     <TouchableOpacity
-      onPress={() => onItemClick({ navigation, restaurantId, itemId: _id })}>
+      onPress={() =>
+        haptics
+          .selectionTouch()
+          .then(() => onItemClick({ navigation, restaurantId, itemId: _id }))
+      }>
       <Wrapper>
         <ProductImage resizeMode="contain" source={{ uri: imageUrl }} />
         <TextWrapper>
           <Title>{name}</Title>
           <SubTitle>{description}</SubTitle>
-          <Price>{JSON.stringify(price)}</Price>
+          <Price>${price}</Price>
         </TextWrapper>
       </Wrapper>
     </TouchableOpacity>

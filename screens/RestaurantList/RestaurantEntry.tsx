@@ -5,6 +5,7 @@ import { NearbyRestaurant } from 'types/restaurant';
 import { withNavigation } from 'react-navigation';
 import { useStoreState, useStoreActions } from 'store';
 import { getRestaurantDetails } from 'utils/network';
+import * as haptics from 'utils/haptics';
 
 const Container = styled.TouchableOpacity`
   display: flex;
@@ -102,7 +103,11 @@ export const _RestaurantEntry: React.FC<NearbyRestaurant & {
 
   return (
     <Container
-      onPress={() => navigate('RestaurantDetails', { restaurantId: _id })}>
+      onPress={() => {
+        haptics.selectionTouch().then(() => {
+          navigate('RestaurantDetails', { restaurantId: _id });
+        });
+      }}>
       <RestaurantImage source={{ uri: imageUrl }} />
       <TextBox>
         <FirstRow>

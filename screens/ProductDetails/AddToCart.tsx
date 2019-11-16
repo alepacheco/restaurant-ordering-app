@@ -15,7 +15,6 @@ const AddToCartText = styled.Text`
 const AddToCartPrice = styled.Text`
   margin: 12px;
   width: 100%;
-
   position: absolute;
   text-align: right;
 `;
@@ -27,7 +26,7 @@ export const AddToCart: React.FC<{ price: string; onPress: () => void }> = ({
   return (
     <AddToCartWrapper onPress={onPress}>
       <AddToCartText>Add to Cart</AddToCartText>
-      <AddToCartPrice>{price}</AddToCartPrice>
+      <AddToCartPrice>${price}</AddToCartPrice>
     </AddToCartWrapper>
   );
 };

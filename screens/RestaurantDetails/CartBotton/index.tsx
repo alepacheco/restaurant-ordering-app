@@ -4,6 +4,8 @@ import { withNavigation } from 'react-navigation';
 import { useStoreState } from 'store';
 
 const AddToCartWrapper = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
   background-color: orange;
   border-radius: 2px;
 
@@ -12,13 +14,32 @@ const AddToCartWrapper = styled.TouchableOpacity`
 `;
 const AddToCartText = styled.Text`
   text-align: center;
-  width: 100%;
+  flex: 1;
 `;
-const AddToCartPrice = styled.Text`
-  margin: 12px;
-  width: 100%;
 
-  position: absolute;
+const QuantityText = styled.Text`
+  text-align: center;
+  margin: auto 0;
+`;
+
+const QuantityBackground = styled.View`
+  background-color: #ddddff;
+  min-width: 24px;
+  height: 24px;
+  margin-top: -8px;
+  margin-bottom: -8px;
+  border-radius: 6px;
+`;
+
+const QuantityWrapper = styled.View`
+  text-align: left;
+  flex: 1;
+  align-items: flex-start;
+  margin: auto 0;
+`;
+
+const AddToCartPrice = styled.Text`
+  flex: 1;
   text-align: right;
 `;
 
@@ -42,7 +63,12 @@ const _CartBotton: React.FC<{ restaurantId: string; navigation: any }> = ({
   return (
     <AddToCartWrapper
       onPress={() => navigation.navigate('Cart', { restaurantId })}>
-      <AddToCartText>{numberOfItems} items in cart</AddToCartText>
+      <QuantityWrapper>
+        <QuantityBackground>
+          <QuantityText>{numberOfItems}</QuantityText>
+        </QuantityBackground>
+      </QuantityWrapper>
+      <AddToCartText>View cart</AddToCartText>
       <AddToCartPrice>{price}</AddToCartPrice>
     </AddToCartWrapper>
   );

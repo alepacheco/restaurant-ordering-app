@@ -6,6 +6,8 @@ import { AddToCart } from './AddToCart';
 import { NavigationInjectedProps } from 'react-navigation';
 import { MenuItem } from 'types/restaurant';
 import { useStoreState, useStoreActions } from 'store';
+import * as haptics from 'utils/haptics';
+
 const StyledView = styled.View`
   ${props => `background-color: ${props.theme.color};`}
 `;
@@ -67,7 +69,8 @@ export const ProductDetails: React.FC<{
           </ScrollView>
           <AddToCart
             price={(Number(itemDetails.price) * quantity).toFixed(2)}
-            onPress={() => {
+            onPress={async () => {
+              await haptics.selectionTouch();
               addToCart({
                 restaurantId,
                 selection: {
