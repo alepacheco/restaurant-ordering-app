@@ -103,17 +103,11 @@ export const Layout: React.FC<{
         backgroundColor="rgba(0, 0, 0, 0.251)"
       />
       <Animated.ScrollView
-        contentInset={{
-          top: HEADER_MAX_HEIGHT,
-        }}
-        contentOffset={{
-          y: -HEADER_MAX_HEIGHT,
-        }}
+        contentInset={{ top: HEADER_MAX_HEIGHT }}
+        contentOffset={{ y: -HEADER_MAX_HEIGHT }}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: stateScrollY } } }],
-          {
-            useNativeDriver: true,
-          }
+          { useNativeDriver: true }
         )}
         refreshControl={
           <RefreshControl

@@ -49,7 +49,6 @@ export const ProductDetails: React.FC<{
   const cartSelection = useStoreState(state => state.cart.items[restaurantId]);
   const addToCart = useStoreActions(actions => actions.cart.add);
 
-  console.log(cartSelection);
   const [quantity, setQuantity] = useState(1);
 
   return (
@@ -68,16 +67,17 @@ export const ProductDetails: React.FC<{
           </ScrollView>
           <AddToCart
             price={(Number(itemDetails.price) * quantity).toFixed(2)}
-            onPress={() =>
+            onPress={() => {
               addToCart({
                 restaurantId,
-                items: {
+                selection: {
                   amount: quantity,
                   itemId,
                   options: [],
                 },
-              })
-            }
+              });
+              navigation.goBack();
+            }}
           />
         </Wrapper>
       </SafeAreaView>

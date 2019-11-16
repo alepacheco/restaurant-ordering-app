@@ -11,6 +11,7 @@ module.exports = function(api) {
             components: './components',
             store: './utils/store.ts',
             screens: './screens',
+            assets: './assets',
             types: './types',
             utils: './utils',
             constants: './constants',

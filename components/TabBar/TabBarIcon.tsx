@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components/native';
-import HomeLight from '../../assets/icons/light/home.svg';
-import HomeBold from '../../assets/icons/bold/home.svg';
-import MapLight from '../../assets/icons/light/map.svg';
-import MapBold from '../../assets/icons/bold/map.svg';
-import ProfileLight from '../../assets/icons/light/profile.svg';
-import ProfileBold from '../../assets/icons/bold/profile.svg';
+import HomeLight from 'assets/icons/light/home.svg';
+import HomeBold from 'assets/icons/bold/home.svg';
+import MapLight from 'assets/icons/light/map.svg';
+import MapBold from 'assets/icons/bold/map.svg';
+import ProfileLight from 'assets/icons/light/profile.svg';
+import ProfileBold from 'assets/icons/bold/profile.svg';
 import LottieView from 'lottie-react-native';
+import splashAnimation from 'assets/animations/splash.json';
 
 const iconMap = {
   light: {
@@ -52,7 +53,7 @@ const Splash: React.FC<{ selected: boolean; icon: string }> = ({
         loop={false}
         progress={1}
         ref={animation => setAnimation(animation)}
-        source={require('../../assets/animations/splash.json')}
+        source={splashAnimation}
         speed={3}
       />
     </SplashWrapper>

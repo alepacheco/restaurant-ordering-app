@@ -9,6 +9,7 @@ import { RestaurantDetails } from '../../screens/RestaurantDetails';
 import { LogIn } from '../../screens/Splash/LogIn';
 import { SignUp } from '../../screens/Splash/SignUp';
 import { Splash } from '../../screens/Splash';
+import { Cart } from '../../screens/Cart';
 import { ProductDetails } from '../../screens/ProductDetails';
 import { TabBarIcon } from '../TabBar/TabBarIcon';
 import { TabBar } from '../TabBar';
@@ -88,14 +89,22 @@ export const Navigator = createStackNavigator(
       },
     },
     Settings,
+
+    RestaurantDetails: {
+      screen: RestaurantDetails,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
     ProductDetails: {
       screen: ProductDetails,
       navigationOptions: {
         headerShown: false,
       },
     },
-    RestaurantDetails: {
-      screen: RestaurantDetails,
+
+    Cart: {
+      screen: Cart,
       navigationOptions: {
         headerShown: false,
       },

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Text, Animated } from 'react-native';
+import { ScrollView, Text, Animated, View } from 'react-native';
 import styled from 'styled-components/native';
 import { Menu } from './Menu';
 import { getRestaurantDetails } from 'utils/network';
@@ -7,9 +7,15 @@ import { Loading } from 'components/Loading';
 import { useStoreState, useStoreActions } from 'store';
 import { Header } from './Header';
 import { Layout } from './Layout';
+import { CartBotton } from './CartBotton';
 
 const StyledView = styled.View`
   ${props => `background-color: ${props.theme.color};`}
+  height: 100%;
+`;
+
+const FlexView = styled.View`
+  display: flex;
   height: 100%;
 `;
 
@@ -17,6 +23,7 @@ export const RestaurantDetails: React.FC<{
   navigation: any;
 }> = ({ navigation }) => {
   const { restaurantId }: { restaurantId: string } = navigation.state.params;
+
   const restaurantDetails = useStoreState(
     state => state.restaurantDetails.list[restaurantId]
   );
@@ -41,15 +48,19 @@ export const RestaurantDetails: React.FC<{
   }
 
   return (
-    <Layout
-      backgroundImageSource={{ uri: restaurantDetails.bannerImgUrl }}
-      headerComponent={<Header name={restaurantDetails.name} />}>
-      <StyledView>
-        <Menu
-          menu={restaurantDetails.menu}
-          restaurantId={restaurantDetails._id}
-        />
-      </StyledView>
-    </Layout>
+    <FlexView>
+      <Layout
+        backgroundImageSource={{ uri: restaurantDetails.bannerImgUrl }}
+        headerComponent={<Header name={restaurantDetails.name} />}>
+        <StyledView>
+          <Menu
+            menu={restaurantDetails.menu}
+            restaurantId={restaurantDetails._id}
+          />
+        </StyledView>
+      </Layout>
+
+      <CartBotton restaurantId={restaurantDetails._id} />
+    </FlexView>
   );
 };
