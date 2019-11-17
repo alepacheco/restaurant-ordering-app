@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Text, Animated, View } from 'react-native';
 import styled from 'styled-components/native';
 import { Menu } from './Menu';
 import { getRestaurantDetails } from 'utils/network';

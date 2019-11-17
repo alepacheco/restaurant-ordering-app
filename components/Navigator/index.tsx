@@ -10,6 +10,7 @@ import { LogIn } from '../../screens/Splash/LogIn';
 import { SignUp } from '../../screens/Splash/SignUp';
 import { Splash } from '../../screens/Splash';
 import { Cart } from '../../screens/Cart';
+import { Orders } from '../../screens/Orders';
 import { ProductDetails } from '../../screens/ProductDetails';
 import { TabBarIcon } from '../TabBar/TabBarIcon';
 import { TabBar } from '../TabBar';
@@ -102,9 +103,14 @@ export const Navigator = createStackNavigator(
         headerShown: false,
       },
     },
-
     Cart: {
       screen: Cart,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
+    Orders: {
+      screen: Orders,
       navigationOptions: {
         headerShown: false,
       },

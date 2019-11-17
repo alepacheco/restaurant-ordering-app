@@ -23,6 +23,11 @@ export const getRestaurantDetails = async ({
   return data as Restaurant;
 };
 
+export const setSessionInAxios = async () => {
+  const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
+  axios.defaults.headers.common['Authorization'] = sessionId;
+};
+
 export const getNearbyRestaurants = async () => {
   const params = await getLocation();
 
@@ -59,6 +64,7 @@ export const signUp = async ({
     email: username,
   });
   await SecureStore.setItemAsync(SESSION_ID_KEY, data.sessionId);
+  setSessionInAxios();
 };
 
 export const loginNow = async ({
@@ -78,6 +84,8 @@ export const loginNow = async ({
   await SecureStore.setItemAsync(SESSION_ID_KEY, sessionId);
   await SecureStore.setItemAsync(USER_EMAIL, username);
   await SecureStore.setItemAsync(USER_PASSWORD, password);
+
+  setSessionInAxios();
 };
 
 export const getProfile = async () => {

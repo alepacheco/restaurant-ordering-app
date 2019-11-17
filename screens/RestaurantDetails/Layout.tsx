@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Animated,
   Platform,
   StatusBar,
   StyleSheet,
-  Text,
   View,
   RefreshControl,
 } from 'react-native';
 
-const HEADER_MAX_HEIGHT = 270;
+const HEADER_MAX_HEIGHT = 220;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 80 : 93;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
@@ -52,7 +51,7 @@ export const Layout: React.FC<{
   backgroundImageSource: any;
   headerComponent: any;
 }> = ({ children, backgroundImageSource, headerComponent }) => {
-  const [stateScrollY, setScrollY] = useState(
+  const [stateScrollY] = useState(
     new Animated.Value(
       // iOS has negative initial scroll value because content inset...
       Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0

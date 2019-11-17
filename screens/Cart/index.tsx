@@ -1,23 +1,16 @@
-import React, { useContext } from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  SafeAreaView,
-  ScrollView,
-  View,
-} from 'react-native';
-import styled, { ThemeContext } from 'styled-components/native';
-import ArrowLeft from 'assets/icons/arrow-left-solid.svg';
-import { useStoreState, useStoreActions } from 'store';
+import React from 'react';
+import { View } from 'react-native';
+import styled from 'styled-components/native';
+import { useStoreState } from 'store';
 import { Selection } from './Selection';
 import { Restaurant, MenuItem } from 'types/restaurant';
+import { Header } from './Header';
 
-const StyledView = styled.SafeAreaView`
+const StyledView = styled.View`
   display: flex;
   flex: 1;
   flex-direction: column;
-
-  ${props => `background-color: ${props.theme.color};`}
+  background-color: #eeeeee;
 `;
 
 const Footer = styled.SafeAreaView`
@@ -28,24 +21,9 @@ const Footer = styled.SafeAreaView`
 
 const ItemsScrollView = styled.ScrollView``;
 
-const StyledBackButton = styled(ArrowLeft)`
-  width: 32px;
-  height: 32px;
-`;
-
 const StyledText = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
 `;
-
-const GoBack: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const themeContext = useContext(ThemeContext);
-
-  return (
-    <TouchableOpacity onPress={() => navigation.goBack()}>
-      <StyledBackButton fill={themeContext.textColor} />
-    </TouchableOpacity>
-  );
-};
 
 const mapOfItemsFromRestaurant = (
   restaurant: Restaurant
@@ -80,13 +58,11 @@ export const Cart: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   return (
     <StyledView>
-      <GoBack navigation={navigation} />
-      <StyledText>Cart</StyledText>
+      <Header />
       <ItemsScrollView>
         <View>{selectionEntries}</View>
         <StyledText>Total: XXX</StyledText>
       </ItemsScrollView>
-
       <Footer>
         <StyledText>This is the checkout button</StyledText>
       </Footer>

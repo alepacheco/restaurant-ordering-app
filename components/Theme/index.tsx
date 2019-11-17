@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { ThemeProvider } from 'styled-components/native';
 import { theme } from './theme';

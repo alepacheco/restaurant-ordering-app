@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
-import { Animated } from 'react-native';
 import { NearbyRestaurant } from 'types/restaurant';
 import { withNavigation } from 'react-navigation';
 import { useStoreState, useStoreActions } from 'store';

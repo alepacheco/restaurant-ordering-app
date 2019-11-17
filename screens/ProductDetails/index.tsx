@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import { QuantityForm } from './QuantityForm';
 import { AddToCart } from './AddToCart';
-import { NavigationInjectedProps } from 'react-navigation';
 import { MenuItem } from 'types/restaurant';
 import { useStoreState, useStoreActions } from 'store';
 import * as haptics from 'utils/haptics';
@@ -34,13 +33,18 @@ const Wrapper = styled.View`
   flex-direction: column;
 `;
 
-export const ProductDetails: React.FC<{
-  navigation: any;
-}> = ({ navigation }) => {
+interface ProductDetailsParams {
+  itemId: string;
+  restaurantId: string;
+}
+
+export const ProductDetails: React.FC<{ navigation: any }> = ({
+  navigation,
+}) => {
   const {
     itemId,
     restaurantId,
-  }: { itemId: string; restaurantId: string } = navigation.state.params;
+  }: ProductDetailsParams = navigation.state.params;
 
   const itemDetails: MenuItem = useStoreState(state =>
     state.restaurantDetails.list[restaurantId].menu
@@ -48,7 +52,6 @@ export const ProductDetails: React.FC<{
       .find(menuItem => menuItem._id === itemId)
   );
 
-  const cartSelection = useStoreState(state => state.cart.items[restaurantId]);
   const addToCart = useStoreActions(actions => actions.cart.add);
 
   const [quantity, setQuantity] = useState(1);

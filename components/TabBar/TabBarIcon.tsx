@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components/native';
 import HomeLight from 'assets/icons/light/home.svg';
 import HomeBold from 'assets/icons/bold/home.svg';

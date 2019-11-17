@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from 'react-native';
 import styled from 'styled-components/native';
-import { TextInput } from '../../../components/Forms/TextInput';
-import { resetNavigation, goToHome } from '../utils';
+import { TextInput } from 'components/Forms/TextInput';
+import { resetNavigation, goToHome } from 'utils/navigation';
 import { loginNow } from 'utils/network';
 import { NavigationScreenProp } from 'react-navigation';
 

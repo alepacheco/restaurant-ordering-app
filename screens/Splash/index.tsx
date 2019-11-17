@@ -1,9 +1,9 @@
 import * as SecureStore from 'expo-secure-store';
 import React, { useState, useEffect } from 'react';
-import { SESSION_ID_KEY } from '../../constants/session';
+import { SESSION_ID_KEY } from 'constants/session';
 import styled from 'styled-components/native';
-import { goToHome } from './utils';
-import { Loading } from '../../components/Loading';
+import { goToHome } from 'utils/navigation';
+import { Loading } from 'components/Loading';
 import { NavigationScreenProp } from 'react-navigation';
 
 const ButtonText = styled.Text`

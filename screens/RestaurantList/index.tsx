@@ -1,14 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {
-  SafeAreaView,
-  TouchableOpacity,
-  FlatList,
-  StatusBar,
-  View,
-} from 'react-native';
+import { SafeAreaView, FlatList, StatusBar } from 'react-native';
 import { RestaurantEntry } from './RestaurantEntry';
 import styled, { ThemeContext } from 'styled-components/native';
-import { getNearbyRestaurants } from 'utils/network';
+import { getNearbyRestaurants, getProfile } from 'utils/network';
 import { Loading } from '../../components/Loading';
 import { NoRestaurants } from './NoRestaurants';
 import { useStoreActions, useStoreState } from 'store';
@@ -61,19 +55,26 @@ export const RestaurantList = ({}) => {
     actions => actions.nearbyRestaurants.setRestaurants
   );
 
+  const userData = useStoreState(state => state.user.user);
+  const setUser = useStoreActions(actions => actions.user.setUser);
+
   const [isLoading, setIsLoading] = useState(true);
   const themeContext = useContext(ThemeContext);
   const barStyle =
     themeContext.colorScheme === 'dark' ? 'light-content' : 'dark-content';
 
   useEffect(() => {
+    if (userData === null) {
+      getProfile().then(setUser);
+    }
+
     if (isLoading) {
       getNearbyRestaurants().then(restaurants => {
         setRestaurants(restaurants);
         setIsLoading(false);
       });
     }
-  }, [isLoading, setRestaurants]);
+  }, [isLoading, setRestaurants, setUser, userData]);
 
   if (nearbyRestaurants === null) {
     return <Loading />;
