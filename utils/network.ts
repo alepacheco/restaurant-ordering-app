@@ -122,6 +122,16 @@ export const createOrder = async (body: CreateOrderArguments) => {
   }
 };
 
+export const getUserOrders = async () => {
+  try {
+    const { data } = await axios.get('/user/orders');
+
+    return data;
+  } catch (error) {
+    throw new Error('Failure at getUserOrders');
+  }
+};
+
 export const uploadFile = async (uri: string) => {
   const base64Image = await FileSystem.readAsStringAsync(uri, {
     encoding: FileSystem.EncodingType.Base64,
