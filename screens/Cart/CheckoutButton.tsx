@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { createOrder } from 'utils/network';
 import { useStoreState } from 'store';
+import { withNavigation } from 'react-navigation';
+import { goToHome } from 'utils/navigation';
 
 const Wrapper = styled.TouchableOpacity`
   background-color: orange;
@@ -13,19 +15,20 @@ const Wrapper = styled.TouchableOpacity`
 
 const Title = styled.Text``;
 
-export const CheckoutButton: React.FC<{ restaurantId: string }> = ({
+const _CheckoutButton: React.FC<{ restaurantId: string; navigation: any }> = ({
   restaurantId,
+  navigation,
 }) => {
   const cartSelection = useStoreState(state => state.cart.items[restaurantId]);
-  const restaurantDetails = useStoreState(
-    state => state.restaurantDetails.list[restaurantId]
-  );
 
-  const onPress = () => {
-    createOrder({
+  const onPress = async () => {
+    await createOrder({
       selections: cartSelection,
       restaurantId,
     });
+
+    goToHome(navigation);
+    navigation.navigate('Orders');
   };
 
   return (
@@ -34,3 +37,5 @@ export const CheckoutButton: React.FC<{ restaurantId: string }> = ({
     </Wrapper>
   );
 };
+
+export const CheckoutButton = withNavigation(_CheckoutButton);
