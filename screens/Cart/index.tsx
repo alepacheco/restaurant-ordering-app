@@ -3,6 +3,8 @@ import { View } from 'react-native';
 import styled from 'styled-components/native';
 import { useStoreState } from 'store';
 import { Selection } from './Selection';
+import { createOrder } from 'utils/network';
+import { CheckoutButton } from './CheckoutButton';
 import { Restaurant, MenuItem } from 'types/restaurant';
 import { Header } from './Header';
 
@@ -64,7 +66,7 @@ export const Cart: React.FC<{ navigation: any }> = ({ navigation }) => {
         <StyledText>Total: XXX</StyledText>
       </ItemsScrollView>
       <Footer>
-        <StyledText>This is the checkout button</StyledText>
+        <CheckoutButton restaurantId={restaurantId} />
       </Footer>
     </StyledView>
   );

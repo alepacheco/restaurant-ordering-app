@@ -6,6 +6,7 @@ import { RestaurantMapMarker } from 'types/restaurant';
 import * as FileSystem from 'expo-file-system';
 import * as SecureStore from 'expo-secure-store';
 import { SESSION_ID_KEY, USER_EMAIL, USER_PASSWORD } from 'constants/session';
+import { Selection } from 'utils/models/cart';
 
 interface GetRestaurantsArgs {
   restaurantId: string;
@@ -98,8 +99,6 @@ export const loginNow = async ({
 
 export const getProfile = async () => {
   try {
-    const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
-
     const { data } = await axios.get(`/user`);
 
     return data;
@@ -108,14 +107,27 @@ export const getProfile = async () => {
   }
 };
 
+interface CreateOrderArguments {
+  selections: Array<Selection>;
+  payment_method_id?: string;
+  restaurantId: string;
+}
+export const createOrder = async (body: CreateOrderArguments) => {
+  try {
+    const { data } = await axios.post('/orders', body);
+
+    return data;
+  } catch (error) {
+    throw new Error('Failure at createOrder');
+  }
+};
+
 export const uploadFile = async (uri: string) => {
   const base64Image = await FileSystem.readAsStringAsync(uri, {
     encoding: FileSystem.EncodingType.Base64,
   });
-  const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
 
   return axios.post(`/user/image`, {
     file: base64Image,
-    sessionId,
   });
 };
