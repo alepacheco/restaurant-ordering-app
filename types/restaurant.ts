@@ -1,13 +1,19 @@
+export interface ItemOptions {
+  name: string;
+  type: 'single' | 'multi';
+  choices: Array<{
+    description: string;
+    price: string;
+  }>;
+}
+
 export interface MenuItem {
   _id: string;
   name: string;
   description: string;
   price: string;
   imageUrl: string;
-  options: Array<{
-    type: 'single' | 'multi';
-    choices: Array<string>;
-  }>;
+  options: Array<ItemOptions>;
 }
 
 export interface MenuSection {
