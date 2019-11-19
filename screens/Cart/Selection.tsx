@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { MenuItem } from 'types/restaurant';
+import { Selection as SelectionType } from 'utils/models/cart';
 
 const StyledView = styled.View`
   margin: 12px 24px;
@@ -36,10 +37,26 @@ const ProductImage = styled.Image`
   border-radius: 6px;
 `;
 
+const SelectedOption: React.FC<{ description: string; price: string }> = ({
+  description,
+  price,
+}) => {
+  return (
+    <StyledText>
+      - {description} {price}
+    </StyledText>
+  );
+};
+
 export const Selection: React.FC<{
   itemData: MenuItem;
-  selectionData: any;
+  selectionData: SelectionType;
 }> = ({ selectionData, itemData }) => {
+  const choices = itemData.options.map(option => option.choices).flat();
+  const selectedChoices = Object.values(selectionData.options)
+    .flat()
+    .map(choiceId => choices.find(choice => choice._id === choiceId));
+
   return (
     <StyledView>
       <AmountText>{selectionData.amount} x</AmountText>
@@ -47,6 +64,13 @@ export const Selection: React.FC<{
       <Information>
         <StyledText>{itemData.name}</StyledText>
         <StyledText>{itemData.price}</StyledText>
+        {selectedChoices.map(choice => (
+          <SelectedOption
+            key={choice._id}
+            description={choice.description}
+            price={choice.price}
+          />
+        ))}
       </Information>
     </StyledView>
   );

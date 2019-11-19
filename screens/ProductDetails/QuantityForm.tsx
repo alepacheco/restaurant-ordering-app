@@ -45,7 +45,7 @@ export const QuantityForm: React.FC<{
 
   return (
     <QuantityWrapper>
-      <ButtonWrapper onPress={() => setQuantity(Math.max(quantity - 1, 0))}>
+      <ButtonWrapper onPress={() => setQuantity(Math.max(quantity - 1, 1))}>
         <ButtonText>-</ButtonText>
       </ButtonWrapper>
       <Quantity>{quantity}</Quantity>

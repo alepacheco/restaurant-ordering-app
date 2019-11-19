@@ -1,7 +1,9 @@
 export interface ItemOptions {
+  _id: string;
   name: string;
   type: 'single' | 'multi';
   choices: Array<{
+    _id: string;
     description: string;
     price: string;
   }>;

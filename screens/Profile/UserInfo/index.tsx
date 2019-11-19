@@ -53,9 +53,12 @@ export const UserInfo = ({}) => {
     }
   }, [setUser, userData]);
 
-  if (userData === null) {
-    return <StyledLoading />;
-  }
+  const defaultedData = userData || {
+    name: '..... .....',
+    email: '.....@.......',
+    bio: '...',
+    imageUrl: 'https://storage.googleapis.com/barapp-data-images/images.png',
+  };
 
   return (
     <View>
@@ -63,15 +66,13 @@ export const UserInfo = ({}) => {
         <CenterPicture onPress={() => pickImage(() => setUser(null))}>
           <ProfilePicture
             source={{
-              uri:
-                userData.imageUrl ||
-                'https://storage.googleapis.com/barapp-data-images/images.png',
+              uri: defaultedData.imageUrl,
             }}
           />
         </CenterPicture>
-        <Name>{userData.name}</Name>
-        <Email>{userData.email}</Email>
-        <Bio>{userData.bio}</Bio>
+        <Name>{defaultedData.name}</Name>
+        <Email>{defaultedData.email}</Email>
+        <Bio>{defaultedData.bio}</Bio>
       </ProfileWrapper>
       <UserStats />
     </View>

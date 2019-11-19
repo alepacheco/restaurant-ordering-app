@@ -1,9 +1,11 @@
 import { Action, action } from 'easy-peasy';
 
-interface Selection {
+export interface Selection {
   amount: number;
   itemId: string;
-  options: [];
+  options: {
+    [optionId: string]: Array<string>; // Array of the choices selected
+  };
 }
 
 export interface Cart {

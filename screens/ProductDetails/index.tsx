@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView, View } from 'react-native';
 import styled from 'styled-components/native';
 import { QuantityForm } from './QuantityForm';
 import { AddToCart } from './AddToCart';
 import { MenuItem } from 'types/restaurant';
 import { useStoreState, useStoreActions } from 'store';
 import * as haptics from 'utils/haptics';
+import { OptionSelector } from './OptionSelector';
 
 const StyledView = styled.View`
   ${props => `background-color: ${props.theme.color};`}
@@ -51,10 +52,53 @@ export const ProductDetails: React.FC<{ navigation: any }> = ({
       .reduce((acc, item) => acc.concat(item.items), [] as Array<MenuItem>)
       .find(menuItem => menuItem._id === itemId)
   );
-
   const addToCart = useStoreActions(actions => actions.cart.add);
 
   const [quantity, setQuantity] = useState(1);
+  const [selectedOptions, setSelectedOptions] = useState(
+    {} as { [optionId: string]: Array<string> }
+  );
+
+  const updateSelectionForOption = (optionId: string) => (
+    choices: Array<string>
+  ) => {
+    setSelectedOptions({
+      ...selectedOptions,
+      [optionId]: choices,
+    });
+  };
+
+  const getTotal = () => {
+    const optionsExtraPrice = Object.keys(selectedOptions)
+      .map(optionId => {
+        return itemDetails.options
+          .find(option => option._id === optionId)
+          .choices.filter(choice =>
+            selectedOptions[optionId].includes(choice._id)
+          )
+          .map(choice => choice.price);
+      })
+      .flat()
+      .map(price => Number(price))
+      .reduce((sum, price) => sum + price, 0);
+
+    return (quantity * (optionsExtraPrice + Number(itemDetails.price))).toFixed(
+      2
+    );
+  };
+
+  const itemOptions = itemDetails.options.map(option => {
+    return (
+      <OptionSelector
+        key={option._id}
+        type={option.type}
+        name={option.name}
+        choices={option.choices}
+        state={selectedOptions[option._id]}
+        updateState={updateSelectionForOption(option._id)}
+      />
+    );
+  });
 
   return (
     <StyledView>
@@ -68,10 +112,12 @@ export const ProductDetails: React.FC<{ navigation: any }> = ({
             <Name>{itemDetails.name}</Name>
             <Description>{itemDetails.description}</Description>
 
+            <View>{itemOptions}</View>
+
             <QuantityForm onChange={setQuantity} initialValue={quantity} />
           </ScrollView>
           <AddToCart
-            price={(Number(itemDetails.price) * quantity).toFixed(2)}
+            price={getTotal()}
             onPress={async () => {
               await haptics.selectionTouch();
               addToCart({
@@ -79,7 +125,7 @@ export const ProductDetails: React.FC<{ navigation: any }> = ({
                 selection: {
                   amount: quantity,
                   itemId,
-                  options: [],
+                  options: selectedOptions,
                 },
               });
               navigation.goBack();

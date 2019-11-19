@@ -14,28 +14,36 @@ interface GetRestaurantsArgs {
 export const getRestaurantDetails = async ({
   restaurantId,
 }: GetRestaurantsArgs) => {
-  const { data } = await axios.get(`/restaurant`, {
-    params: {
-      id: restaurantId,
-    },
-  });
+  try {
+    const { data } = await axios.get(`/restaurant`, {
+      params: {
+        id: restaurantId,
+      },
+    });
 
-  return data as Restaurant;
+    return data as Restaurant;
+  } catch (error) {
+    throw new Error('Failure at getRestaurantDetails');
+  }
 };
 
 export const setSessionInAxios = async () => {
   const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
-  axios.defaults.headers.common['Authorization'] = sessionId;
+  axios.defaults.headers.common['authorization'] = sessionId;
 };
 
 export const getNearbyRestaurants = async () => {
-  const params = await getLocation();
+  try {
+    const params = await getLocation();
 
-  const { data } = await axios.get(`/restaurants`, {
-    params,
-  });
+    const { data } = await axios.get(`/restaurants`, {
+      params,
+    });
 
-  return data as Array<NearbyRestaurant>;
+    return data as Array<NearbyRestaurant>;
+  } catch (error) {
+    throw new Error('Failure at getNearbyRestaurants');
+  }
 };
 
 export const getRestaurantMarkers = async (): Promise<Array<
@@ -89,15 +97,15 @@ export const loginNow = async ({
 };
 
 export const getProfile = async () => {
-  const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
+  try {
+    const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
 
-  const { data } = await axios.get(`/user`, {
-    params: {
-      sessionId,
-    },
-  });
+    const { data } = await axios.get(`/user`);
 
-  return data;
+    return data;
+  } catch (error) {
+    throw new Error('Failure at getProfile');
+  }
 };
 
 export const uploadFile = async (uri: string) => {
