@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { Section } from './Section';
 import { MenuSection } from 'types/restaurant';
 
@@ -9,17 +9,16 @@ interface MenuOptions {
 }
 
 export const Menu = ({ menu, restaurantId }: MenuOptions) => {
-  const MenuList = menu.map((section, index) => {
-    return (
-      <View key={index}>
-        <Section
-          title={section.title}
-          items={section.items}
-          restaurantId={restaurantId}
-        />
-      </View>
-    );
-  });
-
-  return <View>{MenuList}</View>;
+  return (
+    <View>
+      <FlatList
+        initialNumToRender={2}
+        data={menu}
+        keyExtractor={(selection: any) => selection._id}
+        renderItem={({ item }: { item: MenuSection }) => (
+          <Section restaurantId={restaurantId} {...item} />
+        )}
+      />
+    </View>
+  );
 };
