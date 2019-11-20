@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 const StyledView = styled.SafeAreaView`
-  margin-top: 24px;
+  margin: 24px;
   display: flex;
   flex-direction: row;
 `;

@@ -22,12 +22,6 @@ const SeparatorWrapper = styled.View`
   margin: 0 12px;
 `;
 
-const SectionSeparator = styled.View`
-  height: 3px;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-`;
-
 export const Section = ({
   title,
   items,
@@ -40,8 +34,6 @@ export const Section = ({
   return (
     <View>
       <Title>{title}</Title>
-      <SectionSeparator />
-
       <View>
         {items.map((item, index) => (
           <View key={index}>

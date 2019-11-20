@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { View } from 'react-native';
+import * as haptics from 'utils/haptics';
 
 const OptionSelectorWrapper = styled.View`
   margin: 24px;
   padding: 8px;
   background-color: #eeeeee;
+  border-radius: 8px;
 `;
 
 const Touch = styled.TouchableWithoutFeedback``;
@@ -17,15 +19,29 @@ const OptionWrapper = styled.View`
 `;
 
 const Title = styled.Text`
-  font-size: 20px;
+  font-size: 18px;
+  margin: 8px 0 8px 16px;
+`;
+
+const TitleSeparator = styled.View`
+  background-color: #bbbbbb;
+  height: 1px;
+  margin: 0 8px;
+  border-radius: 1px;
 `;
 
 const Description = styled.Text`
-  font-size: 12px;
+  font-size: 14px;
+
+  margin: auto 0;
 `;
 
 const Price = styled.Text`
-  font-size: 8px;
+  flex: 1;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: right;
+  margin: auto 12px;
 `;
 
 const Checkbox = styled.View<{ type: 'single' | 'multi' }>`
@@ -57,7 +73,7 @@ const Option: React.FC<{
       <OptionWrapper>
         {checked ? <Checkbox type={type} /> : <CheckboxUnchecked type={type} />}
         <Description>{description}</Description>
-        <Price>{price}</Price>
+        <Price>+${price}</Price>
       </OptionWrapper>
     </Touch>
   );
@@ -75,6 +91,7 @@ export const OptionSelector: React.FC<{
   state: Array<string>;
 }> = ({ type, name, choices, state, updateState }) => {
   const onPress = (choiceId: string) => {
+    haptics.selectionTouch();
     if (type === 'multi') {
       if (state && state.includes(choiceId)) {
         updateState(state.filter(entry => entry !== choiceId));
@@ -93,6 +110,7 @@ export const OptionSelector: React.FC<{
   return (
     <OptionSelectorWrapper>
       <Title>{name}</Title>
+      <TitleSeparator />
       {choices.map(({ _id, description, price }) => (
         <Option
           key={_id}

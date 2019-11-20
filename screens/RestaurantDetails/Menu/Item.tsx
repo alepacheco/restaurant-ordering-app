@@ -19,14 +19,9 @@ const TextWrapper = styled.View`
 const Title = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
 
-  font-size: 24px;
+  font-size: 18px;
 `;
-const SubTitle = styled.Text`
-  ${props => `color: ${props.theme.textColor};`}
 
-  text-align: justify;
-  color: gray;
-`;
 const Price = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
 
@@ -78,7 +73,6 @@ const Item: React.FC<ItemOptions & { navigation: any }> = ({
         <ProductImage resizeMode="contain" source={{ uri: imageUrl }} />
         <TextWrapper>
           <Title>{name}</Title>
-          <SubTitle>{description}</SubTitle>
           <Price>${price}</Price>
         </TextWrapper>
       </Wrapper>
