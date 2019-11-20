@@ -7,6 +7,7 @@ import { Loading } from '../../components/Loading';
 import { NoRestaurants } from './NoRestaurants';
 import { useStoreActions, useStoreState } from 'store';
 import { NearbyRestaurant } from 'types/restaurant';
+import { getLocation } from 'utils/location';
 
 const StyledView = styled.View`
   ${props =>
@@ -57,6 +58,7 @@ export const RestaurantList = ({}) => {
 
   const userData = useStoreState(state => state.user.user);
   const setUser = useStoreActions(actions => actions.user.setUser);
+  const setLocation = useStoreActions(actions => actions.user.setLocation);
 
   const [isLoading, setIsLoading] = useState(true);
   const themeContext = useContext(ThemeContext);
@@ -64,17 +66,18 @@ export const RestaurantList = ({}) => {
     themeContext.colorScheme === 'dark' ? 'light-content' : 'dark-content';
 
   useEffect(() => {
-    if (userData === null) {
+    if (Object.keys(userData).length === 0) {
       getProfile().then(setUser);
+      getLocation().then(setLocation);
     }
 
-    if (isLoading) {
-      getNearbyRestaurants().then(restaurants => {
+    if (isLoading && userData.location) {
+      getNearbyRestaurants(userData.location).then(restaurants => {
         setRestaurants(restaurants);
         setIsLoading(false);
       });
     }
-  }, [isLoading, setRestaurants, setUser, userData]);
+  }, [isLoading, setLocation, setRestaurants, setUser, userData]);
 
   if (nearbyRestaurants === null) {
     return <Loading />;

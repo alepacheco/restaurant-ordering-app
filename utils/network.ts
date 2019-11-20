@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { Restaurant } from 'types/restaurant';
 import { NearbyRestaurant } from 'types/restaurant';
-import { getLocation } from 'utils/location';
 import { RestaurantMapMarker } from 'types/restaurant';
 import * as FileSystem from 'expo-file-system';
 import * as SecureStore from 'expo-secure-store';
@@ -33,12 +32,10 @@ export const setSessionInAxios = async () => {
   axios.defaults.headers.common['authorization'] = sessionId;
 };
 
-export const getNearbyRestaurants = async () => {
+export const getNearbyRestaurants = async (location: any) => {
   try {
-    const params = await getLocation();
-
     const { data } = await axios.get(`/restaurants`, {
-      params,
+      params: location,
     });
 
     return data as Array<NearbyRestaurant>;
@@ -47,10 +44,9 @@ export const getNearbyRestaurants = async () => {
   }
 };
 
-export const getRestaurantMarkers = async (): Promise<Array<
-  RestaurantMapMarker
->> => {
-  const location = await getLocation();
+export const getRestaurantMarkers = async (
+  location: any
+): Promise<Array<RestaurantMapMarker>> => {
   const { data } = await axios.get(`/restaurants/markers`, {
     params: location,
   });

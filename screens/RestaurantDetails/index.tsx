@@ -42,7 +42,7 @@ export const RestaurantDetails: React.FC<{
     }
   }, [addRestaurant, restaurantDetails, restaurantId]);
 
-  if (isLoading) {
+  if (isLoading || restaurantDetails === undefined) {
     return <Loading />;
   }
 
