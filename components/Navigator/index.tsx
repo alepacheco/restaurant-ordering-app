@@ -59,18 +59,13 @@ const BottomTabNavigator = createBottomTabNavigator(
 
 const SplashNavigator = createStackNavigator(
   {
-    Splash: {
-      screen: Splash,
-      navigationOptions: {
-        headerShown: false,
-      },
-    },
     LogIn: {
       screen: LogIn,
       navigationOptions: {
         headerShown: false,
       },
     },
+
     SignUp: {
       screen: SignUp,
       navigationOptions: {
@@ -78,7 +73,7 @@ const SplashNavigator = createStackNavigator(
       },
     },
   },
-  { initialRouteName: 'Splash' }
+  { initialRouteName: 'LogIn' }
 );
 
 export const Navigator = createStackNavigator(

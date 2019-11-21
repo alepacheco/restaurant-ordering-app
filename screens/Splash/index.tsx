@@ -5,6 +5,8 @@ import styled from 'styled-components/native';
 import { goToHome } from 'utils/navigation';
 import { Loading } from 'components/Loading';
 import { NavigationScreenProp } from 'react-navigation';
+import { View, Text } from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
 
 const ButtonText = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
@@ -51,17 +53,4 @@ export const Splash: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
   if (isLoading) {
     return <Loading />;
   }
-
-  return (
-    <StyledView>
-      <LoginText>Welcome to bar app</LoginText>
-
-      <CustomButton onPress={() => navigation.navigate('LogIn')}>
-        <ButtonText>Log in</ButtonText>
-      </CustomButton>
-      <CustomButton onPress={() => navigation.navigate('SignUp')}>
-        <ButtonText>Sign up</ButtonText>
-      </CustomButton>
-    </StyledView>
-  );
 };
