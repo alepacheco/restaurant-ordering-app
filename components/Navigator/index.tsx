@@ -7,6 +7,7 @@ import { Profile } from '../../screens/Profile';
 import { Search } from '../../screens/Search';
 import { RestaurantDetails } from '../../screens/RestaurantDetails';
 import { LogIn } from '../../screens/Splash/LogIn';
+import { ForgotPass } from '../../screens/Splash/ForgotPassword';
 import { SignUp } from '../../screens/Splash/SignUp';
 import { Splash } from '../../screens/Splash';
 import { Cart } from '../../screens/Cart';
@@ -61,6 +62,13 @@ const SplashNavigator = createStackNavigator(
   {
     LogIn: {
       screen: LogIn,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
+
+    ForgotPass: {
+      screen: ForgotPass,
       navigationOptions: {
         headerShown: false,
       },

@@ -6,6 +6,7 @@ import { RestaurantMapMarker } from 'types/restaurant';
 import * as FileSystem from 'expo-file-system';
 import * as SecureStore from 'expo-secure-store';
 import { SESSION_ID_KEY, USER_EMAIL, USER_PASSWORD } from 'constants/session';
+import { string } from 'prop-types';
 
 interface GetRestaurantsArgs {
   restaurantId: string;
