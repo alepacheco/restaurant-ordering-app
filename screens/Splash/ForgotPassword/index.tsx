@@ -35,9 +35,9 @@ export const ForgotPass: React.FC<{}> = ({}) => {
   return (
     <StyledView>
       <Container>
-        <TroubleText>Trouble loggin in?</TroubleText>
+        <TroubleText>Trouble loggin in&#63;</TroubleText>
         <PasswordText>
-          Enter your username and we'll send you a link to get back into your
+          Enter your username and we&#39;ll send you a link to get back into your
           account.
         </PasswordText>
         <InputForm>

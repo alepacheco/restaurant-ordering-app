@@ -88,7 +88,7 @@ export const LogIn: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
           />
           <View>
             <TouchableOpacity onPress={() => navigation.navigate('ForgotPass')}>
-              <ForgotPass>Forgot password?</ForgotPass>
+              <ForgotPass>Forgot password&#63;</ForgotPass>
             </TouchableOpacity>
           </View>
         </InputForm>

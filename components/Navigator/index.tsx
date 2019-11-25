@@ -9,7 +9,6 @@ import { RestaurantDetails } from '../../screens/RestaurantDetails';
 import { LogIn } from '../../screens/Splash/LogIn';
 import { ForgotPass } from '../../screens/Splash/ForgotPassword';
 import { SignUp } from '../../screens/Splash/SignUp';
-import { Splash } from '../../screens/Splash';
 import { Cart } from '../../screens/Cart';
 import { Orders } from '../../screens/Orders';
 import { ProductDetails } from '../../screens/ProductDetails';
