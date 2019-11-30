@@ -8,19 +8,14 @@ import * as haptics from 'utils/haptics';
 
 const Container = styled.TouchableOpacity`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 8px;
-  background-color: rgb(40, 40, 40);
+  background-color: ${props => props.theme.contrast1};
 
-  ${props =>
-    props.theme.colorScheme === 'dark'
-      ? 'background-color: rgb(40, 40, 40);'
-      : 'background-color: rgba(2, 2, 2, 0.05);'}
-
+  overflow: hidden;
   border-radius: 8px;
-  padding: 12px;
 `;
 
 const TextBox = styled.View`
@@ -30,46 +25,49 @@ const TextBox = styled.View`
 `;
 
 const FirstRow = styled.View`
+  margin-top: 12px;
+  width: 100%;
   display: flex;
   flex-direction: row;
 `;
 
 const Distance = styled.Text`
-  ${props => (props.theme.colorScheme === 'dark' ? 'color: white;' : '')}
+  color: ${props => props.theme.textColor};
 
   flex: 1;
   text-align: right;
 `;
 
 const StyledRating = styled.Text`
-  ${props => (props.theme.colorScheme === 'dark' ? 'color: white;' : '')}
+  color: ${props => props.theme.textColor};
 
   flex: 1;
   text-align: right;
 `;
 
 const RestaurantImage = styled.Image`
-  height: 84px;
-  width: 84px;
-  border-radius: 6px;
+  height: 124px;
+  width: 100%;
 `;
 
 const Title = styled.Text`
-  ${props => (props.theme.colorScheme === 'dark' ? 'color: white;' : '')}
+  color: ${props => props.theme.textColor};
 
-  justify-content: center;
+  flex: 1;
+  text-align: left;
+  font-weight: bold;
   font-size: 24px;
 `;
 
 const SubTitle = styled.Text`
   justify-content: center;
   font-size: 12px;
-  color: gray;
+  color: ${props => props.theme.contrast6};
 `;
 
 const Review: React.FC<{ rating: number }> = ({ rating }) => {
   if (!rating) {
-    return <StyledRating>No ratings yet</StyledRating>;
+    return <StyledRating>⭐️⭐️⭐️</StyledRating>;
   }
   return <StyledRating>{rating} ★</StyledRating>;
 };
@@ -83,6 +81,7 @@ export const _RestaurantEntry: React.FC<NearbyRestaurant & {
   imageUrl,
   rating,
   _id,
+  bannerImgUrl,
   navigation: { navigate },
 }) => {
   const restaurantDetails = useStoreState(
@@ -107,7 +106,7 @@ export const _RestaurantEntry: React.FC<NearbyRestaurant & {
           navigate('RestaurantDetails', { restaurantId: _id });
         });
       }}>
-      <RestaurantImage source={{ uri: imageUrl }} />
+      <RestaurantImage source={{ uri: bannerImgUrl }} />
       <TextBox>
         <FirstRow>
           <Title>{name}</Title>

@@ -48,15 +48,14 @@ describe('<RestaurantList />', () => {
       })
     );
 
-    await renderer.act(async () => {
-      tree = renderer.create(
-        <Theme>
-          <StoreProvider store={store}>
-            <RestaurantList />
-          </StoreProvider>
-        </Theme>
-      );
-    });
+    tree = renderer.create(
+      <Theme>
+        <StoreProvider store={store}>
+          <RestaurantList />
+        </StoreProvider>
+      </Theme>
+    );
+
     expect(tree.toJSON()).toMatchSnapshot();
   });
 
@@ -70,13 +69,13 @@ describe('<RestaurantList />', () => {
           {
             _id: '1',
             name: `McDonalds`,
-            imageUrl: 'https://picsum.photos/84/84',
+            bannerImgUrl: 'https://picsum.photos/84/84',
             description: 'This is the restaurant description',
           },
           {
             _id: '2',
             name: `McDonalds 2`,
-            imageUrl: 'https://picsum.photos/84/84',
+            bannerImgUrl: 'https://picsum.photos/84/84',
             description: 'This is the restaurant description 2',
           },
         ],

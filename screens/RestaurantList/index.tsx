@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { SafeAreaView, FlatList, StatusBar } from 'react-native';
+import { FlatList, StatusBar } from 'react-native';
 import { RestaurantEntry } from './RestaurantEntry';
 import styled, { ThemeContext } from 'styled-components/native';
 import { getNearbyRestaurants, getProfile } from 'utils/network';
@@ -8,45 +8,21 @@ import { NoRestaurants } from './NoRestaurants';
 import { useStoreActions, useStoreState } from 'store';
 import { NearbyRestaurant } from 'types/restaurant';
 import { getLocation } from 'utils/location';
+import { Header } from './Header';
 
 const StyledView = styled.View`
-  ${props =>
-    props.theme.colorScheme === 'dark'
-      ? 'background-color: rgb(30,30,30);'
-      : ''}
-`;
-const HeaderTitle = styled.Text`
-  font-size: 24px;
-  margin: 12px;
-  ${props => `color: ${props.theme.textColor};`}
+  background-color: ${props => props.theme.contrast0};
 `;
 
 const StyledFlatList = styled(FlatList)`
   margin-bottom: 106px;
-  height: 100%;
   ${props => `background-color: ${props.theme.color};`}
-`;
-const HeaderWrapper = styled.View`
-  border-bottom-width: 0.5px;
-  border-bottom-color: gray;
-  ${props =>
-    props.theme.colorScheme === 'dark'
-      ? 'background-color: rgb(30,30,30);'
-      : ''}
 `;
 
 const Wrapper = styled.View`
   height: 100%;
   ${props => `background-color: ${props.theme.color};`}
 `;
-
-const ListHeader = ({}) => {
-  return (
-    <HeaderWrapper>
-      <HeaderTitle>Restaurants</HeaderTitle>
-    </HeaderWrapper>
-  );
-};
 
 export const RestaurantList = ({}) => {
   const nearbyRestaurants = useStoreState(
@@ -86,10 +62,8 @@ export const RestaurantList = ({}) => {
   if (nearbyRestaurants.length === 0) {
     return (
       <Wrapper>
-        <SafeAreaView>
-          <ListHeader />
-          <NoRestaurants />
-        </SafeAreaView>
+        <Header />
+        <NoRestaurants />
       </Wrapper>
     );
   }
@@ -98,20 +72,18 @@ export const RestaurantList = ({}) => {
     <StyledView>
       <StatusBar barStyle={barStyle} />
 
-      <SafeAreaView style={{ display: 'flex' }}>
-        <ListHeader />
-        <StyledFlatList
-          data={nearbyRestaurants}
-          keyExtractor={(item: any) => item._id}
-          onRefresh={() => {
-            setIsLoading(true);
-          }}
-          refreshing={isLoading}
-          renderItem={({ item }: { item: NearbyRestaurant }) => (
-            <RestaurantEntry {...item} />
-          )}
-        />
-      </SafeAreaView>
+      <Header />
+      <StyledFlatList
+        data={nearbyRestaurants}
+        keyExtractor={(item: any) => item._id}
+        onRefresh={() => {
+          setIsLoading(true);
+        }}
+        refreshing={isLoading}
+        renderItem={({ item }: { item: NearbyRestaurant | any }) => (
+          <RestaurantEntry {...item} />
+        )}
+      />
     </StyledView>
   );
 };

@@ -40,10 +40,11 @@ export interface Restaurant {
 }
 
 export interface NearbyRestaurant {
-  _id?: string;
-  name?: string;
-  description?: string;
-  imageUrl?: string;
+  _id: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  bannerImgUrl: string;
   rating?: number;
   distance?: string;
 }
