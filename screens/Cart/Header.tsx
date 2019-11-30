@@ -1,12 +1,6 @@
 import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components/native';
-import {
-  Text,
-  TouchableOpacity,
-  SafeAreaView,
-  ScrollView,
-  View,
-} from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
 
 import ArrowLeft from 'assets/icons/arrow-left-solid.svg';

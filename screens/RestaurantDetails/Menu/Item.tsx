@@ -2,7 +2,6 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { withNavigation, NavigationScreenProp } from 'react-navigation';
-import { MenuItem } from 'types/restaurant';
 import * as haptics from 'utils/haptics';
 
 const Wrapper = styled.View`

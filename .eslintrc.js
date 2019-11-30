@@ -23,6 +23,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     'react/prop-types': 'off',
     'react/jsx-first-prop-new-line': 'error',
+    '@typescript-eslint/camelcase': 'off',
   },
   settings: {
     react: {
