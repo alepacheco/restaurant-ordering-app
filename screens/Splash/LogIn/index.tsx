@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Text, View } from 'react-native';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
 import { TextInput } from 'components/Forms/TextInput';
 import { resetNavigation, goToHome } from 'utils/navigation';
@@ -13,7 +13,7 @@ const InputForm = styled.View`
 
 const Separator = styled.View`
   margin: 30px 0 30px;
-  display:flex;
+  display: flex;
   height: 5px;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
@@ -52,9 +52,8 @@ const Container = styled.View`
 `;
 const LogInButton = styled.TouchableOpacity`
   background-color: blue;
-  border-radius:6px;
-  padding:10px;
-  
+  border-radius: 6px;
+  padding: 10px;
 `;
 
 export const LogIn: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
@@ -65,62 +64,51 @@ export const LogIn: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
 
   return (
     <StyledView>
-      
       <Container>
-      <LoginText>FeaT</LoginText>
-      <InputForm>
-        <TextInput
-          placeholder="Username"
-          onChangeText={text => setUsername(text)}
-          value={username}
-          autoCapitalize="none"
-          autoCorrect={false}
-          autoFocus
-          blurOnSubmit
-        />
-        <TextInput
-          placeholder="Password"
-          onChangeText={text => setPassword(text)}
-          value={password}
-          autoCapitalize="none"
-          autoCorrect={false}
-          blurOnSubmit
-          secureTextEntry
-          returnKeyType="send"
-        />
-         <View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('ForgotPass')}>
-            <ForgotPass>Forgot password?</ForgotPass>
-        </TouchableOpacity>
-        </View>
-      </InputForm>
-      <LogInButton
-        onPress={() =>
-          loginNow({ username, password })
-            .then(() => goToHome(navigation))
-            .catch(() => resetNavigation(navigation))
-        }>
+        <LoginText>FeaT</LoginText>
+        <InputForm>
+          <TextInput
+            placeholder="Username"
+            onChangeText={text => setUsername(text)}
+            value={username}
+            autoCapitalize="none"
+            autoCorrect={false}
+            autoFocus
+            blurOnSubmit
+          />
+          <TextInput
+            placeholder="Password"
+            onChangeText={text => setPassword(text)}
+            value={password}
+            autoCapitalize="none"
+            autoCorrect={false}
+            blurOnSubmit
+            secureTextEntry
+            returnKeyType="send"
+          />
+          <View>
+            <TouchableOpacity onPress={() => navigation.navigate('ForgotPass')}>
+              <ForgotPass>Forgot password?</ForgotPass>
+            </TouchableOpacity>
+          </View>
+        </InputForm>
+        <LogInButton
+          onPress={() =>
+            loginNow({ username, password })
+              .then(() => goToHome(navigation))
+              .catch(() => resetNavigation(navigation))
+          }>
           <LogInText>Log In</LogInText>
-
         </LogInButton>
-    
-        <Separator/>
-    
-    <View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('SignUp')}>
-            <DontAccount>Don't have an account?</DontAccount>
-        </TouchableOpacity>
-    </View>
-    </Container>
+
+        <Separator />
+
+        <View>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+            <DontAccount>Don&apos;t have an account?</DontAccount>
+          </TouchableOpacity>
+        </View>
+      </Container>
     </StyledView>
-
-    
-
   );
-
-
-
-  
 };
