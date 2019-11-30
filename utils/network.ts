@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { Restaurant } from 'types/restaurant';
 import { NearbyRestaurant } from 'types/restaurant';
-import { getLocation } from 'utils/location';
 import { RestaurantMapMarker } from 'types/restaurant';
 import * as FileSystem from 'expo-file-system';
 import * as SecureStore from 'expo-secure-store';
 import { SESSION_ID_KEY, USER_EMAIL, USER_PASSWORD } from 'constants/session';
+import { Selection } from 'utils/models/cart';
 
 interface GetRestaurantsArgs {
   restaurantId: string;
@@ -32,12 +32,10 @@ export const setSessionInAxios = async () => {
   axios.defaults.headers.common['authorization'] = sessionId;
 };
 
-export const getNearbyRestaurants = async () => {
+export const getNearbyRestaurants = async (location: any) => {
   try {
-    const params = await getLocation();
-
     const { data } = await axios.get(`/restaurants`, {
-      params,
+      params: location,
     });
 
     return data as Array<NearbyRestaurant>;
@@ -46,10 +44,9 @@ export const getNearbyRestaurants = async () => {
   }
 };
 
-export const getRestaurantMarkers = async (): Promise<Array<
-  RestaurantMapMarker
->> => {
-  const location = await getLocation();
+export const getRestaurantMarkers = async (
+  location: any
+): Promise<Array<RestaurantMapMarker>> => {
   const { data } = await axios.get(`/restaurants/markers`, {
     params: location,
   });
@@ -98,8 +95,6 @@ export const loginNow = async ({
 
 export const getProfile = async () => {
   try {
-    const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
-
     const { data } = await axios.get(`/user`);
 
     return data;
@@ -108,14 +103,37 @@ export const getProfile = async () => {
   }
 };
 
+interface CreateOrderArguments {
+  selections: Array<Selection>;
+  payment_method_id?: string;
+  restaurantId: string;
+}
+export const createOrder = async (body: CreateOrderArguments) => {
+  try {
+    const { data } = await axios.post('/orders', body);
+
+    return data;
+  } catch (error) {
+    throw new Error('Failure at createOrder');
+  }
+};
+
+export const getUserOrders = async () => {
+  try {
+    const { data } = await axios.get('/user/orders');
+
+    return data;
+  } catch (error) {
+    throw new Error('Failure at getUserOrders');
+  }
+};
+
 export const uploadFile = async (uri: string) => {
   const base64Image = await FileSystem.readAsStringAsync(uri, {
     encoding: FileSystem.EncodingType.Base64,
   });
-  const sessionId = await SecureStore.getItemAsync(SESSION_ID_KEY);
 
   return axios.post(`/user/image`, {
     file: base64Image,
-    sessionId,
   });
 };

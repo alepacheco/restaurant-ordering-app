@@ -22,17 +22,17 @@ export const RestaurantDetails: React.FC<{
   navigation: any;
 }> = ({ navigation }) => {
   const { restaurantId }: { restaurantId: string } = navigation.state.params;
-
   const restaurantDetails = useStoreState(
     state => state.restaurantDetails.list[restaurantId]
   );
   const addRestaurant = useStoreActions(
     actions => actions.restaurantDetails.addRestaurant
   );
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (!restaurantDetails) {
+    if (restaurantDetails === undefined) {
+      setIsLoading(true);
       getRestaurantDetails({ restaurantId }).then(data => {
         addRestaurant(data);
         setIsLoading(false);
@@ -42,7 +42,7 @@ export const RestaurantDetails: React.FC<{
     }
   }, [addRestaurant, restaurantDetails, restaurantId]);
 
-  if (isLoading) {
+  if (isLoading || restaurantDetails === undefined) {
     return <Loading />;
   }
 

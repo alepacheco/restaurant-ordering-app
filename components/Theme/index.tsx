@@ -8,6 +8,19 @@ declare module 'styled-components' {
     colorScheme: 'dark' | 'light';
     color: string;
     textColor: string;
+
+    contrast0_5: string;
+    contrast0: string;
+    contrast1: string;
+    contrast2: string;
+    contrast3: string;
+    contrast4: string;
+    contrast5: string;
+    contrast6: string;
+    contrast7: string;
+    contrast8: string;
+    contrast9: string;
+    contrast10: string;
   }
 }
 

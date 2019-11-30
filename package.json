@@ -9,15 +9,16 @@
     "eject": "expo eject",
     "publish": "expo publish",
     "test": "jest && tsc && npm run lint",
-    "prettier-check": "prettier --check \"**/*.ts\" --check  \"**/*.js\"",
+    "prettier-check": "prettier --check \"**/*.ts\" --check  \"**/*.tsx\"",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules/",
     "fix": "npm run prettier && npm run lint -- --fix",
-    "prettier": "prettier --write \"**/*.ts\" \"**/*.js\""
+    "prettier": "prettier --write \"**/*.ts\" \"**/*.tsx\""
   },
   "dependencies": {
     "axios": "^0.19.0",
     "easy-peasy": "^3.2.3",
     "expo": "^35.0.0",
+    "expo-blur": "~7.0.0",
     "expo-file-system": "~7.0.0",
     "expo-haptics": "~7.0.0",
     "expo-image-picker": "~7.0.0",

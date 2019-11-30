@@ -12,6 +12,7 @@ height: 100%;
 
 const MenuWrapper = styled.TouchableOpacity`
   padding: 24px;
+  margin-left: 12px;
 `;
 
 const Separator = styled.View`
@@ -42,13 +43,13 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
     <StyledView>
       <StatusBar barStyle={barStyle} />
       <UserInfo />
-      <Menu text="Favourites" onPress={() => {}} />
+      <Menu text="⭐️ Favourites" onPress={() => {}} />
       <Separator />
-      <Menu text="Orders" onPress={() => navigation.navigate('Orders')} />
+      <Menu text="🛒 Orders" onPress={() => navigation.navigate('Orders')} />
       <Separator />
-      <Menu text="Settings" onPress={() => navigation.navigate('Settings')} />
+      <Menu text="⚙ Settings" onPress={() => navigation.navigate('Settings')} />
       <Separator />
-      <Menu text="Log out" onPress={() => logOut({ navigation })} />
+      <Menu text="🔒 Log out" onPress={() => logOut({ navigation })} />
     </StyledView>
   );
 };

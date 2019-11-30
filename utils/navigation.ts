@@ -22,6 +22,17 @@ export const resetNavigation = (navigation: NavigationScreenProp<{}>) => {
   navigation.dispatch(resetAction);
 };
 
+export const resetTo = (
+  navigation: NavigationScreenProp<{}>,
+  screen: string
+) => {
+  const resetAction = StackActions.reset({
+    index: 0,
+    actions: [NavigationActions.navigate({ routeName: screen })],
+  });
+  navigation.dispatch(resetAction);
+};
+
 export const logOut = async ({ navigation }: any) => {
   await SecureStore.deleteItemAsync(SESSION_ID_KEY);
 

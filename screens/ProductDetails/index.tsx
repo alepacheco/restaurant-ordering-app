@@ -13,18 +13,20 @@ const StyledView = styled.View`
 `;
 
 const ProductImage = styled.Image`
+  margin-top: 34px;
   height: 84px;
 `;
 
 const Name = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
-
+  margin: 4px 24px;
   font-size: 28px;
   text-align: center;
 `;
 
 const Description = styled.Text`
-  font-size: 18px;
+  margin: 24px;
+  font-size: 14px;
   color: gray;
 `;
 

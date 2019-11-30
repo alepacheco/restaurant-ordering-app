@@ -3,9 +3,6 @@ import styled from 'styled-components/native';
 import { BottomTabBar } from 'react-navigation-tabs';
 
 export const TabBar = styled(BottomTabBar)`
-  border-top-color: #605f60;
-  ${props =>
-    props.theme.colorScheme === 'dark'
-      ? 'background-color: rgb(30,30,30);'
-      : ''}
+  border-top-width: 0;
+  background-color: ${props => props.theme.contrast0_5};
 `;

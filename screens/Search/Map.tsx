@@ -7,6 +7,7 @@ import { getRestaurantMarkers } from 'utils/network';
 import { useStoreState, useStoreActions } from 'store';
 import { Marker } from './Marker';
 import { RestaurantMapMarker } from 'types/restaurant';
+import { getLocation } from 'utils/location';
 
 const StyledMap = styled(MapView)`
   position: absolute;
@@ -27,15 +28,31 @@ const Map: React.FC<{}> = () => {
     actions => actions.restaurantMapMarkers.setRestaurantMapMarkers
   );
 
+  const userLocation = useStoreState(state => state.user.user.location);
+  const setLocation = useStoreActions(actions => actions.user.setLocation);
+
   useEffect(() => {
-    getRestaurantMarkers().then(markers => setRestaurantMapMarkers(markers));
-  }, [setRestaurantMapMarkers]);
+    if (userLocation) {
+      getRestaurantMarkers(userLocation).then(markers =>
+        setRestaurantMapMarkers(markers)
+      );
+    } else {
+      getLocation().then(setLocation);
+    }
+  }, [setLocation, setRestaurantMapMarkers, userLocation]);
 
   return (
     <View>
       <StyledMap
         showsCompass
         showsScale
+        region={{
+          latitude: 0,
+          longitude: 0,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+          ...userLocation,
+        }}
         maxZoomLevel={17}
         rotateEnabled={false}
         showsUserLocation>
