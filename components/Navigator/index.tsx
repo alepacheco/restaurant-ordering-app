@@ -8,7 +8,6 @@ import { Search } from '../../screens/Search';
 import { RestaurantDetails } from '../../screens/RestaurantDetails';
 import { LogIn } from '../../screens/Splash/LogIn';
 import { SignUp } from '../../screens/Splash/SignUp';
-import { Splash } from '../../screens/Splash';
 import { Cart } from '../../screens/Cart';
 import { Orders } from '../../screens/Orders';
 import { ProductDetails } from '../../screens/ProductDetails';

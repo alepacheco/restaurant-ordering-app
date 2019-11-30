@@ -28,6 +28,8 @@ const Price = styled.Text`
 `;
 const ProductImage = styled.Image`
   width: 84px;
+  height: 84px;
+
   border-radius: 6px;
 `;
 
@@ -69,7 +71,14 @@ const Item: React.FC<ItemOptions & { navigation: any }> = ({
           .then(() => onItemClick({ navigation, restaurantId, itemId: _id }))
       }>
       <Wrapper>
-        <ProductImage resizeMode="contain" source={{ uri: imageUrl }} />
+        <ProductImage
+          resizeMode="contain"
+          source={{
+            uri:
+              imageUrl ||
+              'https://storage.googleapis.com/barapp-data-images/default-dish.jpg',
+          }}
+        />
         <TextWrapper>
           <Title>{name}</Title>
           <Price>${price}</Price>

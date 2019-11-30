@@ -7,8 +7,7 @@ const validate = (email: string) => {
 };
 
 export const TextInput = styled.TextInput`
-  background-color: gray;
-  border: 1px solid;
+  background-color: ${props => props.theme.contrast1}
   margin: 4px 12px;
 
   padding: 8px;

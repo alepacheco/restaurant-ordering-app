@@ -1,22 +1,17 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
+import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 import styled from 'styled-components/native';
 import { TextInput } from 'components/Forms/TextInput';
 import { resetNavigation, goToHome } from 'utils/navigation';
 import { loginNow } from 'utils/network';
 import { NavigationScreenProp } from 'react-navigation';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import * as SecureStore from 'expo-secure-store';
+import React, { useState, useEffect } from 'react';
+import { SESSION_ID_KEY } from 'constants/session';
+import { Loading } from 'components/Loading';
 
 const InputForm = styled.View`
   margin: 24px 8px;
-`;
-
-const Separator = styled.View`
-  margin: 30px 0 30px;
-  display: flex;
-  height: 5px;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const LoginText = styled.Text`
@@ -26,11 +21,6 @@ const LoginText = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
 `;
 
-const StyledView = styled.SafeAreaView`
-  height: 100%;
-  ${props => `background-color: ${props.theme.color};`}
-`;
-
 const DontAccount = styled.Text`
   text-align: center;
   ${props => `color: ${props.theme.textColor};`}
@@ -38,7 +28,7 @@ const DontAccount = styled.Text`
 
 const LogInText = styled.Text`
   text-align: center;
-  ${props => `color: ${props.theme.textColor};`}
+  ${props => `color: ${props.theme.color};`}
 `;
 
 const ForgotPass = styled.Text`
@@ -48,11 +38,19 @@ const ForgotPass = styled.Text`
 `;
 
 const Container = styled.View`
-  margin-top: 200px;
+  margin-top: 100px;
+  height: 100%;
+  ${props => `background-color: ${props.theme.color};`}
 `;
 const LogInButton = styled.TouchableOpacity`
+  margin: 4px 18px;
   background-color: blue;
   border-radius: 6px;
+  padding: 10px;
+`;
+
+const SignUpButton = styled.TouchableOpacity`
+  margin: 4px 18px;
   padding: 10px;
 `;
 
@@ -61,23 +59,37 @@ export const LogIn: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
 }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    SecureStore.getItemAsync(SESSION_ID_KEY).then(sessionId => {
+      setIsLoading(false);
+
+      if (sessionId) {
+        goToHome(navigation);
+      }
+    });
+  }, [navigation]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
-    <StyledView>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
         <LoginText>FeaT</LoginText>
         <InputForm>
           <TextInput
-            placeholder="Username"
+            placeholder="email"
             onChangeText={text => setUsername(text)}
             value={username}
             autoCapitalize="none"
             autoCorrect={false}
-            autoFocus
             blurOnSubmit
           />
           <TextInput
-            placeholder="Password"
+            placeholder="password"
             onChangeText={text => setPassword(text)}
             value={password}
             autoCapitalize="none"
@@ -86,29 +98,28 @@ export const LogIn: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
             secureTextEntry
             returnKeyType="send"
           />
-          <View>
-            <TouchableOpacity onPress={() => navigation.navigate('ForgotPass')}>
-              <ForgotPass>Forgot password?</ForgotPass>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity onPress={() => navigation.navigate('ForgotPass')}>
+            <ForgotPass>Forgot password?</ForgotPass>
+          </TouchableOpacity>
         </InputForm>
+
         <LogInButton
-          onPress={() =>
-            loginNow({ username, password })
-              .then(() => goToHome(navigation))
-              .catch(() => resetNavigation(navigation))
-          }>
+          onPress={async () => {
+            setIsLoading(true);
+            try {
+              await loginNow({ username, password });
+              goToHome(navigation);
+            } catch (error) {
+              resetNavigation(navigation);
+            }
+          }}>
           <LogInText>Log In</LogInText>
         </LogInButton>
 
-        <Separator />
-
-        <View>
-          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-            <DontAccount>Don&apos;t have an account?</DontAccount>
-          </TouchableOpacity>
-        </View>
+        <SignUpButton onPress={() => navigation.navigate('SignUp')}>
+          <DontAccount>Don&apos;t have an account?</DontAccount>
+        </SignUpButton>
       </Container>
-    </StyledView>
+    </TouchableWithoutFeedback>
   );
 };

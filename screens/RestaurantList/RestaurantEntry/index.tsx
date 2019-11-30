@@ -56,7 +56,7 @@ const Title = styled.Text`
   flex: 1;
   text-align: left;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 12px;
 `;
 
 const SubTitle = styled.Text`
