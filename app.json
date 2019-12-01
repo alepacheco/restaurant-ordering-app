@@ -24,7 +24,10 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "dev.alepacheco.expozeit",
-      "userInterfaceStyle": "automatic"
+      "userInterfaceStyle": "automatic",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "FaceID to confirm purchases"
+      }
     },
     "android": {
       "package": "dev.alepacheco.expozeit"
