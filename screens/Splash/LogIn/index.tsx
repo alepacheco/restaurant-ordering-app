@@ -1,14 +1,15 @@
 import { TouchableWithoutFeedback, Keyboard } from 'react-native';
-import styled from 'styled-components/native';
 import { TextInput } from 'components/Forms/TextInput';
 import { resetNavigation, goToHome } from 'utils/navigation';
 import { loginNow } from 'utils/network';
 import { NavigationScreenProp } from 'react-navigation';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as SecureStore from 'expo-secure-store';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { SESSION_ID_KEY } from 'constants/session';
 import { Loading } from 'components/Loading';
+import { StatusBar } from 'react-native';
+import styled, { ThemeContext } from 'styled-components/native';
 
 const InputForm = styled.View`
   margin: 24px 8px;
@@ -38,9 +39,9 @@ const ForgotPass = styled.Text`
 `;
 
 const Container = styled.View`
-  margin-top: 100px;
+  padding-top: 100px;
   height: 100%;
-  ${props => `background-color: ${props.theme.color};`}
+  background-color: ${props => props.theme.contrast0_5};
 `;
 const LogInButton = styled.TouchableOpacity`
   margin: 4px 18px;
@@ -60,6 +61,9 @@ export const LogIn: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const themeContext = useContext(ThemeContext);
+  const barStyle =
+    themeContext.colorScheme === 'dark' ? 'light-content' : 'dark-content';
 
   useEffect(() => {
     SecureStore.getItemAsync(SESSION_ID_KEY).then(sessionId => {
@@ -78,6 +82,8 @@ export const LogIn: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
+        <StatusBar barStyle={barStyle} />
+
         <LoginText>FeaT</LoginText>
         <InputForm>
           <TextInput

@@ -118,7 +118,17 @@ export const createOrder = async (body: CreateOrderArguments) => {
   }
 };
 
-export const getUserOrders = async () => {
+interface UserOrder {
+  restaurantName: string;
+  restaurantImageUrl: string;
+  items: Array<{
+    amount: number;
+    name: string;
+  }>;
+  total: string;
+}
+
+export const getUserOrders = async (): Promise<Array<UserOrder>> => {
   try {
     const { data } = await axios.get('/user/orders');
 

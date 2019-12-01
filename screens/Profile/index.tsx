@@ -13,13 +13,12 @@ const StyledView = styled.ScrollView`
 
 const MenuWrapper = styled.TouchableOpacity`
   padding: 24px;
-  margin-left: 12px;
-`;
-
-const Separator = styled.View`
-  height: 1px;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  margin: 8px;
+  background-color: ${props =>
+    props.theme.colorScheme === 'light'
+      ? props.theme.contrast0_5
+      : props.theme.contrast2};
+  border-radius: 6px;
 `;
 
 const StyledText = styled.Text`
@@ -47,11 +46,8 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
       <StatusBar barStyle={barStyle} />
       <UserInfo />
       <Menu text="⭐️ Favourites" onPress={() => {}} />
-      <Separator />
       <Menu text="🛒 Orders" onPress={() => navigation.navigate('Orders')} />
-      <Separator />
       <Menu text="⚙ Settings" onPress={() => navigation.navigate('Settings')} />
-      <Separator />
       <Menu text="🔒 Log out" onPress={() => logOut({ navigation })} />
     </StyledView>
   );

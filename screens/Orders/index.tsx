@@ -1,16 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { Text } from 'react-native';
+import { Text, FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import { getUserOrders } from 'utils/network';
+import { Order } from './Order';
 
-const Wrapper = styled.View``;
+type Unpacked<T> = T extends Promise<infer U> ? U : T;
 
-const Header = styled.View``;
+const Wrapper = styled.View`
+  height: 100%;
+  background-color: ${props => props.theme.contrast0_5};
+`;
 
-const OrderScroll = styled.ScrollView``;
+const Header = styled.View`
+  margin-top: 38px;
+`;
+
+const HeaderText = styled.Text`
+  color: ${props => props.theme.textColor};
+  margin: 8px;
+  font-weight: bold;
+`;
+
+const OrderScroll = styled(FlatList)`
+  background-color: ${props => props.theme.contrast0_5};
+`;
 
 export const Orders: React.FC<{}> = ({}) => {
-  const [userOrders, setUserOrders] = useState([]);
+  const [userOrders, setUserOrders] = useState(
+    [] as Unpacked<ReturnType<typeof getUserOrders>>
+  );
   useEffect(() => {
     getUserOrders().then(data => setUserOrders(data));
   }, []);
@@ -18,13 +36,13 @@ export const Orders: React.FC<{}> = ({}) => {
   return (
     <Wrapper>
       <Header>
-        <Text>Orders</Text>
+        <HeaderText>Orders</HeaderText>
       </Header>
-      <OrderScroll>
-        {userOrders.map((order, index) => (
-          <Text key={index}>{JSON.stringify(order)}</Text>
-        ))}
-      </OrderScroll>
+      <OrderScroll
+        data={userOrders}
+        keyExtractor={(item: any) => item._id}
+        renderItem={({ item }: any) => <Order {...item}></Order>}
+      />
     </Wrapper>
   );
 };
