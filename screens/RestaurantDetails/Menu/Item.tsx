@@ -11,7 +11,7 @@ const Wrapper = styled.View`
 `;
 
 const TextWrapper = styled.View`
-  margin: 12px;
+  margin: auto 12px;
   flex: 1;
 `;
 

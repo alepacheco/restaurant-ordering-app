@@ -16,8 +16,8 @@ const StyledView = styled.View`
 const ProductImage = styled.Image`
   background-color: white;
   margin: 34px auto;
-  height: 84px;
-  width: 84px;
+  height: 134px;
+  width: 134px;
   border-radius: 6px;
 `;
 

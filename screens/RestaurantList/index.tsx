@@ -11,7 +11,8 @@ import { getLocation } from 'utils/location';
 import { Header } from './Header';
 
 const StyledView = styled.View`
-  background-color: ${props => props.theme.contrast0_5};
+  background-color: ${props =>
+    props.theme.colorScheme === 'light' ? 'white' : props.theme.contrast0_5};
 `;
 
 const StyledFlatList = styled(FlatList)`

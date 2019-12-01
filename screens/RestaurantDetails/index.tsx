@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import { Menu } from './Menu';
 import { getRestaurantDetails } from 'utils/network';
@@ -7,6 +8,7 @@ import { useStoreState, useStoreActions } from 'store';
 import { Header } from './Header';
 import { Layout } from './Layout';
 import { CartBotton } from './CartBotton';
+import { RestaurantLocation } from './RestaurantLocation';
 
 const FlexView = styled.View`
   background-color: ${props =>
@@ -52,10 +54,13 @@ export const RestaurantDetails: React.FC<{
             'https://storage.googleapis.com/barapp-data-images/default-restaurant.jpg',
         }}
         headerComponent={<Header name={restaurantDetails.name} />}>
-        <Menu
-          menu={restaurantDetails.menu}
-          restaurantId={restaurantDetails._id}
-        />
+        <ScrollView>
+          <Menu
+            menu={restaurantDetails.menu}
+            restaurantId={restaurantDetails._id}
+          />
+          <RestaurantLocation />
+        </ScrollView>
       </Layout>
 
       <CartBotton restaurantId={restaurantDetails._id} />

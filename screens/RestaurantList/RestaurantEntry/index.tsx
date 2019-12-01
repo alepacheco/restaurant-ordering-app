@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
 import { NearbyRestaurant } from 'types/restaurant';
 import { withNavigation } from 'react-navigation';
@@ -12,7 +13,10 @@ const Container = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   margin: 8px;
-  background-color: ${props => props.theme.contrast2};
+  background-color: ${props =>
+    props.theme.colorScheme === 'light'
+      ? props.theme.contrast1
+      : props.theme.contrast2};
 
   overflow: hidden;
   border-radius: 8px;
@@ -22,6 +26,7 @@ const TextBox = styled.View`
   flex: 2;
   margin-left: 12px;
   display: flex;
+  min-height: 64px;
 `;
 
 const FirstRow = styled.View`
@@ -36,6 +41,7 @@ const Distance = styled.Text`
 
   flex: 1;
   text-align: right;
+  margin-right: 12px;
 `;
 
 const StyledRating = styled.Text`
@@ -56,20 +62,22 @@ const Title = styled.Text`
   flex: 1;
   text-align: left;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 const SubTitle = styled.Text`
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   color: ${props => props.theme.contrast6};
 `;
 
 const Review: React.FC<{ rating: number }> = ({ rating }) => {
   if (!rating) {
-    return <StyledRating>⭐️⭐️⭐️</StyledRating>;
+    return <View></View>;
   }
-  return <StyledRating>{rating} ★</StyledRating>;
+  return (
+    <StyledRating>{new Array(rating).fill(null).map(() => '⭐️')}</StyledRating>
+  );
 };
 
 export const _RestaurantEntry: React.FC<NearbyRestaurant & {

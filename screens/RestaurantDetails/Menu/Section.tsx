@@ -8,7 +8,8 @@ const Title = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
 
   margin: 12px;
-  font-size: 32px;
+  font-size: 24px;
+  font-weight: bold;
 `;
 
 const SectionWrapper = styled.View`
