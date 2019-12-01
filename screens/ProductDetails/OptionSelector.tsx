@@ -5,21 +5,21 @@ import * as haptics from 'utils/haptics';
 const OptionSelectorWrapper = styled.View`
   margin: 24px;
   padding: 8px;
-  background-color: #eeeeee;
+  background-color: ${props => props.theme.contrast2};
   border-radius: 8px;
 `;
 
 const Touch = styled.TouchableWithoutFeedback``;
 
 const OptionWrapper = styled.View`
-  background-color: #eeeeee;
   display: flex;
   flex-direction: row;
 `;
 
 const Title = styled.Text`
+  color: ${props => props.theme.textColor};
   font-size: 18px;
-  margin: 8px 0 8px 16px;
+  margin: 8px;
 `;
 
 const TitleSeparator = styled.View`
@@ -30,12 +30,13 @@ const TitleSeparator = styled.View`
 `;
 
 const Description = styled.Text`
+  color: ${props => props.theme.textColor};
   font-size: 14px;
-
   margin: auto 0;
 `;
 
 const Price = styled.Text`
+  color: ${props => props.theme.textColor};
   flex: 1;
   font-size: 14px;
   font-weight: bold;
@@ -109,7 +110,6 @@ export const OptionSelector: React.FC<{
   return (
     <OptionSelectorWrapper>
       <Title>{name}</Title>
-      <TitleSeparator />
       {choices.map(({ _id, description, price }) => (
         <Option
           key={_id}

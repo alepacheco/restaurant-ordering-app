@@ -27,6 +27,7 @@ const Price = styled.Text`
   font-weight: bold;
 `;
 const ProductImage = styled.Image`
+  background-color: white;
   width: 84px;
   height: 84px;
 

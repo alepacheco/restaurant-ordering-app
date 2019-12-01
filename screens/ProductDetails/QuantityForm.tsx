@@ -5,8 +5,7 @@ const ButtonWrapper = styled.TouchableOpacity`
   height: 64px;
   width: 64px;
   border-radius: 64px;
-  background-color: rgb(140, 140, 140);
-  border: 1px solid red;
+  background-color: ${props => props.theme.contrast3}
   margin: auto;
 `;
 
@@ -18,7 +17,7 @@ const ButtonText = styled.Text`
 
 const QuantityWrapper = styled.View`
   max-height: 134px;
-  background-color: rgb(200, 200, 200);
+  background-color: ${props => props.theme.contrast2}
 
   margin: 24px;
   padding: 26px;
@@ -31,6 +30,7 @@ const Quantity = styled.Text`
   flex: 1;
   margin: auto;
   text-align: center;
+  color: ${props => props.theme.textColor};
 `;
 
 export const QuantityForm: React.FC<{

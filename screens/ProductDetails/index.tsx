@@ -9,18 +9,23 @@ import * as haptics from 'utils/haptics';
 import { OptionSelector } from './OptionSelector';
 
 const StyledView = styled.View`
-  ${props => `background-color: ${props.theme.color};`}
+  background-color: ${props =>
+    props.theme.colorScheme === 'light' ? 'white' : props.theme.contrast1};
 `;
 
 const ProductImage = styled.Image`
-  margin-top: 34px;
+  background-color: white;
+  margin: 34px auto;
   height: 84px;
+  width: 84px;
+  border-radius: 6px;
 `;
 
 const Name = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
   margin: 4px 24px;
-  font-size: 28px;
+  font-size: 18px;
+  font-weight: bold;
   text-align: center;
 `;
 
@@ -109,7 +114,11 @@ export const ProductDetails: React.FC<{ navigation: any }> = ({
           <ScrollView>
             <ProductImage
               resizeMode="contain"
-              source={{ uri: itemDetails.imageUrl }}
+              source={{
+                uri:
+                  itemDetails.imageUrl ||
+                  'https://storage.googleapis.com/barapp-data-images/default-dish.jpg',
+              }}
             />
             <Name>{itemDetails.name}</Name>
             <Description>{itemDetails.description}</Description>

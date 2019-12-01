@@ -11,12 +11,11 @@ import { getLocation } from 'utils/location';
 import { Header } from './Header';
 
 const StyledView = styled.View`
-  background-color: ${props => props.theme.contrast0};
+  background-color: ${props => props.theme.contrast0_5};
 `;
 
 const StyledFlatList = styled(FlatList)`
   margin-bottom: 106px;
-  ${props => `background-color: ${props.theme.color};`}
 `;
 
 const Wrapper = styled.View`

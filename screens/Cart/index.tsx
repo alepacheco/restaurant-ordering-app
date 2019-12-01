@@ -12,13 +12,13 @@ const StyledView = styled.View`
   display: flex;
   flex: 1;
   flex-direction: column;
-  background-color: #eeeeee;
+  background-color: ${props =>
+    props.theme.colorScheme === 'light' ? 'white' : props.theme.contrast1};
 `;
 
 const Footer = styled.SafeAreaView`
   display: flex;
   flex-direction: column;
-  ${props => `background-color: ${props.theme.color};`}
 `;
 
 const ItemsScrollView = styled.ScrollView``;

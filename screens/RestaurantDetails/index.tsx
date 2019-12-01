@@ -8,12 +8,9 @@ import { Header } from './Header';
 import { Layout } from './Layout';
 import { CartBotton } from './CartBotton';
 
-const StyledView = styled.View`
-  ${props => `background-color: ${props.theme.color};`}
-  height: 100%;
-`;
-
 const FlexView = styled.View`
+  background-color: ${props =>
+    props.theme.colorScheme === 'light' ? 'white' : props.theme.contrast1}
   display: flex;
   height: 100%;
 `;
@@ -49,14 +46,16 @@ export const RestaurantDetails: React.FC<{
   return (
     <FlexView>
       <Layout
-        backgroundImageSource={{ uri: restaurantDetails.bannerImgUrl }}
+        backgroundImageSource={{
+          uri:
+            restaurantDetails.bannerImgUrl ||
+            'https://storage.googleapis.com/barapp-data-images/default-restaurant.jpg',
+        }}
         headerComponent={<Header name={restaurantDetails.name} />}>
-        <StyledView>
-          <Menu
-            menu={restaurantDetails.menu}
-            restaurantId={restaurantDetails._id}
-          />
-        </StyledView>
+        <Menu
+          menu={restaurantDetails.menu}
+          restaurantId={restaurantDetails._id}
+        />
       </Layout>
 
       <CartBotton restaurantId={restaurantDetails._id} />

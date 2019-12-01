@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 const HeaderWrapper = styled.View`
   margin-top: 34px;
-  background-color: ${props => props.theme.contrast0};
+  background-color: ${props => props.theme.contrast0_5};
 `;
 
 const HeaderTitle = styled.Text`

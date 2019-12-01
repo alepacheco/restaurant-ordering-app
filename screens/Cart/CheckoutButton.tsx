@@ -7,13 +7,14 @@ import { goToHome } from 'utils/navigation';
 
 const Wrapper = styled.TouchableOpacity`
   background-color: orange;
-  width: 100%;
   margin: 24px;
   border-radius: 4px;
   padding: 8px;
 `;
 
-const Title = styled.Text``;
+const Title = styled.Text`
+  margin: 0 auto;
+`;
 
 const _CheckoutButton: React.FC<{ restaurantId: string; navigation: any }> = ({
   restaurantId,

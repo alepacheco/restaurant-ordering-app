@@ -11,15 +11,8 @@ const Title = styled.Text`
   font-size: 32px;
 `;
 
-const Separator = styled.View`
-  height: 1px;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-`;
-
-const SeparatorWrapper = styled.View`
-  display: flex;
-  margin: 0 12px;
+const SectionWrapper = styled.View`
+  margin: 24px 0;
 `;
 
 export const Section = ({
@@ -32,29 +25,21 @@ export const Section = ({
   restaurantId: string;
 }) => {
   return (
-    <View>
+    <SectionWrapper>
       <Title>{title}</Title>
       <View>
         {items.map((item, index) => (
-          <View key={index}>
-            {index === 0 ? (
-              <></>
-            ) : (
-              <SeparatorWrapper>
-                <Separator />
-              </SeparatorWrapper>
-            )}
-            <Item
-              _id={item._id}
-              description={item.description}
-              imageUrl={item.imageUrl}
-              name={item.name}
-              price={item.price}
-              restaurantId={restaurantId}
-            />
-          </View>
+          <Item
+            key={index}
+            _id={item._id}
+            description={item.description}
+            imageUrl={item.imageUrl}
+            name={item.name}
+            price={item.price}
+            restaurantId={restaurantId}
+          />
         ))}
       </View>
-    </View>
+    </SectionWrapper>
   );
 };

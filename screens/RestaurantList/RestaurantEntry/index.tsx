@@ -12,7 +12,7 @@ const Container = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   margin: 8px;
-  background-color: ${props => props.theme.contrast1};
+  background-color: ${props => props.theme.contrast2};
 
   overflow: hidden;
   border-radius: 8px;
@@ -106,7 +106,13 @@ export const _RestaurantEntry: React.FC<NearbyRestaurant & {
           navigate('RestaurantDetails', { restaurantId: _id });
         });
       }}>
-      <RestaurantImage source={{ uri: bannerImgUrl }} />
+      <RestaurantImage
+        source={{
+          uri:
+            bannerImgUrl ||
+            'https://storage.googleapis.com/barapp-data-images/default-restaurant.jpg',
+        }}
+      />
       <TextBox>
         <FirstRow>
           <Title>{name}</Title>

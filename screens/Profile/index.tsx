@@ -5,9 +5,10 @@ import styled, { ThemeContext } from 'styled-components/native';
 import { UserInfo } from './UserInfo';
 
 const StyledView = styled.ScrollView`
-  ${props => `background-color: ${props.theme.color};`}
+  background-color: ${props =>
+    props.theme.colorScheme === 'light' ? 'white' : props.theme.contrast1};
   ${props => `color: ${props.theme.textColor};`}
-height: 100%;
+  height: 100%;
 `;
 
 const MenuWrapper = styled.TouchableOpacity`
@@ -21,7 +22,9 @@ const Separator = styled.View`
   background-color: rgba(0, 0, 0, 0.2);
 `;
 
-const StyledText = styled.Text``;
+const StyledText = styled.Text`
+  color: ${props => props.theme.textColor};
+`;
 
 const Menu: React.FC<{ text: string; onPress: () => void }> = ({
   text,

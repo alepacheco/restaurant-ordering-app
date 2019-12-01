@@ -11,6 +11,7 @@ const StyledBackButton = styled(ArrowLeft)`
 `;
 
 const Title = styled.Text`
+  color: ${props => props.theme.textColor};
   flex: 1;
   text-align: center;
   font-size: 24px;
