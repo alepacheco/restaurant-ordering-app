@@ -36,6 +36,12 @@ const FirstRow = styled.View`
   flex-direction: row;
 `;
 
+const SecondRow = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+
 const Distance = styled.Text`
   color: ${props => props.theme.textColor};
 
@@ -49,6 +55,8 @@ const StyledRating = styled.Text`
 
   flex: 1;
   text-align: right;
+
+  margin: 8px;
 `;
 
 const RestaurantImage = styled.Image`
@@ -76,7 +84,7 @@ const Review: React.FC<{ rating: number }> = ({ rating }) => {
     return <View></View>;
   }
   return (
-    <StyledRating>{new Array(rating).fill(null).map(() => '⭐️')}</StyledRating>
+    <StyledRating>{new Array(rating).fill(null).map(() => '★')}</StyledRating>
   );
 };
 
@@ -126,8 +134,10 @@ export const _RestaurantEntry: React.FC<NearbyRestaurant & {
           <Title>{name}</Title>
           <Distance>{distance}</Distance>
         </FirstRow>
+        <SecondRow>
         <SubTitle>{description}</SubTitle>
-        <Review rating={rating} />
+          <Review rating={rating} />
+          </SecondRow>
       </TextBox>
     </Container>
   );
