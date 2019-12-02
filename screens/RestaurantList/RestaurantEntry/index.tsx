@@ -135,9 +135,9 @@ export const _RestaurantEntry: React.FC<NearbyRestaurant & {
           <Distance>{distance}</Distance>
         </FirstRow>
         <SecondRow>
-        <SubTitle>{description}</SubTitle>
+          <SubTitle>{description}</SubTitle>
           <Review rating={rating} />
-          </SecondRow>
+        </SecondRow>
       </TextBox>
     </Container>
   );

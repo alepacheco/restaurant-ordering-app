@@ -54,7 +54,7 @@ interface ItemOptions {
   imageUrl: string;
   restaurantId: string;
 }
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Item: React.FC<ItemOptions & { navigation: any }> = ({
   _id,
   restaurantId,

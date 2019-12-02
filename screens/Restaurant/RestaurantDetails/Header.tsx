@@ -37,6 +37,7 @@ const StyledBackButton = styled(ArrowLeft)`
 
 export const _Header: React.FC<{
   name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   navigation: any;
 }> = ({ name, navigation }) => {
   return (
