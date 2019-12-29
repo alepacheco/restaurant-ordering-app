@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/native';
+import { useStoreActions, useStoreState } from 'store';
+import { getUserOrders } from 'utils/network';
 
 const StyledView = styled.SafeAreaView`
   margin: 24px;
@@ -25,19 +27,32 @@ const StatLabel = styled.Text`
   color: gray;
 `;
 
+const onlyUnique = (value: any, index: number, self: Array<any>) =>
+  self.indexOf(value) === index;
+
 export const UserStats = () => {
+  const setUserOrders = useStoreActions(actions => actions.user.setOrders);
+  const userOrders = useStoreState(state => state.user.user.orders);
+
+  useEffect(() => {
+    if (!userOrders) {
+      getUserOrders().then(data => setUserOrders(data));
+    }
+  }, [setUserOrders, userOrders]);
+
   return (
     <StyledView>
       <StatBox>
-        <StatNumber>12</StatNumber>
+        <StatNumber>{userOrders ? userOrders.length : 0}</StatNumber>
         <StatLabel>Orders</StatLabel>
       </StatBox>
       <StatBox>
-        <StatNumber>4.7 ★</StatNumber>
-        <StatLabel>Stars</StatLabel>
-      </StatBox>
-      <StatBox>
-        <StatNumber>7</StatNumber>
+        <StatNumber>
+          {userOrders
+            ? userOrders.map(orders => orders.restaurantName).filter(onlyUnique)
+                .length
+            : 0}
+        </StatNumber>
         <StatLabel>Venues</StatLabel>
       </StatBox>
     </StyledView>

@@ -5,6 +5,7 @@ import { getUserOrders } from 'utils/network';
 import { Order } from './Order';
 import { Loading } from 'components/Loading';
 import { Header } from 'components/Header';
+import { useStoreActions, useStoreState } from 'store';
 
 type Unpacked<T> = T extends Promise<infer U> ? U : T;
 
@@ -24,20 +25,20 @@ const OrderScroll = styled(FlatList)`
 `;
 
 export const Orders: React.FC<{}> = ({}) => {
-  const [userOrders, setUserOrders] = useState(
-    [] as Unpacked<ReturnType<typeof getUserOrders>>
-  );
-
+  const setUserOrders = useStoreActions(actions => actions.user.setOrders);
+  const userOrders = useStoreState(state => state.user.user.orders);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
-      const data = await getUserOrders();
-      setUserOrders(data);
+      if (!userOrders) {
+        const data = await getUserOrders();
+        setUserOrders(data);
+      }
 
       setLoading(false);
     })();
-  }, [loading]);
+  }, [loading, setUserOrders, userOrders]);
 
   if (loading) {
     return <Loading />;

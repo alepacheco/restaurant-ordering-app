@@ -6,6 +6,7 @@ import * as FileSystem from 'expo-file-system';
 import * as SecureStore from 'expo-secure-store';
 import { SESSION_ID_KEY, USER_EMAIL, USER_PASSWORD } from 'constants/session';
 import { Selection } from 'utils/models/cart';
+import { UserOrder } from 'types/userOrder';
 
 interface GetRestaurantsArgs {
   restaurantId: string;
@@ -153,16 +154,6 @@ export const createOrder = async (body: CreateOrderArguments) => {
     throw new Error('Failure at createOrder');
   }
 };
-
-interface UserOrder {
-  restaurantName: string;
-  restaurantImageUrl: string;
-  items: Array<{
-    amount: number;
-    name: string;
-  }>;
-  total: string;
-}
 
 export const getUserOrders = async (): Promise<Array<UserOrder>> => {
   try {

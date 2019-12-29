@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
-import { Button } from 'react-native';
+import { Text } from 'react-native';
 import { TextInput } from 'components/Forms/TextInput';
 import styled from 'styled-components/native';
 import { goToHome, resetNavigation } from 'utils/navigation';
 import { signUp } from 'utils/network';
-
+import { Header } from 'components/Header';
+import { WideButton } from 'components/Button/WideButton';
 const InputForm = styled.View`
-  margin: 24px 8px;
+  flex: 1;
+  margin: 12px 8px;
 `;
 
-const LoginText = styled.Text`
-  ${props => `color: ${props.theme.textColor};`}
+const WideButtonWrapper = styled.View`
+  margin: 42px 0;
+`;
 
-  margin-top: 38px;
-  font-size: 34px;
-  text-align: center;
+const LoginText = styled.View`
+  margin: 12px 12px 0;
 `;
 
 const StyledView = styled.SafeAreaView`
-  height: 100%;
+  display: flex;
+  flex: 1;
+
+  flex-direction: column;
   ${props => `background-color: ${props.theme.color};`}
 `;
 
@@ -34,7 +39,9 @@ export const SignUp: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   return (
     <StyledView>
-      <LoginText>Sign up</LoginText>
+      <LoginText>
+        <Header title="Sign up" />
+      </LoginText>
       <InputForm>
         <TextInput
           autoCapitalize="words"
@@ -64,7 +71,9 @@ export const SignUp: React.FC<{ navigation: any }> = ({ navigation }) => {
         />
       </InputForm>
 
-      <Button title="sign up" onPress={onClickSignUp} />
+      <WideButtonWrapper>
+        <WideButton type="primary" onClick={onClickSignUp} text="Sign up" />
+      </WideButtonWrapper>
     </StyledView>
   );
 };

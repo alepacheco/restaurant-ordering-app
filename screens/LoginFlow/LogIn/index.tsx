@@ -1,4 +1,4 @@
-import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Keyboard } from 'react-native';
 import { TextInput } from 'components/Forms/TextInput';
 import { resetNavigation, goToHome } from 'utils/navigation';
 import { loginNow } from 'utils/network';
@@ -10,11 +10,16 @@ import { SESSION_ID_KEY } from 'constants/session';
 import { Loading } from 'components/Loading';
 import { StatusBar } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
+import { WideButton } from 'components/Button/WideButton';
 
 const InputForm = styled.View`
   margin: 24px 8px;
+  flex: 1;
 `;
 
+const TouchableWithoutFeedback = styled.TouchableWithoutFeedback`
+  display: flex;
+`;
 const LoginText = styled.Text`
   margin-top: 38px;
   font-size: 34px;
@@ -39,8 +44,11 @@ const ForgotPass = styled.Text`
 `;
 
 const Container = styled.View`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding-top: 100px;
-  height: 100%;
+  padding-bottom: 32px;
   background-color: ${props => props.theme.contrast0_5};
 `;
 const LogInButton = styled.TouchableOpacity`
@@ -109,8 +117,10 @@ export const LogIn: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
           </TouchableOpacity>
         </InputForm>
 
-        <LogInButton
-          onPress={async () => {
+        <WideButton
+          type="primary"
+          text="Log In"
+          onClick={async () => {
             setIsLoading(true);
             try {
               await loginNow({ username, password });
@@ -119,8 +129,8 @@ export const LogIn: React.FC<{ navigation: NavigationScreenProp<{}> }> = ({
               resetNavigation(navigation);
             }
           }}>
-          <LogInText>Log In</LogInText>
-        </LogInButton>
+          <LogInText></LogInText>
+        </WideButton>
 
         <SignUpButton onPress={() => navigation.navigate('SignUp')}>
           <DontAccount>Don&apos;t have an account?</DontAccount>

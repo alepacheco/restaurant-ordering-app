@@ -8,7 +8,7 @@ declare module 'styled-components' {
     colorScheme: 'dark' | 'light' | 'no-preference';
     color: string;
     textColor: string;
-
+    acentColor: string;
     contrast0_5: string;
     contrast0: string;
     contrast1: string;

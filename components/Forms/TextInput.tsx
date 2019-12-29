@@ -14,5 +14,6 @@ export const TextInput = styled.TextInput`
   padding: 8px;
   flex: 1;
   max-height: 38px;
+  height: 38px;
   border-radius: 6px;
 `;

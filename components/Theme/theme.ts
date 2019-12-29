@@ -6,6 +6,7 @@ export const theme = ({ colorScheme }: ThemeArguments) => {
   return {
     color: colorScheme === 'dark' ? 'black' : 'white',
     textColor: colorScheme === 'dark' ? 'white' : 'black',
+    acentColor: colorScheme === 'dark' ? 'orange' : 'orange',
 
     contrast0: colorScheme === 'dark' ? 'hsl(0, 0%, 0%)' : 'hsl(0, 0%, 100%)',
     contrast0_5: colorScheme === 'dark' ? 'hsl(0, 0%, 5%)' : 'hsl(0, 0%, 95%)',

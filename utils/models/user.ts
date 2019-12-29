@@ -1,4 +1,5 @@
 import { Action, action } from 'easy-peasy';
+import { UserOrder } from 'types/userOrder';
 
 interface PaymentMethod {
   card: {
@@ -22,6 +23,7 @@ interface UserData {
     longitude: number;
   };
   paymentMethods?: Array<PaymentMethod>;
+  orders?: Array<UserOrder>;
 }
 
 export interface User {
@@ -35,6 +37,7 @@ export interface User {
     }
   >;
   setPaymentMethods: Action<User, Array<PaymentMethod>>;
+  setOrders: Action<User, Array<UserOrder>>;
 }
 
 export const user: User = {
@@ -47,5 +50,8 @@ export const user: User = {
   }),
   setPaymentMethods: action((state, paymentMethods) => {
     state.user.paymentMethods = paymentMethods;
+  }),
+  setOrders: action((state, orders) => {
+    state.user.orders = orders;
   }),
 };

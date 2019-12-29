@@ -7,7 +7,7 @@ import { useStoreActions } from 'store';
 import { getPaymentMethods } from 'utils/network';
 
 const Wrapper = styled.SafeAreaView`
-  background-color: ${props => props.theme.contrast1};
+  background-color: ${props => props.theme.contrast0};
   height: 100%;
 `;
 
