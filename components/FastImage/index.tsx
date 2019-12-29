@@ -51,5 +51,5 @@ export const FastImage: React.FC<{ url: string }> = ({ url, ...options }) => {
     })();
   }, [url]);
 
-  return <Image resizeMode="cover" source={{ uri }} {...options} />;
+  return <Image onError={() => setUri(defaultUrl)} resizeMode="cover" source={{ uri }} {...options} />;
 };
