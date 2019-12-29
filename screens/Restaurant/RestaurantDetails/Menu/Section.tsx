@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import styled from 'styled-components/native';
 import Item from './Item';
 import { MenuItem } from 'types/restaurant';
+import { SubHeader } from 'components/Header/SubHeader';
 
 const Title = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
@@ -27,7 +28,7 @@ export const Section = ({
 }) => {
   return (
     <SectionWrapper>
-      <Title>{title}</Title>
+      <SubHeader title={title} />
       <View>
         {items.map((item, index) => (
           <Item

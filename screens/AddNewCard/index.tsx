@@ -5,6 +5,7 @@ import { Header } from 'components/Header';
 import { savePaymentMethods } from 'utils/network';
 import { useStoreActions } from 'store';
 import { getPaymentMethods } from 'utils/network';
+import { WideButton } from 'components/Button/WideButton';
 
 const Wrapper = styled.SafeAreaView`
   background-color: ${props => props.theme.contrast0};
@@ -106,8 +107,11 @@ export const AddNewCard: React.FC<{ navigation: any }> = ({ navigation }) => {
           maxLength={4}
         />
       </Row>
-      <AddButton
-        onPress={() => {
+
+      <WideButton
+        text="Add card"
+        type="secondary"
+        onClick={() => {
           savePaymentMethods({
             number: cardNumber,
             expMonth,

@@ -14,12 +14,6 @@ const Wrapper = styled.View`
   background-color: ${props => props.theme.contrast0_5};
 `;
 
-const HeaderText = styled.Text`
-  color: ${props => props.theme.textColor};
-  margin: 8px;
-  font-weight: bold;
-`;
-
 const OrderScroll = styled(FlatList)`
   background-color: ${props => props.theme.contrast0_5};
 `;
@@ -27,7 +21,7 @@ const OrderScroll = styled(FlatList)`
 export const Orders: React.FC<{}> = ({}) => {
   const setUserOrders = useStoreActions(actions => actions.user.setOrders);
   const userOrders = useStoreState(state => state.user.user.orders);
-  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -36,19 +30,22 @@ export const Orders: React.FC<{}> = ({}) => {
         setUserOrders(data);
       }
 
-      setLoading(false);
+      setRefreshing(false);
     })();
-  }, [loading, setUserOrders, userOrders]);
-
-  if (loading) {
-    return <Loading />;
-  }
+  }, [refreshing, setUserOrders, userOrders]);
 
   return (
     <Wrapper>
       <Header title="Orders" />
       <OrderScroll
-        data={userOrders}
+        data={[].concat(userOrders).reverse()}
+        onRefresh={async () => {
+          setRefreshing(true);
+          const data = await getUserOrders();
+          setUserOrders(data);
+          setRefreshing(false);
+        }}
+        refreshing={refreshing}
         keyExtractor={(item: any) => item._id}
         renderItem={({ item }: any) => <Order {...item}></Order>}
       />

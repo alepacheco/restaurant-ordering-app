@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-
+import { Theme } from '../components/Theme';
 import { Settings } from '../screens/Settings';
 jest.useFakeTimers();
 describe('<Settings />', () => {
@@ -8,7 +8,11 @@ describe('<Settings />', () => {
     let tree: null | renderer.ReactTestRenderer = null;
 
     await renderer.act(async () => {
-      tree = renderer.create(<Settings />);
+      tree = renderer.create(
+        <Theme>
+          <Settings />
+        </Theme>
+      );
     });
     expect(tree.toJSON()).toMatchSnapshot();
   });

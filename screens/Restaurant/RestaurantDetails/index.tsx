@@ -5,8 +5,7 @@ import { Menu } from './Menu';
 import { getRestaurantDetails } from 'utils/network';
 import { Loading } from 'components/Loading';
 import { useStoreState, useStoreActions } from 'store';
-import { Header } from './Header';
-import { Layout } from './Layout';
+import { Header } from 'components/Header';
 import { CartBotton } from './CartBotton';
 import { RestaurantLocation } from './RestaurantLocation';
 
@@ -15,6 +14,11 @@ const FlexView = styled.View`
     props.theme.colorScheme === 'light' ? 'white' : props.theme.contrast1}
   display: flex;
   height: 100%;
+`;
+
+const RestaurantImage = styled.Image`
+  height: 120px;
+  border-radius: 12px;
 `;
 
 export const RestaurantDetails: React.FC<{
@@ -45,25 +49,25 @@ export const RestaurantDetails: React.FC<{
     return <Loading />;
   }
 
+  const { name, bannerImgUrl, menu, _id } = restaurantDetails;
+
   return (
     <FlexView>
-      <Layout
-        backgroundImageSource={{
-          uri:
-            restaurantDetails.bannerImgUrl ||
-            'https://storage.googleapis.com/barapp-data-images/default-restaurant.jpg',
-        }}
-        headerComponent={<Header name={restaurantDetails.name} />}>
-        <ScrollView>
-          <Menu
-            menu={restaurantDetails.menu}
-            restaurantId={restaurantDetails._id}
-          />
-          <RestaurantLocation />
-        </ScrollView>
-      </Layout>
+      <ScrollView>
+        <Header title={name} />
+        <RestaurantImage
+          resizeMode="cover"
+          source={{
+            uri:
+              bannerImgUrl ||
+              'https://storage.googleapis.com/barapp-data-images/default-dish.jpg',
+          }}
+        />
+        <Menu menu={menu} restaurantId={_id} />
+        <RestaurantLocation />
+      </ScrollView>
 
-      <CartBotton restaurantId={restaurantDetails._id} />
+      <CartBotton restaurantId={_id} />
     </FlexView>
   );
 };

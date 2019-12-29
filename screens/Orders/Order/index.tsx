@@ -12,15 +12,11 @@ const Wrapper = styled.View`
 `;
 
 const Title = styled.Text`
-  margin: 8px;
-  padding: 12px;
   color: ${props => props.theme.textColor};
   font-weight: bold;
 `;
 
-const Total = styled.Text`
-  margin: 8px;
-  padding: 12px;
+const Text = styled.Text`
   color: ${props => props.theme.contrast6};
   font-weight: bold;
 `;
@@ -32,6 +28,11 @@ const RestaurantImage = styled.Image`
   border-radius: 6px;
 `;
 
+const Row = styled.View`
+  display: flex;
+  flex-direction: column;
+`;
+
 interface OrderArguments {
   restaurantName: string;
   restaurantImageUrl: string;
@@ -40,18 +41,32 @@ interface OrderArguments {
     name: string;
   }>;
   total: string;
+  status: string;
+  timestamp: string;
 }
 
 export const Order: React.FC<OrderArguments> = ({
   restaurantName,
   restaurantImageUrl,
-  items,
   total,
+  status,
+  timestamp,
 }) => {
   return (
     <Wrapper>
-      <Title>{restaurantName}</Title>
-      <Total>{total}</Total>
+      <Row>
+        <Title>{restaurantName}</Title>
+        <Text>{total}$</Text>
+        <Text>{status && status.replace(/^\w/, c => c.toUpperCase())}</Text>
+        <Text>
+          {new Date(timestamp).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </Text>
+      </Row>
+
       <RestaurantImage source={{ uri: restaurantImageUrl }} />
     </Wrapper>
   );

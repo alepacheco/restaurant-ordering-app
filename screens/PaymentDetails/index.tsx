@@ -5,25 +5,12 @@ import { useStoreActions, useStoreState } from 'store';
 import { getPaymentMethods } from 'utils/network';
 import { Card } from './Card';
 import { Header } from 'components/Header';
+import { WideButton } from 'components/Button/WideButton';
 
 const Wrapper = styled.View`
   background-color: ${props => props.theme.contrast0_5};
   height: 100%;
   padding-top: 34px;
-`;
-
-const AddCardText = styled.Text`
-  color: ${props => props.theme.textColor};
-  font-weight: bold;
-  margin: auto;
-  padding: 18px;
-`;
-
-const AddCardWrapper = styled.TouchableOpacity`
-  background-color: ${props => props.theme.contrast1};
-  font-weight: bold;
-  margin: 18px 8px;
-  border-radius: 6px;
 `;
 
 export const PaymentDetails: React.FC<{ navigation: any }> = ({
@@ -52,9 +39,12 @@ export const PaymentDetails: React.FC<{ navigation: any }> = ({
               brand={paymentMethod.card.brand}
             />
           ))}
-        <AddCardWrapper onPress={() => navigation.navigate('AddNewCard')}>
-          <AddCardText>Add new card</AddCardText>
-        </AddCardWrapper>
+
+        <WideButton
+          text="Add new card"
+          onClick={() => navigation.navigate('AddNewCard')}
+          type="secondary"
+        />
       </ScrollView>
     </Wrapper>
   );

@@ -1,7 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Settings /> renders correctly 1`] = `
-<Text>
-  Settings
-</Text>
+<RNCAppearanceProvider
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "hsl(0, 0%, 90%)",
+          "display": "flex",
+        },
+      ]
+    }
+  >
+    <RCTSafeAreaView
+      emulateUnlessSupported={true}
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "black",
+              "fontSize": 24,
+              "fontWeight": "bold",
+              "marginBottom": 12,
+              "marginLeft": 12,
+              "marginRight": 0,
+              "marginTop": 18,
+            },
+          ]
+        }
+      >
+        Need help?
+      </Text>
+    </RCTSafeAreaView>
+  </View>
+</RNCAppearanceProvider>
 `;

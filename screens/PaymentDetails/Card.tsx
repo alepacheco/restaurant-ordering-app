@@ -1,11 +1,11 @@
 import styled from 'styled-components/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const CardWrapper = styled.View`
   display: flex;
   flex-direction: row;
   background-color: ${props => props.theme.contrast1};
-  margin: 8px;
+  margin: 12px;
   padding: 8px;
   border-radius: 6px;
 `;
@@ -29,7 +29,6 @@ const LastFour = styled.Text`
 const Delete = styled.Text`
   font-weight: bold;
   color: ${props => props.theme.contrast1};
-
   text-align: center;
 `;
 
@@ -40,6 +39,8 @@ const DeleteWrapper = styled.View`
   border-radius: 16px;
 `;
 
+const cardPlaceholder = '· · · ·    · · · ·    · · · ·    ';
+
 export const Card: React.FC<{ last4: string; brand: string }> = ({
   last4,
   brand,
@@ -47,7 +48,10 @@ export const Card: React.FC<{ last4: string; brand: string }> = ({
   return (
     <CardWrapper>
       <CardType>{brand.replace(/^\w/, c => c.toUpperCase())}</CardType>
-      <LastFour>· · · · · · · · · · · · {last4}</LastFour>
+      <LastFour>
+        {cardPlaceholder}
+        {last4}
+      </LastFour>
       <DeleteWrapper>
         <Delete>x</Delete>
       </DeleteWrapper>

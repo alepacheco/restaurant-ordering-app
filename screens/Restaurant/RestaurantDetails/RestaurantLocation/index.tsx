@@ -1,24 +1,19 @@
 import React from 'react';
 import MapView from 'react-native-maps';
 import styled from 'styled-components/native';
-
-const LocationText = styled.Text`
-  color: ${props => props.theme.textColor};
-`;
+import { SubHeader } from 'components/Header/SubHeader';
 
 const StyledMap = styled(MapView)`
-  margin-top: 38px;
-  height: 280px;
+  height: 380px;
+  border-radius: 12px;
 `;
 
-const Wrapper = styled.View`
-  margin-top: 38px;
-`;
+const Wrapper = styled.View``;
 
 export const RestaurantLocation = ({}) => {
   return (
     <Wrapper>
-      <LocationText>Location</LocationText>
+      <SubHeader title="Location" />
       <StyledMap />
     </Wrapper>
   );

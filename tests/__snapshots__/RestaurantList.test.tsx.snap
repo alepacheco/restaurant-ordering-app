@@ -2,7 +2,6 @@
 
 exports[`<RestaurantList /> renders correctly while empty 1`] = `
 <RCTSafeAreaView
-  background={null}
   emulateUnlessSupported={true}
   style={
     Array [
@@ -86,7 +85,6 @@ exports[`<RestaurantList /> renders correctly while empty 1`] = `
 
 exports[`<RestaurantList /> renders correctly whith data 1`] = `
 <RCTSafeAreaView
-  background={null}
   emulateUnlessSupported={true}
   style={
     Array [
