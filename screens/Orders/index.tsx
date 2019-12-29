@@ -3,6 +3,7 @@ import { Text, FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import { getUserOrders } from 'utils/network';
 import { Order } from './Order';
+import { Loading } from 'components/Loading';
 
 type Unpacked<T> = T extends Promise<infer U> ? U : T;
 
@@ -29,9 +30,21 @@ export const Orders: React.FC<{}> = ({}) => {
   const [userOrders, setUserOrders] = useState(
     [] as Unpacked<ReturnType<typeof getUserOrders>>
   );
+
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    getUserOrders().then(data => setUserOrders(data));
-  }, []);
+    (async () => {
+      const data = await getUserOrders();
+      setUserOrders(data);
+
+      setLoading(false);
+    })();
+  }, [loading]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <Wrapper>
