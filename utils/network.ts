@@ -44,6 +44,16 @@ export const getNearbyRestaurants = async (location: any) => {
   }
 };
 
+export const getPaymentMethods = async () => {
+  try {
+    const { data } = await axios.get('/user/paymentMethods');
+
+    return data as Array<any>;
+  } catch (error) {
+    throw new Error('Failure at getPaymentMethods');
+  }
+};
+
 export const getRestaurantMarkers = async (
   location: any
 ): Promise<Array<RestaurantMapMarker>> => {

@@ -5,7 +5,7 @@ import { theme } from './theme';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colorScheme: 'dark' | 'light';
+    colorScheme: 'dark' | 'light' | 'no-preference';
     color: string;
     textColor: string;
 

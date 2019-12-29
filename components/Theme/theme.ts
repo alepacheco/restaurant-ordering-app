@@ -1,5 +1,5 @@
 interface ThemeArguments {
-  colorScheme: 'dark' | 'light';
+  colorScheme: 'dark' | 'light' | 'no-preference';
 }
 
 export const theme = ({ colorScheme }: ThemeArguments) => {

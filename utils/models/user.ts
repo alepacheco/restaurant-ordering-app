@@ -1,5 +1,17 @@
 import { Action, action } from 'easy-peasy';
 
+interface PaymentMethod {
+  card: {
+    brand: string;
+    exp_month: string;
+    exp_year: string;
+    fingerprint: string;
+    last4: string;
+  };
+  id: string;
+  livemode: boolean;
+}
+
 interface UserData {
   name?: string;
   email?: string;
@@ -9,6 +21,7 @@ interface UserData {
     latitude: number;
     longitude: number;
   };
+  paymentMethods?: Array<PaymentMethod>;
 }
 
 export interface User {
@@ -21,6 +34,7 @@ export interface User {
       latitude: number;
     }
   >;
+  setPaymentMethods: Action<User, Array<PaymentMethod>>;
 }
 
 export const user: User = {
@@ -30,5 +44,8 @@ export const user: User = {
   }),
   setLocation: action((state, location) => {
     state.user.location = location;
+  }),
+  setPaymentMethods: action((state, paymentMethods) => {
+    state.user.paymentMethods = paymentMethods;
   }),
 };
