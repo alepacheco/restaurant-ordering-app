@@ -45,9 +45,11 @@ export const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
     <StyledView>
       <StatusBar barStyle={barStyle} />
       <UserInfo />
-      <Menu text="⭐️ Favourites" onPress={() => {}} />
       <Menu text="🛒 Orders" onPress={() => navigation.navigate('Orders')} />
-      <Menu text="💳 Payment Details" onPress={() => navigation.navigate('PaymentDetails')} />
+      <Menu
+        text="💳 Payment Details"
+        onPress={() => navigation.navigate('PaymentDetails')}
+      />
       <Menu text="⚙ Settings" onPress={() => navigation.navigate('Settings')} />
       <Menu text="🔒 Log out" onPress={() => logOut({ navigation })} />
     </StyledView>

@@ -14,6 +14,7 @@ import { ProductDetails } from '../../screens/ProductDetails';
 import { TabBarIcon } from '../TabBar/TabBarIcon';
 import { TabBar } from '../TabBar';
 import { createAppContainer } from 'react-navigation';
+import { PaymentDetails } from '../../screens/PaymentDetails';
 
 const HomeTabIcon = (props: any) => (
   <TabBarIcon icon="home" focused={props.focused} />
@@ -83,8 +84,18 @@ export const Navigator = createStackNavigator(
         headerShown: false,
       },
     },
-    Settings,
-
+    Settings: {
+      screen: Settings,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
+    PaymentDetails: {
+      screen: PaymentDetails,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
     RestaurantDetails: {
       screen: RestaurantDetails,
       navigationOptions: {

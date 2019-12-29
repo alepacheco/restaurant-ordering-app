@@ -4,7 +4,7 @@ import LottieView from 'lottie-react-native';
 
 const Wrapper = styled.SafeAreaView<{ background?: string }>`
   display: flex;
-  ${props => `background-color: ${props.background || props.theme.color};`}
+  background-color: ${props => props.background || props.theme.contrast1};
   height: 100%;
   width: 100%;
   align-items: center;
