@@ -4,16 +4,13 @@ import styled from 'styled-components/native';
 import { getUserOrders } from 'utils/network';
 import { Order } from './Order';
 import { Loading } from 'components/Loading';
+import { Header } from 'components/Header';
 
 type Unpacked<T> = T extends Promise<infer U> ? U : T;
 
 const Wrapper = styled.View`
   height: 100%;
   background-color: ${props => props.theme.contrast0_5};
-`;
-
-const Header = styled.View`
-  margin-top: 38px;
 `;
 
 const HeaderText = styled.Text`
@@ -48,9 +45,7 @@ export const Orders: React.FC<{}> = ({}) => {
 
   return (
     <Wrapper>
-      <Header>
-        <HeaderText>Orders</HeaderText>
-      </Header>
+      <Header title="Orders" />
       <OrderScroll
         data={userOrders}
         keyExtractor={(item: any) => item._id}

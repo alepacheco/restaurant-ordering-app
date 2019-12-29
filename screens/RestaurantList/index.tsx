@@ -8,7 +8,7 @@ import { NoRestaurants } from './NoRestaurants';
 import { useStoreActions, useStoreState } from 'store';
 import { NearbyRestaurant } from 'types/restaurant';
 import { getLocation } from 'utils/location';
-import { Header } from './Header';
+import { Header } from 'components/Header';
 
 const StyledView = styled.View`
   background-color: ${props =>
@@ -62,7 +62,7 @@ export const RestaurantList = ({}) => {
   if (nearbyRestaurants.length === 0) {
     return (
       <Wrapper>
-        <Header />
+        <Header title="Restaurants" />
         <NoRestaurants />
       </Wrapper>
     );
@@ -72,7 +72,7 @@ export const RestaurantList = ({}) => {
     <StyledView>
       <StatusBar barStyle={barStyle} />
 
-      <Header />
+      <Header title="Restaurants" />
       <StyledFlatList
         data={nearbyRestaurants}
         keyExtractor={(item: any) => item._id}

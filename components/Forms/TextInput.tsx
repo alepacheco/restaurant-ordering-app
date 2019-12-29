@@ -10,6 +10,9 @@ export const TextInput = styled.TextInput`
   background-color: ${props => props.theme.contrast1}
   margin: 4px 12px;
 
+  border: 0.5px solid ${props => props.theme.contrast0_5};
   padding: 8px;
+  flex: 1;
+  max-height: 38px;
   border-radius: 6px;
 `;

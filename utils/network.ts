@@ -54,6 +54,32 @@ export const getPaymentMethods = async () => {
   }
 };
 
+interface Card {
+  number: string;
+  expMonth: number;
+  expYear: number;
+  cvc: string;
+}
+export const savePaymentMethods = async ({
+  number,
+  expMonth,
+  expYear,
+  cvc,
+}: Card) => {
+  try {
+    const { data } = await axios.post('/user/paymentMethods', {
+      number,
+      expMonth,
+      expYear,
+      cvc,
+    });
+
+    return data as Array<any>;
+  } catch (error) {
+    throw new Error('Failure at savePaymentMethods');
+  }
+};
+
 export const getRestaurantMarkers = async (
   location: any
 ): Promise<Array<RestaurantMapMarker>> => {

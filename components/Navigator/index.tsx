@@ -14,7 +14,8 @@ import { ProductDetails } from 'screens/Restaurant/ProductDetails';
 import { TabBarIcon } from '../TabBar/TabBarIcon';
 import { TabBar } from '../TabBar';
 import { createAppContainer } from 'react-navigation';
-import { PaymentDetails } from '../../screens/PaymentDetails';
+import { PaymentDetails } from 'screens/PaymentDetails';
+import { AddNewCard } from 'screens/AddNewCard';
 
 const HomeTabIcon = (props: any) => (
   <TabBarIcon icon="home" focused={props.focused} />
@@ -76,6 +77,25 @@ const SplashNavigator = createStackNavigator(
   { initialRouteName: 'LogIn' }
 );
 
+const PaymentOptionsNavigator = createStackNavigator(
+  {
+    PaymentDetails: {
+      screen: PaymentDetails,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
+
+    AddNewCard: {
+      screen: AddNewCard,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
+  },
+  { initialRouteName: 'PaymentDetails' }
+);
+
 export const Navigator = createStackNavigator(
   {
     Home: {
@@ -91,7 +111,7 @@ export const Navigator = createStackNavigator(
       },
     },
     PaymentDetails: {
-      screen: PaymentDetails,
+      screen: PaymentOptionsNavigator,
       navigationOptions: {
         headerShown: false,
       },

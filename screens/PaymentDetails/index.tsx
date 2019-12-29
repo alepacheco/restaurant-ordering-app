@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
+import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import { useStoreActions, useStoreState } from 'store';
 import { getPaymentMethods } from 'utils/network';
 import { Card } from './Card';
+import { Header } from 'components/Header';
 
 const Wrapper = styled.View`
   background-color: ${props => props.theme.contrast0_5};
@@ -10,23 +12,23 @@ const Wrapper = styled.View`
   padding-top: 34px;
 `;
 
-const Title = styled.Text`
-  color: ${props => props.theme.textColor};
-  font-weight: bold;
-  margin: 18px 0 12px 12px;
-  font-size: 24px;
-`;
-
 const AddCardText = styled.Text`
   color: ${props => props.theme.textColor};
   font-weight: bold;
+  margin: auto;
+  padding: 18px;
 `;
 
-const AddCardButton = () => {
-  return <AddCardText>Add new card</AddCardText>;
-};
+const AddCardWrapper = styled.TouchableOpacity`
+  background-color: ${props => props.theme.contrast1};
+  font-weight: bold;
+  margin: 18px 8px;
+  border-radius: 6px;
+`;
 
-export const PaymentDetails: React.FC<{}> = () => {
+export const PaymentDetails: React.FC<{ navigation: any }> = ({
+  navigation,
+}) => {
   const paymentMethods = useStoreState(state => state.user.user.paymentMethods);
   const setPaymentMethods = useStoreActions(
     actions => actions.user.setPaymentMethods
@@ -38,22 +40,22 @@ export const PaymentDetails: React.FC<{}> = () => {
     }
   }, [paymentMethods, setPaymentMethods]);
 
-  console.log({ paymentMethods });
-
   return (
     <Wrapper>
-      <Title>Payment options</Title>
-      {paymentMethods &&
-        paymentMethods.map(paymentMethod => {
-          return (
+      <Header title="Payment options" />
+      <ScrollView>
+        {paymentMethods &&
+          paymentMethods.map((paymentMethod, index) => (
             <Card
-              key={paymentMethod.card.fingerprint}
+              key={index}
               last4={paymentMethod.card.last4}
               brand={paymentMethod.card.brand}
             />
-          );
-        })}
-      <AddCardButton />
+          ))}
+        <AddCardWrapper onPress={() => navigation.navigate('AddNewCard')}>
+          <AddCardText>Add new card</AddCardText>
+        </AddCardWrapper>
+      </ScrollView>
     </Wrapper>
   );
 };

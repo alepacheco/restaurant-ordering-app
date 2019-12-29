@@ -42,27 +42,25 @@ const Map: React.FC<{}> = () => {
   }, [setLocation, setRestaurantMapMarkers, userLocation]);
 
   return (
-    <View>
-      <StyledMap
-        showsCompass
-        showsScale
-        region={{
-          latitude: 0,
-          longitude: 0,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
-          ...userLocation,
-        }}
-        maxZoomLevel={17}
-        rotateEnabled={false}
-        showsUserLocation>
-        {restaurantMapMarkers && restaurantMapMarkers.length > 0 ? (
-          markersList(restaurantMapMarkers)
-        ) : (
-          <View />
-        )}
-      </StyledMap>
-    </View>
+    <StyledMap
+      showsCompass
+      showsScale
+      region={{
+        latitude: 0,
+        longitude: 0,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
+        ...userLocation,
+      }}
+      maxZoomLevel={17}
+      rotateEnabled={false}
+      showsUserLocation>
+      {restaurantMapMarkers && restaurantMapMarkers.length > 0 ? (
+        markersList(restaurantMapMarkers)
+      ) : (
+        <View />
+      )}
+    </StyledMap>
   );
 };
 
