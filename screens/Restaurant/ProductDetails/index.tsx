@@ -10,7 +10,7 @@ import { OptionSelector } from './OptionSelector';
 
 const StyledView = styled.View`
   background-color: ${props =>
-    props.theme.colorScheme === 'light' ? 'white' : props.theme.contrast1};
+    props.theme.colorScheme === 'light' ? 'white' : props.theme.contrast1_5};
 `;
 
 const ProductImage = styled.Image`

@@ -46,7 +46,7 @@ export const Orders: React.FC<{}> = ({}) => {
           setRefreshing(false);
         }}
         refreshing={refreshing}
-        keyExtractor={(item: any) => item._id}
+        keyExtractor={(item: any) => item && item._id}
         renderItem={({ item }: any) => <Order {...item}></Order>}
       />
     </Wrapper>

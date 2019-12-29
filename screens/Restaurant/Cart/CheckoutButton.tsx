@@ -7,9 +7,9 @@ import { goToHome } from 'utils/navigation';
 
 const Wrapper = styled.TouchableOpacity`
   background-color: orange;
-  margin: 24px;
-  border-radius: 4px;
-  padding: 8px;
+  margin: 8px;
+  border-radius: 6px;
+  padding: 12px;
 `;
 
 const Title = styled.Text`

@@ -11,6 +11,7 @@ export const theme = ({ colorScheme }: ThemeArguments) => {
     contrast0: colorScheme === 'dark' ? 'hsl(0, 0%, 0%)' : 'hsl(0, 0%, 100%)',
     contrast0_5: colorScheme === 'dark' ? 'hsl(0, 0%, 5%)' : 'hsl(0, 0%, 95%)',
     contrast1: colorScheme === 'dark' ? 'hsl(0, 0%, 10%)' : 'hsl(0, 0%, 90%)',
+    contrast1_5: colorScheme === 'dark' ? 'hsl(0, 0%, 15%)' : 'hsl(0, 0%, 85%)',
     contrast2: colorScheme === 'dark' ? 'hsl(0, 0%, 20%)' : 'hsl(0, 0%, 80%)',
     contrast3: colorScheme === 'dark' ? 'hsl(0, 0%, 30%)' : 'hsl(0, 0%, 70%)',
     contrast4: colorScheme === 'dark' ? 'hsl(0, 0%, 40%)' : 'hsl(0, 0%, 60%)',

@@ -13,10 +13,7 @@ const Container = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   margin: 8px;
-  background-color: ${props =>
-    props.theme.colorScheme === 'light'
-      ? props.theme.contrast1
-      : props.theme.contrast2};
+  background-color: ${props => props.theme.contrast1};
 
   overflow: hidden;
   border-radius: 8px;

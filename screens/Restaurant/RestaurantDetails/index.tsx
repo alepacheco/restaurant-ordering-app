@@ -17,6 +17,7 @@ const FlexView = styled.View`
 `;
 
 const RestaurantImage = styled.Image`
+  margin: 8px;
   height: 120px;
   border-radius: 12px;
 `;

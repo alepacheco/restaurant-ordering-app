@@ -5,7 +5,7 @@ import { pickImage } from '../utils';
 import { UserStats } from './UserStats';
 import { useStoreState, useStoreActions } from 'store';
 import { getProfile } from 'utils/network';
-import { Loading } from 'components/Loading';
+import { FastImage } from 'components/FastImage';
 
 const Bio = styled.Text`
   ${props => `color: ${props.theme.textColor};`}
@@ -13,10 +13,10 @@ const Bio = styled.Text`
 `;
 const CenterPicture = styled.TouchableOpacity`
   display: flex;
-  justify-content: center; /* align horizontal */
-  align-items: center; /* align vertical */
+  justify-content: center;
+  align-items: center;
 `;
-const ProfilePicture = styled.Image`
+const ProfilePicture = styled(FastImage)`
   border-radius: 64px;
   height: 128px;
   width: 128px;
@@ -37,10 +37,6 @@ const Name = styled.Text`
 const Email = styled.Text`
   text-align: center;
   color: gray;
-`;
-
-const StyledLoading = styled(Loading)`
-  max-height: 100px;
 `;
 
 export const UserInfo = ({}) => {
@@ -64,11 +60,7 @@ export const UserInfo = ({}) => {
     <View>
       <ProfileWrapper>
         <CenterPicture onPress={() => pickImage(() => setUser(null))}>
-          <ProfilePicture
-            source={{
-              uri: defaultedData.imageUrl,
-            }}
-          />
+          <ProfilePicture url={defaultedData.imageUrl} />
         </CenterPicture>
         <Name>{defaultedData.name}</Name>
         <Email>{defaultedData.email}</Email>

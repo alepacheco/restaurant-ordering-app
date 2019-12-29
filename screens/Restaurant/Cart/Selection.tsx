@@ -4,12 +4,12 @@ import { MenuItem } from 'types/restaurant';
 import { Selection as SelectionType } from 'utils/models/cart';
 
 const StyledView = styled.View`
-  margin: 12px 24px;
+  margin: 12px;
   padding: 24px;
   background-color: ${props =>
     props.theme.colorScheme === 'light'
       ? props.theme.contrast1
-      : props.theme.contrast2};
+      : props.theme.contrast1_5};
   border-radius: 8px;
   display: flex;
   flex-direction: row;

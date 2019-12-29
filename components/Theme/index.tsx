@@ -12,6 +12,7 @@ declare module 'styled-components' {
     contrast0_5: string;
     contrast0: string;
     contrast1: string;
+    contrast1_5: string;
     contrast2: string;
     contrast3: string;
     contrast4: string;

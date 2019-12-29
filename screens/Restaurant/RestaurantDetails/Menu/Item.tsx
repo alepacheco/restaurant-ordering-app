@@ -3,6 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { withNavigation, NavigationScreenProp } from 'react-navigation';
 import * as haptics from 'utils/haptics';
+import { FastImage } from 'components/FastImage';
 
 const Wrapper = styled.View`
   display: flex;
@@ -26,7 +27,7 @@ const Price = styled.Text`
 
   font-weight: bold;
 `;
-const ProductImage = styled.Image`
+const ProductImage = styled(FastImage)`
   background-color: white;
   width: 84px;
   height: 84px;
@@ -72,14 +73,8 @@ const Item: React.FC<ItemOptions & { navigation: any }> = ({
           .then(() => onItemClick({ navigation, restaurantId, itemId: _id }))
       }>
       <Wrapper>
-        <ProductImage
-          resizeMode="contain"
-          source={{
-            uri:
-              imageUrl ||
-              'https://storage.googleapis.com/barapp-data-images/default-dish.jpg',
-          }}
-        />
+        <ProductImage url={imageUrl} />
+
         <TextWrapper>
           <Title>{name}</Title>
           <Price>${price}</Price>

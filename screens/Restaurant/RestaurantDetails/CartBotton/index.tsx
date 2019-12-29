@@ -7,7 +7,7 @@ const AddToCartWrapper = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   background-color: orange;
-  border-radius: 2px;
+  border-radius: 6px;
 
   margin: 12px 12px 34px;
   padding: 12px;
@@ -49,7 +49,7 @@ const _CartBotton: React.FC<{ restaurantId: string; navigation: any }> = ({
 }) => {
   const cartSelection = useStoreState(state => state.cart.items[restaurantId]);
 
-  const price = '1gbp';
+  const price = '';
 
   if (!cartSelection || cartSelection.length === 0) {
     return null;
