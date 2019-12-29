@@ -7,6 +7,7 @@ import { createOrder } from 'utils/network';
 import { CheckoutButton } from './CheckoutButton';
 import { Restaurant, MenuItem } from 'types/restaurant';
 import { Header } from 'components/Header';
+import { Selection as SelectionType } from 'utils/models/cart';
 
 const StyledView = styled.View`
   display: flex;
@@ -52,7 +53,7 @@ const mapOfItemsFromRestaurant = (
   );
 };
 
-export const priceItem = (item: any, menuItem: MenuItem) => {
+export const priceItem = (item: SelectionType, menuItem: MenuItem) => {
   if (
     menuItem === undefined ||
     item === undefined ||

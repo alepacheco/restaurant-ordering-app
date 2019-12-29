@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as FileSystem from 'expo-file-system';
 import { Image } from 'react-native';
 
-const cyrb53 = function(str, seed = 0) {
+const cyrb53 = (str: string, seed = 0) => {
   let h1 = 0xdeadbeef ^ seed,
     h2 = 0x41c6ce57 ^ seed;
   for (let i = 0, ch; i < str.length; i++) {
@@ -51,5 +51,12 @@ export const FastImage: React.FC<{ url: string }> = ({ url, ...options }) => {
     })();
   }, [url]);
 
-  return <Image onError={() => setUri(defaultUrl)} resizeMode="cover" source={{ uri }} {...options} />;
+  return (
+    <Image
+      onError={() => setUri(defaultUrl)}
+      resizeMode="cover"
+      source={{ uri }}
+      {...options}
+    />
+  );
 };
